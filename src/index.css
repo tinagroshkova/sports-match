@@ -19,3 +19,16 @@ form {
   text-align: center;
   justify-content: center;
 }
+
+/* li:hover {
+  color: pink !important;
+} */
+
+
+a:hover {
+  color: white !important;
+}
+
+.nav-links:first-child {
+  font-weight: 800 !important;
+}
