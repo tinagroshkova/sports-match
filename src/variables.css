@@ -4,5 +4,5 @@
     --lighter-main-color: rgb(100, 111, 157);
     --almost-white-color: rgb(188, 193, 211);
     --contrast-color: rgb(248, 175, 120);
-    --box-shadow: 0 8px 6px -6px black;
+    --box-shadow: 0 8px 6px -6px var(--contrast-color);
   }
