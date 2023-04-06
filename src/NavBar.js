@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { COLORS } from './styleVariables';
 
 const navHolderStyles = {
-  backgroundColor: COLORS.mainColor,
+  backgroundColor: COLORS.darkMainColor,
   width: '100%',
   justifyContent: 'center',
   boxShadow: COLORS.boxShadow
@@ -12,8 +12,7 @@ const navHolderStyles = {
 const navStyles = {
   display: 'flex',
   flexDirection: 'row',
-  backgroundColor: COLORS.mainColor,
-  width: '30%',
+  width: '800px',
   margin: 'auto',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -33,7 +32,7 @@ const firstLinkStyles = {
 };
 
 const footerStyles = {
-  backgroundColor: COLORS.mainColor,
+  backgroundColor: COLORS.darkMainColor,
   width: '100%',
   justifyContent: 'center',
   textAlign: 'center',
@@ -41,8 +40,8 @@ const footerStyles = {
   position: 'fixed',
   bottom: '0',
   padding: '20px',
-  fontSize: '18px'
-
+  fontSize: '18px',
+  boxShadow: '0 -8px 6px -6px black'
 };
 
 const iconStyles = {

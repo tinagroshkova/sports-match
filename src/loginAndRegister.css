@@ -11,24 +11,47 @@ section {
     background-position: center;
 }
 
-.loginForm {
+.loginForm,
+.registrationForm {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    justify-content: center;
     width: 410px;
     height: 480px;
     background: transparent;
     /* Цвят на рамката на формата */
     border: 2px solid var(--contrast-color);
     border-radius: 20px;
+    background: transparent;
+    backdrop-filter: blur(15px);
     /* Цвят на фоновото осветление на формата :D */
-    box-shadow: 0px -1px 50px 12px var(--lighter-main-color);
+    box-shadow: 0px -1px 50px 12px var(--dark-main-color);
 }
+.loginForm {
+    height: 480px;
+}
+
+.registrationForm {
+    height: 556px;
+}
+
+.haveAnAcount {
+    position: relative;
+    top: 12px;
+}
+
+.registerTitle {
+    position: relative;
+    top: 10px;
+}
+
 
 h2 {
     font-size: 2em;
     /* Цвят на Login заглавието*/
-    color: #ffffff;
+    color: var(--almost-white-color);
     text-align: center;
 }
 
@@ -37,7 +60,7 @@ h2 {
     width: 336px;
     margin: 30px;
     /* Цвят на хоризонталните линии */
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--almost-white-color);
 }
 
 .inputBox label {
@@ -46,7 +69,8 @@ h2 {
     left: 5px;
     transform: translateY(-50%);
     /* Цвят на Username и Passoword текста */
-    color: #fbf9f9;
+    color: var(--almost-white-color);
+    font-weight: 400;
     pointer-events: none;
     transition: .5s;
 }
@@ -70,7 +94,7 @@ h2 {
     position: absolute;
     right: 8px;
     /* Цвят на иконите */
-    color: white;
+    color: var(--contrast-color);
     font-size: 1.2em;
     line-height: 57px;
 }
@@ -89,23 +113,25 @@ h2 {
     top: 10px;
     width: 80%;
     height: 40px;
-    /* Цвят на фона на бутона ПРЕДИ ховър (дефолт) */
-    background: rgb(241, 233, 233);
+    background: var(--almost-white-color);
+    border: none;
     border-radius: 40px;
     color: black;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 17px;
+    box-shadow: var(--box-shadow);
 }
 
 .btn-primary:hover {
-    /* Цвят на фона на бутона СЛЕД ховър */
-    background-color: var(--contrast-color)
+    background-color: var(--contrast-color);
+    /* color: white; */
 }
 
 .registerLink {
     margin-top: 40px;
     text-decoration: none;
     /* Цвят на "Don't have an account?" */
-    color: rgb(255, 255, 255);
+    color: var(--almost-white-color);
 }
 
 .noAccount {
@@ -114,8 +140,7 @@ h2 {
 }
 
 .registerLink p a {
-    /* Цвят на "Register" ПРЕДИ ховър */
-    color: white;
+    color: var(--almost-white-color);
     text-decoration: none;
     font-weight: 600;
 }
