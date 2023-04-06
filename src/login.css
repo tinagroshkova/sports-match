@@ -1,0 +1,127 @@
+section {
+    /* Цвят на главния фон */
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 410px;
+    height: 480px;
+    background: transparent;
+    /* Цвят на рамката на формата */
+    border: 2px solid var(--contrast-color);
+    border-radius: 20px;
+    /* Цвят на фоновото осветление на формата :D */
+    box-shadow: 0px -1px 50px 12px var(--lighter-main-color);
+}
+
+h2 {
+    font-size: 2em;
+    /* Цвят на Login заглавието*/
+    color: #ffffff;
+    text-align: center;
+}
+
+.inputBox {
+    position: relative;
+    width: 336px;
+    margin: 30px;
+    /* Цвят на хоризонталните линии */
+    border-bottom: 2px solid #fff;
+}
+
+.inputBox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    /* Цвят на Username и Passoword текста */
+    color: #fbf9f9;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.inputBox input:focus~label,
+.inputBox input:valid~label {
+    top: -5px;
+}
+
+.inputBox input {
+    width: 100%;
+    height: 46px;
+    background: transparent;
+    border: none;
+    outline: none;
+    /* Цвят на курсора и текста при писане */
+    color: #f0eded;
+}
+
+.inputBox .icon {
+    position: absolute;
+    right: 8px;
+    /* Цвят на иконите */
+    color: white;
+    font-size: 1.2em;
+    line-height: 57px;
+}
+
+@media (max-width: 360px) {
+    .inputBox {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+}
+
+.btn-primary {
+    position: relative;
+    top: 10px;
+    width: 80%;
+    height: 40px;
+    /* Цвят на фона на бутона ПРЕДИ ховър (дефолт) */
+    background: rgb(241, 233, 233);
+    border-radius: 40px;
+    color: black;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    /* Цвят на фона на бутона СЛЕД ховър */
+    background-color: var(--contrast-color)
+}
+
+.registerLink {
+    margin-top: 40px;
+    text-decoration: none;
+    /* Цвят на "Don't have an account?" */
+    color: rgb(255, 255, 255);
+}
+
+.noAccount {
+    position: relative;
+    top: 30px;  
+}
+
+.registerLink p a {
+    /* Цвят на "Register" ПРЕДИ ховър */
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.registerHover:hover {
+    /* Цвят на "Register" СЛЕД ховър */
+    color: var(--contrast-color);
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import './register.css';
 
 class RegistrationForm extends React.Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class RegistrationForm extends React.Component {
 
     if (!password) {
       errors.password = 'Password is required';
-    } else if (password.length < 8) {
-      errors.password = 'Password must be at least 8 characters long';
+    } else if (password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
     } else if (!/\d/.test(password)) {
       errors.password = 'Password must contain at least one number';
     } else if (!/[A-Z]/.test(password)) {
@@ -62,30 +63,42 @@ class RegistrationForm extends React.Component {
     const { username, password, confirmPassword, errors } = this.state;
 
     return (
-      <Form className='registrationForm' onSubmit={this.handleSubmit}>
-        <Form.Group as={Row} className="mb-3" controlId="formUsername">
-          <Col sm="10">
-            <Form.Control type="text" name="username" placeholder="Username" value={username} onChange={this.handleChange} />
-            {errors.username && <Form.Text className="text-danger">{errors.username}</Form.Text>}
-          </Col>
-        </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formPassword">
-          <Col sm="10">
-            <Form.Control type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange} />
-            {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
-          </Col>
-        </Form.Group>
+      <section>
+              <form className="registrationForm" onSubmit={this.handleSubmit}>
+                <h2 className="registerTitle">Register</h2>
+                <div className="inputBox">
+                  <span className="icon"><ion-icon name="person"></ion-icon></span>
+                  <input type="text" name="username" value={username} required onChange={this.handleChange}></input>
+                  <label>Username</label>
+                </div>
+                
+                {errors.username && <Form.Text className="text-danger">{errors.username}</Form.Text>}
 
-        <Form.Group as={Row} className="mb-3" controlId="formConfirmPassword">
-          <Col sm="10">
-            <Form.Control type="password" name="confirmPassword" placeholder="Confirm password" value={confirmPassword} onChange={this.handleChange} />
-            {errors.confirmPassword && <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>}
-          </Col>
-        </Form.Group>
+                <div className="inputBox">
+                  <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                  <input type="password" name="password" value={password} required onChange={this.handleChange}></input>
+                  <label>Password</label>
+                </div>
 
-        <Button variant="primary" type="submit">Register</Button>
-      </Form>
+                {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
+
+                 <div className="inputBox">
+                  <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                  <input type="password" name="confirmPassword" value={confirmPassword} required onChange={this.handleChange}></input>
+                  <label>Confirm Password</label>
+                </div>
+
+                {errors.confirmPassword && <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>}
+
+                <button className="btn-primary" type="submit">Register</button>
+                
+                <div className="registerLink">
+                  <p className='haveAnAcount'>Already have an account? <a className="registerRedirect" href="#"><span
+                    className="registerHover">Login</span></a></p>
+                </div>
+              </form>
+          </section>
     );
   }
 }
