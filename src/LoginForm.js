@@ -61,8 +61,8 @@ class LoginForm extends React.Component {
     return (
       <div>
         {loggedUser ? (
-          <div>
-            <p>Logged in as {loggedUser.username}</p>
+          <div className='userHolder'>
+            <p>User: {loggedUser.username}</p>
             <Button variant="primary" onClick={this.handleLogout}>
               Logout
             </Button>
