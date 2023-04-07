@@ -57,15 +57,16 @@ function NavBar() {
         <ul className="nav-links" style={navStyles}>
           <li><a href="#home" style={{...linkStyles, ...firstLinkStyles}}>Home</a></li>
           <li><a href="#profile" style={linkStyles}>My profile</a></li>
-          <li><a href="#messages" style={linkStyles}>Messages</a></li>
           <li><a href="#activities" style={linkStyles}>Activities</a></li>
+          <li><a href="#buddySearch" style={linkStyles}>Buddy Search</a></li>
+          <li><a href="#messages" style={linkStyles}>Messages</a></li>
           <li><a href="#places" style={linkStyles}>Places</a></li>
-          <li><a href="#request" style={linkStyles}>Request</a></li>
+          <li><a href="#requests" style={linkStyles}>Requests</a></li>
         </ul>
       </nav>
       <footer style={footerStyles}>
 
-        <p style={{ color: COLORS.almostWhiteColor, fontWeight: '300' }}>Website created by: Tina & Andrey</p>
+        <p style={{ color: COLORS.almostWhiteColor, fontWeight: '300' }}>Website created by: Tina & Andrei</p>
         <a href="https://github.com/your-username"><FaGithub style={iconStyles} /></a>
         <a href="https://linkedin.com/in/your-username"><FaLinkedin style={iconStyles} /></a>
         <a href="mailto:youremail@example.com"><FaEnvelope style={iconStyles} /></a>
