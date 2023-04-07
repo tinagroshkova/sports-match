@@ -128,7 +128,6 @@ h2 {
 }
 
 .registerLink {
-    margin-top: 40px;
     text-decoration: none;
     /* Цвят на "Don't have an account?" */
     color: var(--almost-white-color);
