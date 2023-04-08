@@ -47,6 +47,8 @@
     height: 100px;
     color: var(--almost-white-color);
     box-shadow: 0px -8px 6px -6px black;
+    position: fixed;
+    bottom: 0;
   }
   
   .userHolder {
@@ -85,6 +87,7 @@
     color: var(--almost-white-color);
     font-size: 30px;
     margin: 10px;
+
   }
 
   .errorImage {
