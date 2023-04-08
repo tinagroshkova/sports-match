@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../components/LoginAndRegister.css';
+import '../components/loginAndRegister.css';
 import {} from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
 class LoginForm extends React.Component {
