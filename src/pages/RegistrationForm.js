@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import '../components/LoginAndRegister.css';
 import UserManager from '../services/UserManager';
 import { Link } from 'react-router-dom';
+import {} from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
  
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
