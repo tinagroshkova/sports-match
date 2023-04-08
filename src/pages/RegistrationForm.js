@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import './loginAndRegister.css';
+import '../components/LoginAndRegister.css';
 
 class RegistrationForm extends React.Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class RegistrationForm extends React.Component {
                 <h2 className="registerTitle">Register</h2>
                 <div className="inputBox">
                   <span className="icon"><ion-icon name="person"></ion-icon></span>
-                  <input type="text" name="username" value={username} required onChange={this.handleChange}></input>
+                  <input type="text" name="username" value={username} required onChange={this.handleChange}/>
                   <label>Username</label>
                 </div>
                 
@@ -77,7 +77,7 @@ class RegistrationForm extends React.Component {
 
                 <div className="inputBox">
                   <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                  <input type="password" name="password" value={password} required onChange={this.handleChange}></input>
+                  <input type="password" name="password" value={password} required onChange={this.handleChange}/>
                   <label>Password</label>
                 </div>
 
@@ -85,7 +85,7 @@ class RegistrationForm extends React.Component {
 
                  <div className="inputBox">
                   <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                  <input type="password" name="confirmPassword" value={confirmPassword} required onChange={this.handleChange}></input>
+                  <input type="password" name="confirmPassword" value={confirmPassword} required onChange={this.handleChange}/>
                   <label>Confirm Password</label>
                 </div>
 

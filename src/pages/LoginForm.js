@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import './loginAndRegister.css';
+import '../components/LoginAndRegister.css';
 import {} from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
 class LoginForm extends React.Component {
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
                 <h2>Login</h2>
                 <div className="inputBox">
                   <span className="icon"><ion-icon name="person"></ion-icon></span>
-                  <input type="text" name="username" value={username} required onChange={this.handleChange}></input>
+                  <input type="text" name="username" value={username} required onChange={this.handleChange}/>
                   <label>Username</label>
                 </div>
                 
@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
 
                 <div className="inputBox">
                   <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                  <input type="password" name="password" value={password} required onChange={this.handleChange}></input>
+                  <input type="password" name="password" value={password} required onChange={this.handleChange}/>
                   <label>Password</label>
                 </div>
 
