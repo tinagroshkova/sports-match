@@ -1,4 +1,5 @@
 @import "../../variables";
+@import "../../mixins";
 
 section {
     background-color: $main-color;
@@ -123,21 +124,7 @@ h2 {
 }
 
 .btn-primary {
-    position: relative;
-    top: 10px;
-    width: 80%;
-    height: 40px;
-    background: $almost-white-color;
-    border: none;
-    border-radius: 40px;
-    color: black;
-    font-weight: 600;
-    font-size: 17px;
-    box-shadow: $box-shadow;
-
-    &:hover {
-        background-color: $super-contrast;
-    }
+    @include button()
 }
 
 .registerLink {
