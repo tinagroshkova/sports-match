@@ -1,12 +1,13 @@
-import HomeCard from "../../components/HomeCard/HomeCard";
 import React from "react";
+import HomeCard from "../../components/HomeCard/HomeCard";
+import "./Home.scss"
 
-import myProfile from "../../images/homePageProfile.png";
-import activities from "../../images/homePageActivities.png";
-import buddySearch from "../../images/photo.jpg";
-import messages from "../../images/homePageChat.png";
-import places from "../../images/homePagePlaces.png";
-import requests from "../../images/homePageRequests.png";
+import myProfile from "../../images/homePage/homePageProfile.png";
+import activities from "../../images/homePage/homePageActivities.png";
+import buddySearch from "../../images/homePage/photo.jpg";
+import messages from "../../images/homePage/homePageChat.png";
+import places from "../../images/homePage/homePagePlaces.png";
+import requests from "../../images/homePage/homePageRequests.png";
 
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -46,12 +47,12 @@ export default function HomePage() {
     ]
 
     return (
-        <div>
+        <div className="homeBackground">
+         
+            <h2 className="siteNameTitle">Welcome to Sport Match</h2>
+            <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it together</h2>
 
-            <h2>Welcome to Sport Match</h2>
-            <h2>Choose an activity, meet new people, have fun doing it together</h2>
-
-            <div className="homePageContainerWrapper">
+            <div className="homeCardContainerWrapper">
                 {navElements.map(data => (
                     <HomeCard
                         key={data.description}
@@ -60,7 +61,6 @@ export default function HomePage() {
                         to={data.to}
                     />
                 ))}
-
             </div>
         </div>
 

@@ -1,12 +1,12 @@
 @import "../../variables";
 
 
-.homePageContainerWrapper {
+.homeCardContainerWrapper {
     display: flex;
     justify-content: center;
     margin: 150px;
 
-    .homePageContainer {
+    .homeCardContainer {
         display: flex;
         flex-direction: column;
         width: 200px;

@@ -7,7 +7,7 @@ export default function HomeCard({image, description, to}) {
    
     return (
         
-        <div className="homePageContainer">
+        <div className="homeCardContainer">
             <img src={image} alt={1} />
             <Link to={to}> <h2>{description}</h2></Link>
         </div>
