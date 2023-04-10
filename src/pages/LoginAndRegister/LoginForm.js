@@ -47,11 +47,11 @@ function LoginForm() {
   }, []);
 
   return (
-    <>
-      <img src={tennis} className="bannerImage1"></img>
-      <img src={football} className="bannerImage2"></img>
-      <img src={football1} className="bannerImage4"></img>
-      <img src={basketball} className="bannerImage5"></img>
+    <div className="loginPageHolder">
+      <img src={tennis} className="banner bannerImage1"></img>
+      <img src={football} className="banner bannerImage2"></img>
+      <img src={football1} className="banner bannerImage3"></img>
+      <img src={basketball} className="banner bannerImage4"></img>
       <section>
         <form className="loginForm" onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -79,7 +79,7 @@ function LoginForm() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
 

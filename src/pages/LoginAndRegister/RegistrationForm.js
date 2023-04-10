@@ -67,7 +67,7 @@ const RegistrationForm = () => {
     }
   }
   return (
-    <>
+    <div className="loginPageHolder">
       <img src={tennis} className="bannerImage1"></img>
       <img src={football} className="bannerImage2"></img>
       <img src={football1} className="bannerImage4"></img>
@@ -133,7 +133,7 @@ const RegistrationForm = () => {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
 export default RegistrationForm;

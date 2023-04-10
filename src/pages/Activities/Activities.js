@@ -1,8 +1,9 @@
 import Activity from "../../components/Activity/Activity"
 import { useState } from "react";
+import UserManager from "../../services/UserManager";
 
 import tennis from "../../images/activitiesPage/tennis.png";
-import tableTennis  from "../../images/activitiesPage/tableTennis.png";
+import tableTennis from "../../images/activitiesPage/tableTennis.png";
 import football from "../../images/activitiesPage/football.png";
 import badminton from "../../images/activitiesPage/badminton.png";
 import squash from "../../images/activitiesPage/squash.png";
@@ -116,9 +117,13 @@ export default function ActivitiesPage() {
             added: false
         },
     ];
+    activities.sort((a, b) => a.name.localeCompare(b.name));
 
     function handleAddActivity(activity) {
-        // Implement the logic to add the activity to a list
+        const user = UserManager.getLoggedInUser();
+        user.addActivity(activity);
+        console.log(user);
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
         setAddedActivities([...addedActivities, activity]);
     }
 

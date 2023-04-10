@@ -1,9 +1,15 @@
 class User {
-    constructor(username, password) {
-      this.username = username;
-      this.password = password;
-    }
+  constructor(username, password) {
+    this.username = username;
+    this.password = password;
+    this.activities = JSON.parse(localStorage.getItem(`${this.username}_activities`)) || [];
   }
+
+  addActivity(activity) {
+    this.activities.push(activity);
+    localStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
+  }
+}
   
   class UserManager {
     static registerUser(username, password) {
@@ -39,7 +45,12 @@ class User {
     }
   
     static getLoggedInUser() {
-      return JSON.parse(localStorage.getItem("loggedInUser"));
+      const userJson = localStorage.getItem("loggedInUser");
+      if (!userJson) {
+        return null;
+      }
+      const userObj = JSON.parse(userJson);
+      return new User(userObj.username, userObj.password);
     }
   }
   
