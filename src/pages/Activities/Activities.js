@@ -1,10 +1,10 @@
 import Activity from "../../components/Activity/Activity"
 import { useState } from "react";
 
-import tennis from "../../images/tennis.png";
+import tennis from "../../images/activitiesPage/tennis.png";
 import tableTennis  from "../../images/activitiesPage/tableTennis.png";
-import football from "../../images/football2.png";
-import badminton from "../../images/badminton.png";
+import football from "../../images/activitiesPage/football.png";
+import badminton from "../../images/activitiesPage/badminton.png";
 import squash from "../../images/activitiesPage/squash.png";
 import running from "../../images/running.png";
 import basketball from "../../images/activitiesPage/basketball.png";
@@ -12,8 +12,6 @@ import volleyball from "../../images/activitiesPage/volleyball.png";
 import ski from "../../images/activitiesPage/ski.png";
 import snowboard from "../../images/activitiesPage/snowboard.png";
 import iceSkating from "../../images/activitiesPage/iceSkating.png";
-
-
 
 
 

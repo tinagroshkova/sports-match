@@ -5,10 +5,10 @@ import UserManager from "../../services/UserManager";
 import { Link } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
-import football from "../../images/football2.png";
-import football1 from "../../images/football3.png";
-import tennis from "../../images/tennis.png";
-import basketball from "../../images/basketball.png";
+import football from "../../images/LoginAnRegusterPages/football2.png";
+import football1 from "../../images/LoginAnRegusterPages/football3.png";
+import tennis from "../../images/LoginAnRegusterPages/tennis.png";
+import basketball from "../../images/LoginAnRegusterPages/basketball.png";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
