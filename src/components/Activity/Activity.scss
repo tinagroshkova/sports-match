@@ -1,20 +1,33 @@
 @import "../../variables";
 @import "../../mixins";
 
+.activitiesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+    gap: 40px;
+    margin-top: 160px;
+}
+
 .activityContainer {
     display: flex;
     flex-direction: column;
     width: 200px;
-    height: 300px;
+    height: 260px;
+
     box-shadow: $box-shadow;
     align-items: center;
+    @include border();
 
     img {
-        width: 100px;
-        height: auto;
+        width: auto;
+        height: 100px;
     }
     button {
-        @include button ()
+        margin-top: 20px;
+        @include button();
 
     }
 }

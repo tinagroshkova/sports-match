@@ -1,4 +1,4 @@
-@mixin button () {
+@mixin button() {
     position: relative;
     top: 10px;
     width: 80%;
@@ -14,4 +14,11 @@
     &:hover {
         background-color: $super-contrast;
     }
+}
+
+@mixin border(){
+    border: 2px solid $super-contrast;
+    border-radius: 20px;
+    background: transparent;
+    backdrop-filter: blur(15px);
 }

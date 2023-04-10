@@ -4,12 +4,11 @@ import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import UserManager from "../../services/UserManager";
 import { Link } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-import movement from "../../images/movement.png"
-// import logo from "../../images/items.png"
-// import banner from "../../images/runningbanner.png"
-// import runners from "../../images/runners.png"
 
-
+import football from "../../images/football2.png";
+import football1 from "../../images/football3.png";
+import tennis from "../../images/tennis.png";
+import basketball from "../../images/basketball.png";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -49,7 +48,10 @@ function LoginForm() {
 
   return (
     <>
-      <img src={movement} className="bannerImage"></img>
+      <img src={tennis} className="bannerImage1"></img>
+      <img src={football} className="bannerImage2"></img>
+      <img src={football1} className="bannerImage4"></img>
+      <img src={basketball} className="bannerImage5"></img>
       <section>
         <form className="loginForm" onSubmit={handleSubmit}>
           <h2>Login</h2>

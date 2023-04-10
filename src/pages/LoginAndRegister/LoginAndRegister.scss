@@ -13,8 +13,7 @@ section {
     background-position: center; */
 }
 
-.loginForm,
-.registrationForm {
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,52 +22,53 @@ section {
     width: 410px;
     height: 480px;
     background: transparent;
-
-    /* Цвят на рамката на формата */
-    border: 2px solid $super-contrast;
-    border-radius: 20px;
-    background: transparent;
-    backdrop-filter: blur(15px);
-
-    /* Цвят на фоновото осветление на формата :D */
     box-shadow: 0px -1px 50px 12px $dark-main-color;
-}
-
-.bannerImage {
-    height: 380px;
-    width: auto;
-    position: absolute;
-    top: 170px;
-    left: 33%;
-}
-
-.loginForm {
-    height: 480px;
     position: absolute;
     top: 440px;
+
+    @include border();
+    .noAccount {
+        position: relative;
+        top: 30px;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: $almost-white-color;
+        text-align: center;
+    }
+    .registerTitle {
+        position: relative;
+        top: 10px;
+    }
+    .haveAnAcount {
+        position: relative;
+        top: 12px;
+    }
+    .text-danger,
+    .form-text {
+        color: red;
+    }
+    .btn-primary {
+        @include button()
+    }
+    .registerLink {
+        text-decoration: none;
+    
+        /* Цвят на "Don't have an account?" */
+        color: $almost-white-color;
+        a {
+            color: $almost-white-color;
+            text-decoration: none;
+            font-weight: 600;
+            &:hover {
+                color: $super-contrast;
+            }
+        }
+        
+    }
 }
 
-.registrationForm {
-    height: 556px;
-}
-
-.haveAnAcount {
-    position: relative;
-    top: 12px;
-}
-
-.registerTitle {
-    position: relative;
-    top: 10px;
-}
-
-h2 {
-    font-size: 2em;
-
-    /* Цвят на Login заглавието*/
-    color: $almost-white-color;
-    text-align: center;
-}
 
 .inputBox {
     position: relative;
@@ -112,43 +112,60 @@ h2 {
         font-size: 1.2em;
         line-height: 57px;
     }
-}
-
-@media (max-width: 360px) {
-    .inputBox {
-        width: 100%;
-        height: 100vh;
-        border: none;
-        border-radius: 0;
-    }
-}
-
-.btn-primary {
-    @include button()
-}
-
-.registerLink {
-    text-decoration: none;
-
-    /* Цвят на "Don't have an account?" */
-    color: $almost-white-color;
-    a {
-        color: $almost-white-color;
-        text-decoration: none;
-        font-weight: 600;
-        &:hover {
-            color: $super-contrast;
+    @media (max-width: 360px) {
+        .inputBox {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            border-radius: 0;
         }
     }
-    
 }
 
-.noAccount {
-    position: relative;
-    top: 30px;
+
+.bannerImage1 {
+    height: 700px;
+    width: auto;
+    position: absolute;
+    bottom: 130px;
+    left: 180px;
+    z-index: 2;
+}
+.bannerImage2{
+    height: 1100px;
+    width: auto;
+    position: absolute;
+    bottom: 130px;
+    left: 840px;
+    // z-index: 3;
+}
+.bannerImage3 {
+    height: 800px;
+    width: auto;
+    position: absolute;
+    bottom: 400px;
+    left: 800px;
+}
+.bannerImage4 {
+    height: 700px;
+    width: auto;
+    position: absolute;
+    bottom: 130px;
+    right: 100px;
+}
+.bannerImage5 {
+    height: 1000px;
+    width: auto;
+    position: absolute;
+    bottom: 130px;
+    right: 600px;
 }
 
-.text-danger,
-.form-text {
-    color: red;
+
+.loginForm {
+    height: 480px;
+}
+
+.registrationForm {
+    height: 556px;
 }

@@ -2,8 +2,20 @@ import Activity from "../../components/Activity/Activity"
 import { useState } from "react";
 
 import tennis from "../../images/tennis.png";
-import tableTennis  from "../../images/tableTennis.png";
-import football from "../../images/football.png";
+import tableTennis  from "../../images/activitiesPage/tableTennis.png";
+import football from "../../images/football2.png";
+import badminton from "../../images/badminton.png";
+import squash from "../../images/activitiesPage/squash.png";
+import running from "../../images/running.png";
+import basketball from "../../images/activitiesPage/basketball.png";
+import volleyball from "../../images/activitiesPage/volleyball.png";
+import ski from "../../images/activitiesPage/ski.png";
+import snowboard from "../../images/activitiesPage/snowboard.png";
+import iceSkating from "../../images/activitiesPage/iceSkating.png";
+
+
+
+
 
 export default function ActivitiesPage() {
     const [addedActivities, setAddedActivities] = useState([]);
@@ -20,7 +32,7 @@ export default function ActivitiesPage() {
         },
         {
             name: "Badminton",
-            image: "https://example.com/badminton.jpg",
+            image: badminton,
             added: false
         },
         {
@@ -28,7 +40,41 @@ export default function ActivitiesPage() {
             image: football,
             added: false
         },
-        // Add the rest of the activities here
+        {
+            name: "Squash",
+            image: squash,
+            added: false
+        },
+        {
+            name: "Running",
+            image: running,
+            added: false
+        },
+        {
+            name: "Basketball",
+            image: basketball,
+            added: false
+        },
+        {
+            name: "Volleyball",
+            image: volleyball,
+            added: false
+        },
+        {
+            name: "Ski",
+            image: ski,
+            added: false
+        },
+        {
+            name: "Snowboard",
+            image: snowboard,
+            added: false
+        },
+        {
+            name: "Ice skating",
+            image: iceSkating,
+            added: false
+        },
     ];
 
     function handleAddActivity(activity) {
@@ -37,7 +83,7 @@ export default function ActivitiesPage() {
     }
 
     return (
-        <div>
+        <div className="activitiesContainer">
             {activities.map(activity => (
                 <Activity key={activity.name} activity={activity} onAdd={handleAddActivity} />
             ))}
