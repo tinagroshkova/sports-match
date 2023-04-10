@@ -5,28 +5,30 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 70%;
+    width: 80%;
     margin: auto;
     gap: 40px;
-    margin-top: 160px;
+    margin-top: 100px;
 }
 
 .activityContainer {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
 
     box-shadow: $box-shadow;
     align-items: center;
     @include border();
+    background-color: rgba(255, 255, 255, 0.1);
 
     img {
         width: auto;
-        height: 100px;
+        height: 150px;
+
     }
     button {
-        margin-top: 20px;
+        margin-top: 10px;
         @include button();
     }
 }
