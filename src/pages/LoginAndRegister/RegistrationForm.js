@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import UserManager from "../../services/UserManager";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
 
 import football from "../../images/LoginAnRegusterPages/football2.png";
@@ -11,6 +11,8 @@ import tennis from "../../images/LoginAnRegusterPages/tennis.png";
 import basketball from "../../images/LoginAnRegusterPages/basketball.png";
 
 const RegistrationForm = () => {
+
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -58,6 +60,7 @@ const RegistrationForm = () => {
         setPassword("");
         setConfirmPassword("");
         setErrors({});
+        navigate("/login");
       } catch (error) {
         alert(error);
         // alert("Registration failed");
@@ -129,7 +132,7 @@ const RegistrationForm = () => {
           <Button className="btn-primary" type="submit">Register</Button>
           <div className="registerLink">
             <p className="haveAnAcount">Already have an account?
-              <Link to="/login"><span className="registerHover"> Login</span></Link></p>
+              <Link to="/login"><span className="registerHover"> Log in</span></Link></p>
           </div>
         </form>
       </section>

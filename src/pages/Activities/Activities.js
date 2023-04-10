@@ -1,5 +1,5 @@
 import Activity from "../../components/Activity/Activity"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserManager from "../../services/UserManager";
 
 import tennis from "../../images/activitiesPage/tennis.png";
@@ -22,104 +22,93 @@ import bowling from "../../images/activitiesPage/bowling.png";
 import karting from "../../images/activitiesPage/karting.png";
 
 
-
 export default function ActivitiesPage() {
     const [addedActivities, setAddedActivities] = useState([]);
     const activities = [
         {
             name: "Tennis",
             image: tennis,
-            added: false
         },
         {
             name: "Table tennis",
             image: tableTennis,
-            added: false
         },
         {
             name: "Badminton",
             image: badminton,
-            added: false
         },
         {
             name: "Football",
             image: football,
-            added: false
         },
         {
             name: "Squash",
             image: squash,
-            added: false
         },
         {
             name: "Running",
             image: running,
-            added: false
         },
         {
             name: "Basketball",
             image: basketball,
-            added: false
         },
         {
             name: "Volleyball",
             image: volleyball,
-            added: false
         },
         {
             name: "Ski",
             image: ski,
-            added: false
         },
         {
             name: "Snowboard",
             image: snowboard,
-            added: false
         },
         {
             name: "Ice skating",
             image: iceSkating,
-            added: false
         },
         {
             name: "Padel",
             image: padel,
-            added: false
         },
         {
             name: "Wall climbing",
             image: wallClimbing,
-            added: false
         },
         {
             name: "Darts",
             image: darts,
-            added: false
         },
         {
             name: "Paintball",
             image: paintball,
-            added: false
         },
         {
             name: "Billiards",
             image: billiards,
-            added: false
         },
         {
             name: "Bowling",
             image: bowling,
-            added: false
         },
         {
             name: "Karting",
             image: karting,
-            added: false
         },
     ];
     activities.sort((a, b) => a.name.localeCompare(b.name));
 
+    useEffect(() => {
+        const user = UserManager.getLoggedInUser();
+        setAddedActivities(user.activities || []);
+    }, []);
+
     function handleAddActivity(activity) {
+        if (addedActivities.some(a => a.name === activity.name)) {
+            return;
+        }
         const user = UserManager.getLoggedInUser();
         user.addActivity(activity);
         console.log(user);
@@ -128,10 +117,15 @@ export default function ActivitiesPage() {
     }
 
     return (
-        <div className="activitiesContainer">
-            {activities.map(activity => (
-                <Activity key={activity.name} activity={activity} onAdd={handleAddActivity} />
-            ))}
+        <div>
+            <h2 className="siteNameTitle">Activities</h2>
+            <h2 className="siteSloganTitle">Add favorite sports to your profile so that other people can find you</h2>
+
+            <div className="activitiesContainer">
+                {activities.map(activity => (
+                    <Activity key={activity.name} activity={activity} onAdd={handleAddActivity} />
+                ))}
+            </div>
         </div>
     );
 }
@@ -147,14 +141,3 @@ export default function ActivitiesPage() {
 //         </div>
 //     );
 // }
-
-
-
-
-
-
-
-
-
-
-

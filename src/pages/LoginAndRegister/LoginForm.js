@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import UserManager from "../../services/UserManager";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
 import football from "../../images/LoginAnRegusterPages/football2.png";
@@ -11,6 +11,8 @@ import tennis from "../../images/LoginAnRegusterPages/tennis.png";
 import basketball from "../../images/LoginAnRegusterPages/basketball.png";
 
 function LoginForm() {
+
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -34,7 +36,8 @@ function LoginForm() {
     setIsLoading(true);
     try {
       await handleLogin();
-      window.location.reload(); // Refresh the page to reflect the login state
+      navigate("/home");
+      // window.location.reload(); // Refresh the page to reflect the login state
     } catch (err) {
       setErrors({ general: err.message });
     }
@@ -72,10 +75,10 @@ function LoginForm() {
           {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
           {errors.general && <Form.Text className="text-danger">{errors.general}</Form.Text>}
 
-          <Button className="btn-primary" type="submit" disabled={isLoading}>{isLoading ? "Loading..." : "Login"}</Button>
+          <Button className="btn-primary" type="submit" disabled={isLoading}>{isLoading ? "Loading..." : "Log in"}</Button>
           <div className="registerLink">
             <p className="haveAnAcount">Don"t have an account?
-              <Link to="/register"> <span className="registerHover">Register</span></Link></p>
+              <Link to="/register"> <span className="registerHover">Sign up</span></Link></p>
           </div>
         </form>
       </section>
