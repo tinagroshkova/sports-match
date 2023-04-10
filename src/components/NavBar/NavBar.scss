@@ -9,6 +9,10 @@
   box-shadow: $box-shadow;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-links {
   display: flex;
   flex-direction: row;
@@ -33,7 +37,7 @@
       letter-spacing: 0.05em;
 
       &:hover {
-        color: white;
+        color: $super-contrast;
       }
     }
   }

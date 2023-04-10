@@ -2,8 +2,8 @@ import React from "react";
 import "../NavBar/NavBar.scss";
 import "../../index.scss";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { Link, Route, Routes } from "react-router-dom";
-import HomePage from "../../pages/Home";
+import { Link, Route, Routes, Navigate } from "react-router-dom";
+import HomePage from "../../pages/Home/Home";
 import ProfilePage from "../../pages/Profile";
 import ActivitiesPage from "../../pages/Activities/Activities";
 import BuddySearchPage from "../../pages/BuddySearch";
@@ -30,6 +30,7 @@ function NavBar() {
       </nav>
 
       <Routes>
+        <Route index element={<Navigate to={"/home"} />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/home" element={<HomePage />} />
@@ -41,7 +42,7 @@ function NavBar() {
         <Route path="/requests" element={<RequestsPage />} />
         <Route path="*" element={<><h2 style={{ color: "red" }}>Спечели си error трофей! Винаги може да се върнеш за още. Айде чао :D</h2>
           <div className="errorImage">
-          <img width={200} src="https://media.istockphoto.com/id/1168757141/vector/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition.jpg?s=612x612&w=0&k=20&c=ljsP4p0yuJnh4f5jE2VwXfjs96CC0x4zj8CHUoMo39E="></img></div></>} />
+            <img width={200} src="https://media.istockphoto.com/id/1168757141/vector/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition.jpg?s=612x612&w=0&k=20&c=ljsP4p0yuJnh4f5jE2VwXfjs96CC0x4zj8CHUoMo39E="></img></div></>} />
       </Routes>
 
       <footer>
