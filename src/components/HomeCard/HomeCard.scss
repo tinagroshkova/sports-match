@@ -1,0 +1,33 @@
+@import "../../variables";
+
+
+.homePageContainerWrapper {
+    display: flex;
+    justify-content: center;
+    margin: 150px;
+
+    .homePageContainer {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 300px;
+        align-items: center;
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h2 {
+            color: $almost-white-color;
+        }
+
+        h2:hover {
+            color: $super-contrast;
+        }
+    }
+}

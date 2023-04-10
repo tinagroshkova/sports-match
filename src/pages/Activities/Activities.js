@@ -6,7 +6,7 @@ import tableTennis  from "../../images/activitiesPage/tableTennis.png";
 import football from "../../images/activitiesPage/football.png";
 import badminton from "../../images/activitiesPage/badminton.png";
 import squash from "../../images/activitiesPage/squash.png";
-import running from "../../images/running.png";
+import running from "../../images/activitiesPage/running.png";
 import basketball from "../../images/activitiesPage/basketball.png";
 import volleyball from "../../images/activitiesPage/volleyball.png";
 import ski from "../../images/activitiesPage/ski.png";
