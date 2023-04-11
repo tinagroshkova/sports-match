@@ -68,7 +68,7 @@ const RegistrationForm = () => {
   }
   return (
     <div className="loginPageHolder">
-            <img src={background} className="background"></img>
+      <img className="background"></img>
 
       <section>
         <form className="registrationForm" onSubmit={handleSubmit}>

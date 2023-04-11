@@ -10,7 +10,7 @@ section {
 
 .loginPageHolder {
     width: 100%;
-    height: calc(100vh - 100px); /* Subtracting the footer height from the viewport height */
+    height: calc(114vh - 100px); /* Subtracting the footer height from the viewport height */
     background-image: url('../../images/projectBackground1.png');
     background-repeat: no-repeat;
     background-size: cover; /* This property makes the image cover the entire container while maintaining its aspect ratio */
@@ -33,11 +33,12 @@ form {
     height: 480px;
     position: absolute;
     top: 20%;
-    background: transparent;
+    background: transperancy;
     box-shadow: 0px -1px 50px 12px $dark-main-color;
     position: absolute;
     top: 440px;
     z-index: 20;
+    box-shadow: 0px -1px 50px 3px rgb(3, 107, 38);
     @include border();
 
     .noAccount {
