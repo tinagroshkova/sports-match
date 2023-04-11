@@ -3,11 +3,24 @@
 
 
 section {
-    background-color: $main-color;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.loginPageHolder {
     width: 100%;
+    height: calc(100vh - 100px); /* Subtracting the footer height from the viewport height */
+    background-image: url('../../images/projectBackground1.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* This property makes the image cover the entire container while maintaining its aspect ratio */
+    background-position: bottom; /* This property positions the image at the top of the container */
+  
+}
+.background {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 form {
@@ -72,14 +85,17 @@ form {
                 color: $super-contrast;
             }
         }
+    }
 
+    @media (max-width: 1980px) {
+        top: 10%;
+        align-items: center;
+        justify-items: center;
     }
     @media (max-width: 1366px) {
-        form {
-            top: 16%;
-            align-items: center;
-            justify-items: center;
-        }
+        top: 10%;
+        align-items: center;
+        justify-items: center;
     }
 }
 
@@ -184,9 +200,6 @@ form {
 
 }
 
-
-
-
 .bannerImage4 {
     height: 70%;
     width: auto;
@@ -201,15 +214,6 @@ form {
         bottom: 16%;
     }
 
-}
-
-
-@media (max-width: 1366px) {
-    form {
-        top: 16%;
-        align-items: center;
-        justify-items: center;
-    }
 }
 
 .loginForm {

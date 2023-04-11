@@ -5,10 +5,7 @@ import UserManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
-import football from "../../images/LoginAnRegusterPages/football2.png";
-import football1 from "../../images/LoginAnRegusterPages/football3.png";
-import tennis from "../../images/LoginAnRegusterPages/tennis.png";
-import basketball from "../../images/LoginAnRegusterPages/basketball.png";
+import background from "../../images/background.png";
 
 function LoginForm() {
 
@@ -51,10 +48,7 @@ function LoginForm() {
 
   return (
     <div className="loginPageHolder">
-      <img src={tennis} className="banner bannerImage1"></img>
-      <img src={football} className="banner bannerImage2"></img>
-      <img src={football1} className="banner bannerImage3"></img>
-      <img src={basketball} className="banner bannerImage4"></img>
+      {/* <img src={background} className="background"></img> */}
       <section>
         <form className="loginForm" onSubmit={handleSubmit}>
           <h2>Login</h2>
