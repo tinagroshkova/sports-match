@@ -45,7 +45,7 @@
 
 footer {
   // background-color: rgb(157, 45, 14);
-  background-color: transperancy;
+  background-color: transparent;
   width: 100%;
   justify-content: center;
   text-align: center;
@@ -56,12 +56,12 @@ footer {
   font-size: 18px;
   height: 100px;
   color: $almost-white-color;
-  box-shadow: 0px -8px 6px -6px ;
-  // box-shadow: 0px -1px 50px 3px rgb(3, 107, 38);
+  box-shadow: 0px -8px 6px -6px transparent;
   position: fixed;
   bottom: 0;
   z-index: 10;
   margin-top: 100px;
+  // backdrop-filter: blur(15px);
   p {
     color: $almost-white-color;
     font-weight: 300;
