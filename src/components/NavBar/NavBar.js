@@ -6,7 +6,7 @@ import { Link, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "../../pages/Home/Home";
 import ProfilePage from "../../pages/Profile/Profile";
 import ActivitiesPage from "../../pages/Activities/Activities";
-import BuddySearchPage from "../../pages/BuddySearch";
+import BuddySearchPage from "../../pages/BuddySearch/BuddySearch";
 import MessagesPage from "../../pages/Messages";
 import PlacesPage from "../../pages/Places/Places";
 import RequestsPage from "../../pages/Requests";
