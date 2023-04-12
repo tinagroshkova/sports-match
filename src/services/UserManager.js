@@ -1,11 +1,12 @@
+
 class User {
   constructor(username, password) {
     this.username = username;
     this.password = password;
-    this.image = "";
-    this.age = "";
-    this.city = "";
-    this.gender = "";
+    this.image = JSON.parse(localStorage.getItem(`${this.username}_image`)) || "";
+    this.age = JSON.parse(localStorage.getItem(`${this.username}_age`)) || "";
+    this.city = JSON.parse(localStorage.getItem(`${this.username}_city`)) || "";
+    this.gender = JSON.parse(localStorage.getItem(`${this.username}_gender`)) || "";
     this.activities = JSON.parse(localStorage.getItem(`${this.username}_activities`)) || [];
     this.loadFromLocalStorage();
   }
@@ -23,6 +24,16 @@ class User {
       this.activities = userObj.activities || [];
     }
   }
+
+  saveToLocalStorage() {
+    localStorage.setItem(`${this.username}_data`, JSON.stringify({
+      image: this.image,
+      age: this.age,
+      city: this.city,
+      gender: this.gender,
+    }));
+  }
+  
 
   saveToLocalStorage() {
     localStorage.setItem(`${this.username}_data`, JSON.stringify({
@@ -56,6 +67,7 @@ class UserManager {
   constructor() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     this.users = users.map((user) => new User(user.username, user.password));
+    console.log(users);
   }
 
   registerUser = (username, password) => {
@@ -94,6 +106,7 @@ class UserManager {
     }
     const userObj = JSON.parse(userJson);
     return new User(userObj.username, userObj.password);
+    // return new User(userObj.username, userObj.password, userJson.image, userJson.age, userJson.city, userJson.gender);
   };
 
   setLoggedInUser = (user) => {
@@ -113,7 +126,7 @@ class UserManager {
           console.log(loggedInUser);
           return loggedInUser;
         }
-      });
+      }); 
       localStorage.setItem("users", JSON.stringify(updatedUsers));
     }
   };
@@ -123,7 +136,8 @@ class UserManager {
 const userManager = new UserManager();
 
 export default userManager;
-// export class User {
+
+// class User {
 //   constructor(username, password) {
 //     this.username = username;
 //     this.password = password;
@@ -132,6 +146,30 @@ export default userManager;
 //     this.city = "";
 //     this.gender = "";
 //     this.activities = JSON.parse(localStorage.getItem(`${this.username}_activities`)) || [];
+//     this.loadFromLocalStorage();
+//   }
+
+//   loadFromLocalStorage() {
+//     const userJson = localStorage.getItem("loggedInUser");
+//     if (userJson) {
+//       const userObj = JSON.parse(userJson);
+//       this.username = userObj.username;
+//       this.password = userObj.password;
+//       this.image = userObj.image || "";
+//       this.age = userObj.age || "";
+//       this.city = userObj.city || "";
+//       this.gender = userObj.gender || "";
+//       this.activities = userObj.activities || [];
+//     }
+//   }
+
+//   saveToLocalStorage() {
+//     localStorage.setItem(`${this.username}_data`, JSON.stringify({
+//       image: this.image,
+//       age: this.age,
+//       city: this.city,
+//       gender: this.gender,
+//     }));
 //   }
 
 //   addActivity(activity) {
@@ -205,15 +243,16 @@ export default userManager;
 //       loggedInUser.city = user.city;
 //       loggedInUser.gender = user.gender;
 //       loggedInUser.image = user.image;
+//       loggedInUser.saveToLocalStorage(); // call the saveToLocalStorage method
 //       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-
+  
 //       const users = JSON.parse(localStorage.getItem("users")) || [];
 //       const updatedUsers = users.map(u => {
 //         if (u.username === loggedInUser.username) {
 //           console.log(loggedInUser);
 //           return loggedInUser;
 //         }
-//       });
+//       }); 
 //       localStorage.setItem("users", JSON.stringify(updatedUsers));
 //     }
 //   };
@@ -223,4 +262,3 @@ export default userManager;
 // const userManager = new UserManager();
 
 // export default userManager;
-

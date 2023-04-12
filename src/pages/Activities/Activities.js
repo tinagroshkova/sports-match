@@ -23,6 +23,8 @@ export default function ActivitiesPage() {
             console.log(user);
 
             localStorage.setItem("loggedInUser", JSON.stringify(user));
+            localStorage.setItem("users", JSON.stringify(userManager.users));
+
             setAddedActivities(prevActivities =>
                 prevActivities.filter(a => a.name !== activity.name)
             );
@@ -31,6 +33,7 @@ export default function ActivitiesPage() {
             console.log(user);
             
             localStorage.setItem("loggedInUser", JSON.stringify(user));
+            localStorage.setItem("users", JSON.stringify(userManager.users));
             setAddedActivities(prevActivities => [...prevActivities, activity]);
         }
     }
