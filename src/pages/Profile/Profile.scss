@@ -1,6 +1,31 @@
+@import "../../variables";
+@import "../../mixins";
+
 .profilePageContainer {
     width: 60%;
     margin: auto;
+    margin-top: 50px;
+    text-align: center;
+
+    .profileImage img {
+        @include border();
+        width: 200px;
+        height: auto;
+    }
+    button {
+        @include button();
+        width: 200px;
+    }
+    .activitiesList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;    
+        .smallActivity {
+            width: 50% !important; //ne znam za6to ne raboti
+          }
+    }
+
     // background-color: aqua;
 
 }
+
