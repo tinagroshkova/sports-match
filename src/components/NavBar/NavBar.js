@@ -4,7 +4,7 @@ import "../../index.scss";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { Link, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "../../pages/Home/Home";
-import ProfilePage from "../../pages/Profile";
+import ProfilePage from "../../pages/Profile/Profile";
 import ActivitiesPage from "../../pages/Activities/Activities";
 import BuddySearchPage from "../../pages/BuddySearch";
 import MessagesPage from "../../pages/Messages";

@@ -5,8 +5,6 @@ import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
-import background from "../../images/background.png";
-
 function LoginForm() {
 
   const navigate = useNavigate();
@@ -48,7 +46,6 @@ function LoginForm() {
 
   return (
     <div className="loginPageHolder">
-      {/* <img src={background} className="background"></img> */}
       <section>
         <form className="loginForm" onSubmit={handleSubmit}>
           <h2>Login</h2>

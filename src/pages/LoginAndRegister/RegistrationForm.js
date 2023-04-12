@@ -3,9 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
-import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
-
-import background from "../../images/background.png";
 
 const RegistrationForm = () => {
 
@@ -60,7 +57,7 @@ const RegistrationForm = () => {
         navigate("/login");
       } catch (error) {
         alert(error);
-        // alert("Registration failed");
+
       }
     } else {
       setErrors(errors);

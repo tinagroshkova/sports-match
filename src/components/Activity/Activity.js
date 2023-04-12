@@ -1,13 +1,17 @@
 import "./Activity.scss";
 
-function ActivityComponent({ activity, onAdd, added }) {
-    const buttonText = added ? "Remove from List" : "Add to List";
-    return (
-      <div className="activityContainer">
-        <h2>{activity.name}</h2>
-        <img src={activity.image} alt={activity.name} />
-        <button onClick={() => onAdd(activity)}>{buttonText}</button>
-      </div>
-    );
-  }
+function ActivityComponent({ activity, onAdd, added, onRemove }) {
+  const addButtonText = added ? "Remove from List" : "Add to List";
+  const removeButtonText = "Remove from Profile";
+
+  return (
+    <div className="activityContainer">
+      <h2>{activity.name}</h2>
+      <img src={activity.image} alt={activity.name} />
+      {onAdd && <button onClick={() => onAdd(activity)}>{addButtonText}</button>}
+      {onRemove && <button onClick={() => onRemove(activity)}>{removeButtonText}</button>}
+    </div>
+  );
+}
+
 export default ActivityComponent;
