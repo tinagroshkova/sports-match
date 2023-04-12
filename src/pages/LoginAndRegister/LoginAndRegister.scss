@@ -1,7 +1,6 @@
 @import "../../variables";
 @import "../../mixins";
 
-
 section {
     display: flex;
     justify-content: center;
@@ -10,11 +9,11 @@ section {
 
 .loginPageHolder {
     width: 100%;
-    height: calc(100vh - 100px); /* Subtracting the footer height from the viewport height */
-    background-image: url('../../images/projectBackground1.png');
+    height: 100vh;
+    background-image: url('../../images/projectBackground3.png');
     background-repeat: no-repeat;
-    background-size: cover; /* This property makes the image cover the entire container while maintaining its aspect ratio */
-    background-position: bottom; /* This property positions the image at the top of the container */
+    background-size: cover; 
+    background-position: bottom; 
   
 }
 .background {
@@ -89,13 +88,9 @@ form {
 
     @media (max-width: 1980px) {
         top: 10%;
-        align-items: center;
-        justify-items: center;
     }
     @media (max-width: 1366px) {
-        top: 10%;
-        align-items: center;
-        justify-items: center;
+        top: 8%;
     }
 }
 
@@ -150,71 +145,6 @@ form {
     }
 }
 
-
-.bannerImage1 {
-    height: 54%;
-    width: auto;
-    position: absolute;
-    bottom: 8%;
-    left: 8%;
-    z-index: 2;
-
-    @media (max-width: 1366px) {
-        position: absolute;
-        height: 50%;
-        left: 0%;
-        bottom: 16%;
-    }
-}
-
-.bannerImage2 {
-    height: 78%;
-    width: auto;
-    position: absolute;
-    bottom: 9%;
-    left: 28%;
-    z-index: 3;
-
-    @media (max-width: 1366px) {
-        position: absolute;
-        height: 70%;
-        left: 22%;
-        bottom: 16%;
-    }
-}
-
-
-.bannerImage3 {
-    height: 54%;
-    width: auto;
-    position: absolute;
-    bottom: 9%;
-    right: 0%;
-
-    @media (max-width: 1366px) {
-        position: absolute;
-        height: 50%;
-        right: 0%;
-        bottom: 10%;
-    }
-
-}
-
-.bannerImage4 {
-    height: 70%;
-    width: auto;
-    position: absolute;
-    bottom: 9%;
-    right: 22%;
-
-    @media (max-width: 1366px) {
-        position: absolute;
-        height: 70%;
-        right: 13%;
-        bottom: 16%;
-    }
-
-}
 
 .loginForm {
     height: 480px;

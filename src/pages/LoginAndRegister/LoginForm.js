@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
-import UserManager from "../../services/UserManager";
+import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
 
@@ -25,7 +25,7 @@ function LoginForm() {
   };
 
   const handleLogin = () => {
-    return UserManager.loginUser(username, password);
+    return userManager.loginUser(username, password);
   };
 
   const handleSubmit = async (e) => {
@@ -42,7 +42,7 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    const user = UserManager.getLoggedInUser();
+    const user = userManager.getLoggedInUser();
     setCurrentUser(user);
   }, []);
 

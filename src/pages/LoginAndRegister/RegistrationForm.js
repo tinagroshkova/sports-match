@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
-import UserManager from "../../services/UserManager";
+import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
 import { } from "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
 
@@ -51,7 +51,7 @@ const RegistrationForm = () => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        await UserManager.registerUser(username, password);
+        await userManager.registerUser(username, password);
         alert("Registration successful!");
         setUsername("");
         setPassword("");
@@ -68,8 +68,6 @@ const RegistrationForm = () => {
   }
   return (
     <div className="loginPageHolder">
-            <img src={background} className="background"></img>
-
       <section>
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
@@ -119,7 +117,6 @@ const RegistrationForm = () => {
             </div>
           </Form.Group>
 
-          {/* Премествам тук ерорите, за да излизат най-отдолу */}
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.username}</Form.Control.Feedback>
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.password}</Form.Control.Feedback>
