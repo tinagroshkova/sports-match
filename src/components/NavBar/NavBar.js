@@ -8,7 +8,7 @@ import ProfilePage from "../../pages/Profile";
 import ActivitiesPage from "../../pages/Activities/Activities";
 import BuddySearchPage from "../../pages/BuddySearch";
 import MessagesPage from "../../pages/Messages";
-import PlacesPage from "../../pages/Places";
+import PlacesPage from "../../pages/Places/Places";
 import RequestsPage from "../../pages/Requests";
 import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";

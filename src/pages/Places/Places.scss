@@ -1,0 +1,24 @@
+.sportsPageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    gap: 40px;
+    margin-top: 45px;
+    margin-bottom: 200px;
+}
+
+.searchWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.selectSearch{
+    background-color: whitesmoke;
+    padding: 5px;
+    color: black;
+    border: 2px solid black;
+    margin: 5px 5px 5px 9px;
+    
+}
