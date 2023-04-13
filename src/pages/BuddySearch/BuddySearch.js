@@ -3,6 +3,7 @@ import selectValues from './activities.json';
 import userManager from '../../services/UserManager';
 import Chat from '../../components/Chat/Chat';
 
+
 // import ChatPage from '../Chat/Chat';
 // import { Navigate } from 'react-router-dom';
 
@@ -24,8 +25,8 @@ export default function BuddySearchPage() {
         const loggedInUser = userManager.getLoggedInUser();
         const chat = new Chat(loggedInUser, otherUser);
         sessionStorage.setItem('chat', JSON.stringify(chat));
-        window.location.href = "/chat";
-      };
+        window.location.replace = "/messages";
+    };
 
 
     return (
@@ -45,10 +46,16 @@ export default function BuddySearchPage() {
                     <img src={user.image} alt={user.username} />
                     <h3>{user.username}</h3>
                     <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
-                    <form onSubmit={() => handleStartChat(user) }>
-                        
-                        <button type="submit">Start Chat</button>
-                        
+                    <form onSubmit={() => handleStartChat(user)}>
+
+                        <button onClick={() => {
+                            const loggedInUser = userManager.getLoggedInUser();
+                            const otherUser = user;
+                            const chat = new Chat(loggedInUser, otherUser);
+                            sessionStorage.setItem('chat', JSON.stringify(chat));
+                            window.open('/chat', '_blank');
+                        }}>Start Chat</button>
+
                     </form>
                 </div>
             ))}

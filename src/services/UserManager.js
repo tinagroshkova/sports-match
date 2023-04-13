@@ -6,7 +6,7 @@ class User {
     this.age = "";
     this.city = "";
     this.gender = "";
-    this.activities = JSON.parse(localStorage.getItem(`${this.username}_activities`)) || [];
+    this.activities = JSON.parse(sessionStorage.getItem(`${this.username}_activities`)) || [];
     this.loadFromLocalStorage();
   }
 
@@ -18,11 +18,14 @@ class User {
       this.age = userObj.age || "";
       this.city = userObj.city || "";
       this.gender = userObj.gender || "";
+      this.activities = userObj.activities || [];
     }
   }
 
   saveUserData() {
     localStorage.setItem(`${this.username}_data`, JSON.stringify({
+      username: this.username,
+      password: this.password,
       image: this.image,
       age: this.age,
       city: this.city,
@@ -34,7 +37,7 @@ class User {
   addActivity(activity) {
     if (!this.hasActivity(activity)) {
       this.activities.push(activity);
-      localStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
+      sessionStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
       this.saveUserData();
     }
   }
@@ -42,7 +45,7 @@ class User {
   removeActivity(activity) {
     if (this.hasActivity(activity)) {
       this.activities = this.activities.filter(a => a.name !== activity.name);
-      localStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
+      sessionStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
       this.saveUserData();
     }
   }
@@ -58,7 +61,6 @@ class UserManager {
     this.users = users.map((user) => {
       return new User(user.username, user.password);
     });
-    console.log(users);
   }
 
   registerUser = (username, password) => {
@@ -71,6 +73,7 @@ class UserManager {
     const user = new User(username, password);
     this.users.push(user);
     localStorage.setItem("users", JSON.stringify(this.users));
+    user.saveUserData();
     return Promise.resolve();
   };
 
@@ -81,19 +84,27 @@ class UserManager {
       return Promise.reject(new Error("Invalid username or password"));
     }
 
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    sessionStorage.setItem("loggedInUser", JSON.stringify({
+      username: user.username,
+      password: user.password,
+      image: user.image,
+      age: user.age,
+      city: user.city,
+      gender: user.gender,
+      activities: user.activities,
+    }));
     return Promise.resolve();
   };
 
   logoutUser = () => {
-    localStorage.removeItem("loggedInUser");
+    sessionStorage.removeItem("loggedInUser");
     alert("Logout successful");
     window.location.replace("/login")
     return Promise.resolve();
   };
 
   getLoggedInUser = () => {
-    const userJson = localStorage.getItem("loggedInUser");
+    const userJson = sessionStorage.getItem("loggedInUser");
     if (!userJson) {
       return null;
     }
@@ -103,75 +114,64 @@ class UserManager {
 
   setLoggedInUser = (user) => {
     const loggedInUser = this.getLoggedInUser();
+  
     if (loggedInUser) {
       loggedInUser.username = user.username;
       loggedInUser.age = user.age;
       loggedInUser.city = user.city;
       loggedInUser.gender = user.gender;
       loggedInUser.image = user.image;
-      loggedInUser.activities = user.activities;
+      loggedInUser.activities = user.activities; // Add this line to copy the activities property
       loggedInUser.saveUserData();
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const updatedUsers = users.map(u => {
+      // Store all the users and their properties in localStorage
+      const users = this.users.map(u => {
         if (u.username === loggedInUser.username) {
           return loggedInUser;
         }
         return u;
       });
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      localStorage.setItem("users", JSON.stringify(users));
+  
+      // Store only the loggedInUser in sessionStorage
+      sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     }
   };
-  
 }
 
 const userManager = new UserManager();
 
 export default userManager;
-
 // class User {
 //   constructor(username, password) {
 //     this.username = username;
 //     this.password = password;
-//     this.image = JSON.parse(localStorage.getItem(`${this.username}_image`)) || "";
-//     this.age = JSON.parse(localStorage.getItem(`${this.username}_age`)) || "";
-//     this.city = JSON.parse(localStorage.getItem(`${this.username}_city`)) || "";
-//     this.gender = JSON.parse(localStorage.getItem(`${this.username}_gender`)) || "";
+//     this.image = "";
+//     this.age = "";
+//     this.city = "";
+//     this.gender = "";
 //     this.activities = JSON.parse(localStorage.getItem(`${this.username}_activities`)) || [];
 //     this.loadFromLocalStorage();
 //   }
 
 //   loadFromLocalStorage() {
-//     const userJson = localStorage.getItem("loggedInUser");
+//     const userJson = localStorage.getItem(`${this.username}_data`);
 //     if (userJson) {
 //       const userObj = JSON.parse(userJson);
-//       this.username = userObj.username;
-//       this.password = userObj.password;
 //       this.image = userObj.image || "";
 //       this.age = userObj.age || "";
 //       this.city = userObj.city || "";
 //       this.gender = userObj.gender || "";
-//       this.activities = userObj.activities || [];
 //     }
 //   }
 
-//   saveToLocalStorage() {
+//   saveUserData() {
 //     localStorage.setItem(`${this.username}_data`, JSON.stringify({
 //       image: this.image,
 //       age: this.age,
 //       city: this.city,
 //       gender: this.gender,
-//     }));
-//   }
-  
-
-//   saveToLocalStorage() {
-//     localStorage.setItem(`${this.username}_data`, JSON.stringify({
-//       image: this.image,
-//       age: this.age,
-//       city: this.city,
-//       gender: this.gender,
+//       activities: this.activities,
 //     }));
 //   }
 
@@ -179,6 +179,7 @@ export default userManager;
 //     if (!this.hasActivity(activity)) {
 //       this.activities.push(activity);
 //       localStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
+//       this.saveUserData();
 //     }
 //   }
 
@@ -186,6 +187,7 @@ export default userManager;
 //     if (this.hasActivity(activity)) {
 //       this.activities = this.activities.filter(a => a.name !== activity.name);
 //       localStorage.setItem(`${this.username}_activities`, JSON.stringify(this.activities));
+//       this.saveUserData();
 //     }
 //   }
 
@@ -197,7 +199,9 @@ export default userManager;
 // class UserManager {
 //   constructor() {
 //     const users = JSON.parse(localStorage.getItem("users")) || [];
-//     this.users = users.map((user) => new User(user.username, user.password));
+//     this.users = users.map((user) => {
+//       return new User(user.username, user.password);
+//     });
 //     console.log(users);
 //   }
 
@@ -227,6 +231,8 @@ export default userManager;
 
 //   logoutUser = () => {
 //     localStorage.removeItem("loggedInUser");
+//     alert("Logout successful");
+//     window.location.replace("/login")
 //     return Promise.resolve();
 //   };
 
@@ -237,7 +243,6 @@ export default userManager;
 //     }
 //     const userObj = JSON.parse(userJson);
 //     return new User(userObj.username, userObj.password);
-//     // return new User(userObj.username, userObj.password, userJson.image, userJson.age, userJson.city, userJson.gender);
 //   };
 
 //   setLoggedInUser = (user) => {
@@ -248,16 +253,17 @@ export default userManager;
 //       loggedInUser.city = user.city;
 //       loggedInUser.gender = user.gender;
 //       loggedInUser.image = user.image;
-//       loggedInUser.saveToLocalStorage(); // call the saveToLocalStorage method
+//       loggedInUser.activities = user.activities;
+//       loggedInUser.saveUserData();
 //       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   
 //       const users = JSON.parse(localStorage.getItem("users")) || [];
 //       const updatedUsers = users.map(u => {
 //         if (u.username === loggedInUser.username) {
-//           console.log(loggedInUser);
 //           return loggedInUser;
 //         }
-//       }); 
+//         return u;
+//       });
 //       localStorage.setItem("users", JSON.stringify(updatedUsers));
 //     }
 //   };
