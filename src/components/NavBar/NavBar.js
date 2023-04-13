@@ -9,7 +9,6 @@ import ActivitiesPage from "../../pages/Activities/Activities";
 import BuddySearchPage from "../../pages/BuddySearch/BuddySearch";
 import MessagesPage from "../../pages/Messages";
 import PlacesPage from "../../pages/Places/Places";
-// import RequestsPage from "../../pages/Requests";
 import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";
 import { useLocation } from "react-router-dom";
@@ -18,13 +17,13 @@ import userManager from "../../services/UserManager";
 function NavBar() {
   const location = useLocation();
   const hideNav = location.pathname === "/home" || location.pathname === "/login" || location.pathname === "/register";
-  const hideButton = location.pathname === "/profile" || location.pathname === "/login" || location.pathname === "/register";
+  const hideButton = location.pathname !== "/home";
   return (
     <>
       {hideButton ? null : (
-        <li>
-          <button onClick={userManager.logoutUser}>Logout</button>
-        </li>
+        <div className="logoutContainer">
+          <button className="logoutBtn" onClick={userManager.logoutUser}>Logout</button>
+        </div>
       )
       }
 
@@ -37,9 +36,9 @@ function NavBar() {
             <li><Link to="/buddySearch">Buddy Search</Link></li>
             <li><Link to="/messages">Messages</Link></li>
             <li><Link to="/places">Places</Link></li>
-            <li>
-              <button onClick={userManager.logoutUser}>Logout</button>
-            </li>
+            <div className="logoutContainer">
+              <button className="lougOutBtnHeader" onClick={userManager.logoutUser}>Logout</button>
+            </div>
           </ul>
         </nav>
       )}
@@ -57,7 +56,7 @@ function NavBar() {
         {/* <Route path="/requests" element={<RequestsPage />} /> */}
         <Route path="*" element={<><h2 style={{ color: "red" }}>Спечели си error трофей! Винаги може да се върнеш за още.</h2>
           <div className="errorImage">
-            <img width={200} src="https://media.istockphoto.com/id/1168757141/vector/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition.jpg?s=612x612&w=0&k=20&c=ljsP4p0yuJnh4f5jE2VwXfjs96CC0x4zj8CHUoMo39E="></img></div></>} />
+            <img width={200} src="https://media.istockphoto.com/id/1168757141/vector/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition.jpg?s=612x612&w=0&k=20&c=ljsP4p0yuJnh4f5jE2VwXfjs96CC0x4zj8CHUoMo39E=" alt="errorImage"></img></div></>} />
       </Routes>
 
       <footer>

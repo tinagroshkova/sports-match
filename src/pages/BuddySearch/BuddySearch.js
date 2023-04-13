@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import selectValues from './activities.json';
 import userManager from '../../services/UserManager';
 import Chat from '../../components/Chat/Chat';
+import "./BuddySearch.scss";
 
 
 // import ChatPage from '../Chat/Chat';
@@ -25,38 +26,34 @@ export default function BuddySearchPage() {
         const loggedInUser = userManager.getLoggedInUser();
         const chat = new Chat(loggedInUser, otherUser);
         sessionStorage.setItem('chat', JSON.stringify(chat));
-        window.location.replace = "/messages";
+        window.location.href = "/chat";
     };
 
 
     return (
         <div>
-            <h2>This is the buddy search page</h2>
-            <label htmlFor="activity-select">Select an activity:</label>
-            <select id="activity-select" value={selectedValue} onChange={handleChange}>
-                <option value="">Select an activity</option>
-                {selectValues.map((activity) => (
-                    <option key={activity.type} value={activity.type}>
-                        {activity.type}
-                    </option>
-                ))}
-            </select>
+            {/* <h2 className="siteNameTitle">Buddy search</h2> */}
+            <h2 className="siteSloganTitle">Find someone that share your sport passion</h2>
+            <div className="buddySearchWrapper">
+                <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
+                    <option value="">Select an activity</option>
+                    {selectValues.map((activity) => (
+                        <option key={activity.type} value={activity.type}>
+                            {activity.type}
+                        </option>
+                    ))}
+                </select>
+            </div>
             {filteredUsers.map((user) => (
-                <div key={user.username}>
-                    <img src={user.image} alt={user.username} />
-                    <h3>{user.username}</h3>
-                    <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
-                    <form onSubmit={() => handleStartChat(user)}>
-
-                        <button onClick={() => {
-                            const loggedInUser = userManager.getLoggedInUser();
-                            const otherUser = user;
-                            const chat = new Chat(loggedInUser, otherUser);
-                            sessionStorage.setItem('chat', JSON.stringify(chat));
-                            window.open('/chat', '_blank');
-                        }}>Start Chat</button>
-
-                    </form>
+                <div className="buddyCardContainer" key={user.username}>
+                    <div className='buddyCard' >
+                        <img src={user.image} alt={user.username} />
+                        <h3>{user.username}</h3>
+                        <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
+                        <form onSubmit={() => handleStartChat(user)}>
+                            <button type="submit">Start Chat</button>
+                        </form>
+                    </div>
                 </div>
             ))}
         </div>
