@@ -1,0 +1,56 @@
+[
+    {
+        "type": "Badminton"
+    },
+    {
+        "type": "Basketball"
+    },
+    {
+        "type": "Billiards"
+    },
+    {
+        "type": "Bowling"
+    },
+    {
+        "type": "Darts"
+    },
+    {
+        "type": "Football"
+    },
+    {
+        "type": "IceSkating"
+    },
+    {
+        "type": "Karting"
+    },
+    {
+        "type": "Padel"
+    },
+    {
+        "type": "Paintball"
+    },
+    {
+        "type": "Running"
+    },
+    {
+        "type": "Ski"
+    },
+    {
+        "type": "Snowboard"
+    },
+    {
+        "type": "Squash"
+    },
+    {
+        "type": "TableTennis"
+    },
+    {
+        "type": "Tennis"
+    },
+    {
+        "type": "Volleyball"
+    },
+    {
+        "type": "WallClimbing"
+    }
+]
