@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import userManager from "../../services/UserManager";
 import activitiesData from "./activitiesData";
 import { Activity } from "./activitiesData";
+import "./Activities.scss";
 
-import ActivityComponent from "../../components/Activity/Activity";
+import { ActivityComponent} from '../../components/Activity/Activity';
 
 const activities = activitiesData.map(activity => new Activity(activity.name, activity.image));
 
@@ -53,6 +54,7 @@ export default function ActivitiesPage() {
             <div className="activitiesContainer">
                 {activities.map(activity => (
                     <ActivityComponent
+                    className="activity"
                     key={activity.name}
                     activity={activity}
                     onAdd={handleAddActivity}

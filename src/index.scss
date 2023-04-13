@@ -5,8 +5,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $main-color;
-  color: $almost-white-color;
+  background-color: $almost-white-color;
+  color: rgb(5, 10, 16);
+
+  // background-image: url(images/background.jpg);
+  object-fit: cover;
+  height: 100vh;
 }
 
 code {

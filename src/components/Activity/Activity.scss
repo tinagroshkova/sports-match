@@ -1,18 +1,7 @@
 @import "../../variables";
 @import "../../mixins";
 
-.activitiesContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
-    gap: 40px;
-    margin-top: 100px;
-    margin-bottom: 200px;
-}
-
-.activityContainer {
+.activityContainerSquare {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -28,8 +17,40 @@
         height: 150px;
 
     }
+
     button {
         margin-top: 10px;
         @include button();
+    }
+}
+
+.activityContainerCircle {
+    height: 150px;
+    width: 150px;
+    box-shadow: $box-shadow;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+
+    img {
+        width: 120px;
+        height: auto;
+    }
+
+    .smallBtn {
+        width: 30px;
+        height: 30px;
+        align-items: center;
+        margin: auto;
+        border-radius: 50%;
+        position: absolute;
+        background-color: $super-contrast;
+        right: -10px;
     }
 }

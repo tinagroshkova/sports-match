@@ -7,13 +7,8 @@ import ChatPage from "./pages/Chat/Chat";
 function App() {
     return (
         <BrowserRouter>
-            {/* <Routes>  */}
             <Navbar />
-            {/* </Routes> */}
             <ChatPage />
-
-            {/* <LoginForm />
-            <RegistrationForm /> */}
         </BrowserRouter>
     )
 

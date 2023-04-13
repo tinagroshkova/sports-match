@@ -1,43 +1,13 @@
-// @import "../../variables";
-// @import "../../mixins";
-
-// .profilePageContainer {
-//     width: 60%;
-//     margin: auto;
-//     margin-top: 50px;
-//     text-align: center;
-
-//     .profileImage img {
-//         @include border();
-//         width: 200px;
-//         height: auto;
-//     }
-//     button {
-//         @include button();
-//         width: 200px;
-//     }
-//     .activitiesList {
-//         display: flex;
-//         flex-wrap: wrap;
-//         gap: 20px;    
-//         .smallActivity {
-//             width: 50% !important; //ne znam za6to ne raboti
-//           }
-//     }
-
-//     // background-color: aqua;
-
-// }
-
-
 @import "../../variables";
 @import "../../mixins";
+
 
 .profilePageContainer {
     width: 60%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 100px;
     text-align: center;
+
 
     .profileImage img {
         @include border();
@@ -47,30 +17,44 @@
 
     button {
         @include button();
-        width: 200px;
+        width: 100px;
+        background-color: $super-contrast;
     }
+
+    p {
+        font-size: 22px;
+
+    }
+
+    h3 {
+        margin-top: 100px;
+        font-size: 32px;
+    }
+
 
     .activitiesList {
+        margin: 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
-
-        .smallActivity {
-            width: 50% !important; //ne znam za6to ne raboti
-        }
+        gap: 40px;
+        justify-content: center;
     }
 
-    input {
-
-
+    input,
+    select {
+        box-sizing: border-box;
+        border-radius: 40px;
         width: 200px;
         height: 30px;
-
-
-
-
+        border: none;
+        align-items: center;
+        text-align: center;
+        margin: 0 10px;
+        font-size: 16px;
+        font-family: inherit;
     }
 
-    // background-color: aqua;
-
+    #file-upload-button {
+        border-radius: 40px; // za6to ne raboti
+    }
 }

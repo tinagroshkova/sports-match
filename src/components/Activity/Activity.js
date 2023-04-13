@@ -2,10 +2,10 @@ import "./Activity.scss";
 
 function ActivityComponent({ activity, onAdd, added, onRemove }) {
   const addButtonText = added ? "Remove from List" : "Add to List";
-  const removeButtonText = "Remove from Profile";
+  const removeButtonText = "X";
 
   return (
-    <div className="activityContainer">
+    <div className="activityContainerSquare">
       <h2>{activity.name}</h2>
       <img src={activity.image} alt={activity.name} />
       {onAdd && <button onClick={() => onAdd(activity)}>{addButtonText}</button>}
@@ -14,4 +14,13 @@ function ActivityComponent({ activity, onAdd, added, onRemove }) {
   );
 }
 
-export default ActivityComponent;
+function ActivityComponentCircle({ activity, onRemove  }) {
+  const removeButtonText = "X";
+  return (
+    <div className="activityContainerCircle">
+      {onRemove && <button className="smallBtn" onClick={() => onRemove(activity)}>{removeButtonText}</button>}
+      <img src={activity.image} alt={activity.name} />
+    </div>
+  );
+}
+export { ActivityComponent, ActivityComponentCircle };

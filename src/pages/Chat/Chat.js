@@ -35,7 +35,8 @@ export default function ChatPage() {
         sessionStorage.setItem('chat', JSON.stringify(chat));
     };
     if (!chat) {
-        return <div>Loading...</div>;
+        return;
+        // return <div>Loading...</div>;
       }
 
     return (
