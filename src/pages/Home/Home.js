@@ -40,11 +40,11 @@ export default function HomePage() {
             description: "Places",
             to: "/places"
         },
-        {
-            image: requests,
-            description: "Requests",
-            to: "/requests"
-        }
+        // {
+        //     image: requests,
+        //     description: "Requests",
+        //     to: "/requests"
+        // }
     ]
 
     return (
