@@ -1,7 +1,17 @@
-// @import "../../variables";
-// @import "../../mixins";
+.buddyCardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    gap: 40px;
+    margin-top: 45px;
+    margin-bottom: 200px;
+}
 
-.sportPlaceCard {
+.buddyCard {
+    width: fit-content;
+    margin-top: 30px;
     box-shadow: -1rem 0 3rem #000;
     transition: 0.4s ease-out;
     border-width: 6px;
@@ -9,7 +19,7 @@
     border-image: linear-gradient(to right, rgb(38, 38, 219), rgb(239, 160, 0)) 1;
     border-radius: 10px;
     // border-image: linear-gradient(to right, rgb(142, 170, 2), rgb(0, 114, 136)) 1;
-   
+
     &:hover {
         transform: translateY(-10px);
         transition: 0.4s ease-out;
@@ -37,41 +47,31 @@
         color: white;
     }
 
+    form {
+        width: 100px;
+        height: 100px;
+    }
+
+    h3,
+    p,
+    img {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+    }
+
 }
 
-// .sportPlaceCard {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     width: 80%;
-//     margin: auto;
-//     gap: 40px;
-//     margin-top: 100px;
-//     margin-bottom: 200px;
-// }
+.buddySearchWrapper {
+    display: flex;
+    justify-content: center;
+}
 
-// .sportPlaceCard {
-//     display: flex;
-//     flex-direction: column;
-//     width: 300px;
-//     height: 300px;
-
-//     box-shadow: $box-shadow;
-//     align-items: center;
-//     @include border();
-//     background-color: rgba(255, 255, 255, 0.1);
-
-//     img {
-//         width: auto;
-//         height: 150px;
-
-//     }
-//     button {
-//         margin-top: 10px;
-//         @include button();
-//     }
-
-//     a {
-//         color: white
-//     }
-// }
+.buddySearchSelect {
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    color: rgb(5, 5, 5);
+    border: 2px solid black;
+    margin: 5px 5px 5px 9px;
+    height: 38px;
+}
