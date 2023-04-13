@@ -1,4 +1,3 @@
-
 class User {
   constructor(username, password) {
     this.username = username;
@@ -88,6 +87,8 @@ class UserManager {
 
   logoutUser = () => {
     localStorage.removeItem("loggedInUser");
+    alert("Logout successful");
+    window.location.replace("/login")
     return Promise.resolve();
   };
 
