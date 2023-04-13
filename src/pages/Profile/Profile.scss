@@ -7,11 +7,13 @@
     margin: auto;
     margin-top: 100px;
     text-align: center;
+    color: $almost-white-color;
+
 
 
     .profileImage img {
         @include border();
-        width: 200px;
+        width: 300px;
         height: auto;
     }
 
@@ -27,8 +29,9 @@
     }
 
     h3 {
-        margin-top: 100px;
+        margin: 5% 0 2% 0;
         font-size: 32px;
+        color: $almost-white-color;
     }
 
 
@@ -42,6 +45,8 @@
 
     input,
     select {
+        // background-color: rgba(255, 255, 255, 0.3);
+        background-color: $super-contrast;
         box-sizing: border-box;
         border-radius: 40px;
         width: 200px;

@@ -32,13 +32,13 @@ export const Auth = () => {
         }
     }
 
-    return <div>
-        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+    // return <div>
+    //     <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+    //     <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
 
-        <button onClick={signIn}>Sign in</button>
-        <button onClick={signInWithGoogle}>Sign in with Google</button>
-        <button onClick={logout}>Logout</button>
+    //     <button onClick={signIn}>Sign in</button>
+    //     <button onClick={signInWithGoogle}>Sign in with Google</button>
+    //     <button onClick={logout}>Logout</button>
 
-    </div>
+    // </div>
 }

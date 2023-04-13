@@ -48,8 +48,8 @@ export default function ActivitiesPage() {
     }
 
     return (
-        <div>
-            <h2 className="siteNameTitle">Add favorite sports to your profile so that other people can find you</h2>
+        <div className="activitiesPageContainer">
+            <h2 className="siteNameTitle">ADD favorite sports to your profile so that other people can find YOU</h2>
 
             <div className="activitiesContainer">
                 {activities.map(activity => (

@@ -1,41 +1,40 @@
 @import "../../variables";
 
-// h2 {
-//     display: flex;
-//     justify-content: center;
-//     background: linear-gradient(to right, #f00, rgb(0, 255, 85));
-//     background-clip: text;
-//     -webkit-background-clip: text;
-//     color: transparent;
-//     font-size: 32px;
-// }
+.homeContainer {
+    position: relative;
+    .siteNameTitle {
+        display: flex;
+        justify-content: center;
+        font-size: 6em;
+        font-style: italic;
+        color: $almost-white-color;
+        width: 15%;
+        margin-left: 20%;
+    }
+    
+    .siteSloganTitle {
+        display: flex;
+        color: $almost-white-color;
+        font-size: 2em;
+        width: 20%;
+        margin-left: 20%;
+        margin-top: -2%;
+        font-style: italic;
+        letter-spacing: 0.05em;
+        // transform: rotate(-45deg);
 
-.siteNameTitle {
-    display: flex;
-    justify-content: center;
-    font-size: 32px;
-    background: linear-gradient(to right, #f00, rgb(0, 255, 85));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.siteSloganTitle {
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(to right, #f00, rgb(0, 255, 85));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-size: 32px;
-}
-
-.logo {
-    display: flex;
-    justify-content: center;
-}
-
-.homeBackground {
-    // background: rgb(34,193,195);
-    // background: linear-gradient(0deg, rgb(189, 22, 22) 0%, rgb(5, 161, 83) 100%);
+    }
+    .homeCardContainerWrapper {
+        margin-top: 2%;
+    }
+    h2 {
+        color: $almost-white-color;
+        text-shadow: 2px 2px 2px black;
+    }
+    
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+    
 }

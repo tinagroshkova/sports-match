@@ -48,12 +48,12 @@ export default function HomePage() {
     ]
 
     return (
-        <div className="homeBackground">
-            <h2 className="siteNameTitle">Welcome to Sport Match</h2>
+        <div className="homeContainer">
+            <h2 className="siteNameTitle">SPORTS MATCH</h2>
             <div className="logo">
-                <img width={200} src={tempLogo}></img>
+                {/* <img src={tempLogo}></img> */}
             </div>
-            <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it together</h2>
+            <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it TOGETHER</h2>
 
             <div className="homeCardContainerWrapper">
                 {navElements.map(data => (
@@ -62,6 +62,7 @@ export default function HomePage() {
                         image={data.image}
                         description={data.description}
                         to={data.to}
+                        className="linkIcon"
                     />
                 ))}
             </div>

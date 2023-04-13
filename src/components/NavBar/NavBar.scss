@@ -2,7 +2,7 @@
 @import "../../mixins";
 
 .navbar {
-  background-color: $dark-main-color;
+  background-color: transparent;
   display: flex;
   width: 100%;
   height: 100px;
@@ -23,7 +23,7 @@
   align-items: center;
   list-style-type: none;
   margin: 20px;
-  background-color: $dark-main-color;
+  background-color: transparent;
 
   li {
     &:first-child a {
@@ -50,29 +50,27 @@ footer {
   justify-content: center;
   text-align: center;
   align-items: center;
-  position: static;
   bottom: 0;
-  padding: 15px;
   font-size: 18px;
   height: 100px;
   color: $almost-white-color;
-  box-shadow: 0px -8px 6px -6px transparent;
+  box-shadow: 0px -8px 6px -6px black;
   position: fixed;
   bottom: 0;
   z-index: 10;
-  margin: 100px 0 10px 0;
+  margin: 100px 0 20px 0;
 
   // backdrop-filter: blur(15px);
   p {
-    color: $almost-white-color;
+    color: $dark-main-color;
     font-size: 22px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   a {
-    color: $almost-white-color;
+    color: $dark-main-color;
     font-size: 30px;
-    margin: 10px;
+    margin: 20px;
   }
 }
 
