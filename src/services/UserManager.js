@@ -98,7 +98,6 @@ class UserManager {
     }
     const userObj = JSON.parse(userJson);
     return new User(userObj.username, userObj.password);
-    // return new User(userObj.username, userObj.password, userJson.image, userJson.age, userJson.city, userJson.gender);
   };
 
   setLoggedInUser = (user) => {

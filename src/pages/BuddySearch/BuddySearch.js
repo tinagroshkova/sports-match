@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import selectValues from './activities.json';
-import UserManager from '../../services/UserManager';
+import userManager from '../../services/UserManager';
+import Chat from '../../components/Chat/Chat';
+
+// import ChatPage from '../Chat/Chat';
+// import { Navigate } from 'react-router-dom';
 
 export default function BuddySearchPage() {
     const [selectedValue, setSelectedValue] = useState('');
@@ -10,10 +14,19 @@ export default function BuddySearchPage() {
     };
 
     // Filter the users array to find users with matching activities
-    const filteredUsers = UserManager.users.filter((user) =>
-        user.activities.some((activity) => activity.name === selectedValue)
+    const filteredUsers = userManager.users.filter(
+        (user) =>
+            user.username !== userManager.getLoggedInUser().username &&
+            user.activities.some((activity) => activity.name === selectedValue)
     );
-    console.log("QQQ", UserManager.users)
+
+    const handleStartChat = (otherUser) => {
+        const loggedInUser = userManager.getLoggedInUser();
+        const chat = new Chat(loggedInUser, otherUser);
+        sessionStorage.setItem('chat', JSON.stringify(chat));
+        window.location.href = "/chat";
+      };
+
 
     return (
         <div>
@@ -32,6 +45,11 @@ export default function BuddySearchPage() {
                     <img src={user.image} alt={user.username} />
                     <h3>{user.username}</h3>
                     <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
+                    <form onSubmit={() => handleStartChat(user) }>
+                        
+                        <button type="submit">Start Chat</button>
+                        
+                    </form>
                 </div>
             ))}
         </div>
