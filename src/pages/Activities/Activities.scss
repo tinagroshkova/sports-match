@@ -3,6 +3,7 @@
 
 .activitiesPageContainer {
     position: relative;
+
     .activitiesContainer {
         display: flex;
         flex-wrap: wrap;
@@ -10,16 +11,25 @@
         width: 70%;
         margin: auto;
         gap: 40px;
-        margin-top: 100px;
+        // margin-top: 100px;
     }
-    
+
     .siteNameTitle {
         color: $almost-white-color;
-        width: 200px;
-        font-size: 44px;
-        text-align: right;
-        margin-left: 240px;
-        margin-top: -870px;
+        // width: 200px;
+        font-size: 45px;
+        // text-align: right;
+        // margin-left: 240px;
+        // margin-top: -870px;
+        justify-content: center;
+        display: flex;
     }
-    
+
+    .searchContainer {
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        margin: 20px;
+    }
+
 }

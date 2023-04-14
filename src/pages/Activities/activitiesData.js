@@ -13,9 +13,14 @@ import padel from "../../images/activitiesPage/padel.png";
 import wallClimbing from "../../images/activitiesPage/wallClimbing.png";
 import darts from "../../images/activitiesPage/darts.png";
 import paintball from "../../images/activitiesPage/paintball.png";
-import billiards from "../../images/activitiesPage/billiards.png";
+import snooker from "../../images/activitiesPage/billiards.png";
 import bowling from "../../images/activitiesPage/bowling.png";
 import karting from "../../images/activitiesPage/karting.png";
+import dance from "../../images/activitiesPage/dance.png";
+import pool from "../../images/activitiesPage/pool.png";
+import golf from "../../images/activitiesPage/golf.png";
+import fitness from "../../images/activitiesPage/fitness.png";
+import boxing from "../../images/activitiesPage/boxing.png";
 
 const activitiesData = [
     {
@@ -79,8 +84,8 @@ const activitiesData = [
         image: paintball,
     },
     {
-        name: "Billiards",
-        image: billiards,
+        name: "Snooker",
+        image: snooker,
     },
     {
         name: "Bowling",
@@ -89,6 +94,26 @@ const activitiesData = [
     {
         name: "Karting",
         image: karting,
+    },
+    {
+        name: "Dance",
+        image: dance,
+    },
+    {
+        name: "Pool",
+        image: pool,
+    },
+    {
+        name: "Golf",
+        image: golf,
+    },
+    {
+        name: "Fitness",
+        image: fitness,
+    },
+    {
+        name: "Boxing",
+        image: boxing,
     },
 ];
 

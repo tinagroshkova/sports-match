@@ -30,6 +30,12 @@ const RegistrationForm = () => {
 
     if (!username) {
       errors.username = "Username is required";
+    } else if (username.length < 3) {
+      errors.username = "Username must be at least 3 characters long";
+    } else if (/^\d/.test(username)) {
+      errors.username = "Username cannot start with a number";
+    } else if (/^[^a-zA-Z0-9]/.test(username)) {
+      errors.username = "Username cannot start with a special character";
     }
 
     if (!password) {
@@ -49,15 +55,14 @@ const RegistrationForm = () => {
     if (Object.keys(errors).length === 0) {
       try {
         await userManager.registerUser(username, password);
-        alert("Registration successful!");
+        await userManager.loginUser(username, password);
         setUsername("");
         setPassword("");
         setConfirmPassword("");
         setErrors({});
-        navigate("/login");
+        navigate("/home");
       } catch (error) {
-        alert(error);
-
+    
       }
     } else {
       setErrors(errors);
@@ -129,3 +134,7 @@ const RegistrationForm = () => {
   );
 }
 export default RegistrationForm;
+
+
+
+
