@@ -49,7 +49,6 @@ export default function ActivitiesPage() {
 
     return (
         <div className="activitiesPageContainer">
-            <h2 className="siteNameTitle">ADD favorite sports to your profile so that other people can find YOU</h2>
 
             <div className="activitiesContainer">
                 {activities.map(activity => (
@@ -59,9 +58,10 @@ export default function ActivitiesPage() {
                     activity={activity}
                     onAdd={handleAddActivity}
                     added={addedActivities.some(a => a.name === activity.name)}
-                  />
-                ))}
+                    />
+                    ))}
             </div>
+                    <h2 className="siteNameTitle">ADD favorite sports to your profile so that other people can find YOU</h2>
         </div>
     );
 } 

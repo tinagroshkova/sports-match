@@ -4,20 +4,27 @@ import { ActivityComponentCircle } from '../../components/Activity/Activity';
 import "./Profile.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faChild, faMapMarkerAlt, faVenusMars } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const [user, setUser] = useState(userManager.getLoggedInUser());
   const [isEditing, setIsEditing] = useState(false);
   const [profileImage, setProfileImage] = useState(user.image);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(userManager.getLoggedInUser());
+    if (!user) {
+      alert("You have to log in first!");
+      navigate('/login');
+      return;
+    }
   }, []);
 
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
     newUser.removeActivity(activity);
-    localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
     setUser(newUser);
   };
 
@@ -41,8 +48,15 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-  }, [user]);
+    const loggedInUser = userManager.getLoggedInUser();
+    if (!loggedInUser) {
+      alert("You have to log in first!");
+      navigate('/login');
+      return;
+    }
+    setUser(loggedInUser);
+  }, []);
+
 
   return (
     <div className="profilePageContainer">

@@ -11,25 +11,15 @@
         margin: auto;
         gap: 40px;
         margin-top: 100px;
-        margin-bottom: 200px;
-        
-    }
-    
-    .activitiesList {
-        margin-top: 100px;
-        position: absolute;
-        top: 200px;
-        left: 15%;
     }
     
     .siteNameTitle {
         color: $almost-white-color;
-        width: 360px;
-        font-size: 32px;
-        position: absolute;
-        left: 4%;
+        width: 200px;
+        font-size: 44px;
         text-align: right;
-        transform: rotate(-45deg);
+        margin-left: 240px;
+        margin-top: -870px;
     }
     
 }
