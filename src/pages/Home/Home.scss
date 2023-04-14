@@ -2,6 +2,7 @@
 
 .homeContainer {
     position: relative;
+
     .siteNameTitle {
         display: flex;
         justify-content: center;
@@ -11,9 +12,12 @@
         width: 15%;
         margin-left: 20%;
 
-       
+        @media screen and (max-width: 1366px) {
+            font-size: 4.5em;
+            width: 12%;
+        }
     }
-    
+
     .siteSloganTitle {
         display: flex;
         color: $almost-white-color;
@@ -23,20 +27,63 @@
         margin-top: -2%;
         font-style: italic;
         letter-spacing: 0.05em;
-        // transform: rotate(-45deg);
+
+        @media screen and (max-width: 1366px) {
+            font-size: 1.1em;
+            width: 24%;
+            margin-left: 220px;
+        }
+
 
     }
+
     .homeCardContainerWrapper {
-        margin-top: 2%;
-    }
-    h2 {
-        color: $almost-white-color;
-        text-shadow: 2px 2px 2px black;
-    }
-    
-    .logo {
         display: flex;
-        justify-content: center;
+        margin-top: 2%;
+        gap: 50px;
+        @media screen and (max-width: 1366px) {
+            gap: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            @media screen and (max-width: 1366px) {
+                font-size: 18px;
+            }
+        }
+
+        img {
+            height: 120px;
+            width: auto;
+            margin: 100px 0 0 0;
+
+            @media screen and (max-width: 1366px) {
+                height: 80px;
+                width: auto;
+                margin: 60px 0 0 0;
+            }
+        }
+        h2 {
+            color: $almost-white-color;
+            text-shadow: 2px 2px 2px black;
+            @media screen and (max-width: 1366px) {
+                height: 20px;
+                width: auto;
+                gap: 50px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+        }
+
     }
-    
+
+    .logoutBtn {
+        display: none;
+
+    }
+
+
 }

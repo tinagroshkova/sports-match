@@ -3,33 +3,58 @@
 
 .activitiesPageContainer {
     position: relative;
+    display: flex;
 
     .activitiesContainer {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        width: 70%;
+        width: 80%;
         margin: auto;
         gap: 40px;
-        // margin-top: 100px;
+        margin-top: 100px;
     }
 
     .siteNameTitle {
         color: $almost-white-color;
-        // width: 200px;
-        font-size: 45px;
-        // text-align: right;
-        // margin-left: 240px;
-        // margin-top: -870px;
-        justify-content: center;
-        display: flex;
+        position: absolute;
+        width: 8%;
+        font-size: 42px;
+        text-align: right;
+        left: 4%;
+        top: 50px;
+
+        @media screen and (max-width: 1366px) {
+            font-size: 26px;
+            width: 10%;
+            top: 4.7%;
+
+        }
     }
 
     .searchContainer {
+        position: absolute;
+        right: 14%;
+        top: 2%;
         display: flex;
         justify-content: center;
         height: 30px;
-        margin: 20px;
+        @media screen and (max-width: 1366px) {
+            font-size: 30px;
+            width: 12%;
+            top: 2%;
+            right: 14.2%;
+        }
     }
 
+    #activitySearch {
+        border: none;
+        border-radius: 15px;
+        padding: 5px;
+        height: 30px;
+        margin-bottom: 50px;
+        box-shadow: $box-shadow;
+        position: absolute;
+        right: 19%;
+    }
 }
