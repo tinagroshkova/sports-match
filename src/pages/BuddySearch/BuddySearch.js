@@ -32,7 +32,6 @@ export default function BuddySearchPage() {
 
     return (
         <div>
-            {/* <h2 className="siteNameTitle">Buddy search</h2> */}
             <h2 className="siteSloganTitle">Find someone that share your sport passion</h2>
             <div className="buddySearchWrapper">
                 <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
@@ -50,9 +49,7 @@ export default function BuddySearchPage() {
                         <img src={user.image} alt={user.username} />
                         <h3>{user.username}</h3>
                         <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
-                        <form onSubmit={() => handleStartChat(user)}>
-                            <button type="submit">Start Chat</button>
-                        </form>
+                        <button onClick={() => handleStartChat(user)}>Start Chat</button>
                     </div>
                 </div>
             ))}

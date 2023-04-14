@@ -12,10 +12,22 @@
         "type": "Bowling"
     },
     {
+        "type": "Boxing"
+    },
+    {
+        "type": "Dance"
+    },
+    {
         "type": "Darts"
     },
     {
+        "type": "Fitness"
+    },
+    {
         "type": "Football"
+    },
+    {
+        "type": "Golf"
     },
     {
         "type": "IceSkating"
@@ -30,10 +42,16 @@
         "type": "Paintball"
     },
     {
+        "type": "Pool"
+    },
+    {
         "type": "Running"
     },
     {
         "type": "Ski"
+    },
+    {
+        "type": "Snooker"
     },
     {
         "type": "Snowboard"
