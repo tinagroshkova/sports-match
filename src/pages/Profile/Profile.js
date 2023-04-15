@@ -5,38 +5,26 @@ import "./Profile.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faChild, faMapMarkerAlt, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
-import userImage from "../../images/user.png"
 
 function ProfilePage() {
   const [user, setUser] = useState(userManager.getLoggedInUser());
   const [isEditing, setIsEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState(user.image);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Get the user's uploaded image from local storage if it exists
-    const storedImage = localStorage.getItem('profileImage');
-    if (storedImage) {
-      setProfileImage(storedImage);
-    } else {
-      setProfileImage(userImage);
-    }
-    
-    // Check if the user is logged in
-    const loggedInUser = userManager.getLoggedInUser();
-    if (!loggedInUser) {
+    setUser(userManager.getLoggedInUser());
+    if (!user) {
       alert("You have to log in first!");
       navigate('/login');
       return;
-    } else {
-      setUser(loggedInUser);
     }
   }, []);
 
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
     newUser.removeActivity(activity);
-    userManager.setLoggedInUser(user);
+    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
     setUser(newUser);
   };
 
@@ -55,33 +43,41 @@ function ProfilePage() {
     reader.onloadend = () => {
       setProfileImage(reader.result);
       setUser({ ...user, image: reader.result });
-      
-      // Save the uploaded image data to local storage
-      localStorage.setItem('profileImage', reader.result);
     };
     reader.readAsDataURL(file);
   };
+
+  useEffect(() => {
+    const loggedInUser = userManager.getLoggedInUser();
+    if (!loggedInUser) {
+      alert("You have to log in first!");
+      navigate('/login');
+      return;
+    }
+    setUser(loggedInUser);
+  }, []);
+
 
   return (
     <div className="profilePageContainer">
       <div className="profileInfo">
         <div className="profileImage">
-          <img src={profileImage || userImage} alt={user.username} />
+          <img src={profileImage} alt={user.username} />
           {isEditing && (
             <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
           )}
         </div>
+        <h2>
+          <span className="icon">
+            <FontAwesomeIcon icon={faUser} />{' '}
+            {isEditing ? (
+              <input type="text" name="username" value={user.username} onChange={handleEdit} />
+            ) : (
+              user.username
+            )}
+          </span>
+        </h2>
         <div className="userInfo">
-          <h2>
-            <span className="icon">
-              <FontAwesomeIcon icon={faUser} />{' '}
-              {isEditing ? (
-                <input type="text" name="username" value={user.username} onChange={handleEdit} />
-              ) : (
-                user.username
-              )}
-            </span>
-          </h2>
           <span className="icon">
             <FontAwesomeIcon icon={faChild} /> {' '}
             {isEditing ? (
@@ -122,7 +118,7 @@ function ProfilePage() {
         )}
       </div>
       <div>
-        {/* <h3>{user.username}'s activities:</h3> */}
+        <h3>{user.username}'s activities:</h3>
         {user && user.activities && user.activities.length > 0 ? (
           <div className="activitiesList">
             {user.activities.map((activity) => (
@@ -140,4 +136,3 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
-
