@@ -34,19 +34,16 @@ export default function ActivitiesPage() {
         }
         if (user.hasActivity(activity)) {
             user.removeActivity(activity);
-            console.log(user);
-
-            localStorage.setItem("loggedInUser", JSON.stringify(user));
-            localStorage.setItem("users", JSON.stringify(userManager.users));
+            user.saveUserData();
+            // userManager.setLoggedInUser(user);
             setAddedActivities(prevActivities =>
                 prevActivities.filter(a => a.name !== activity.name)
             );
         } else {
             user.addActivity(activity);
             console.log(user);
-
-            localStorage.setItem("loggedInUser", JSON.stringify(user));
-            localStorage.setItem("users", JSON.stringify(userManager.users));
+            user.saveUserData();
+            // userManager.setLoggedInUser(user);
             setAddedActivities(prevActivities => [...prevActivities, activity]);
         }
     }

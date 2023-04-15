@@ -7,10 +7,6 @@ import activities from "../../images/homePage/homePageActivities.png";
 import buddySearch from "../../images/homePage/photo.jpg";
 import messages from "../../images/homePage/homePageChat.png";
 import places from "../../images/homePage/homePagePlaces.png";
-import requests from "../../images/homePage/homePageRequests2.png";
-import tempLogo from "../../images/homePage/tempLogo.png";
-
-
 
 export default function HomePage() {
 
@@ -40,11 +36,6 @@ export default function HomePage() {
             description: "Places",
             to: "/places"
         },
-        // {
-        //     image: requests,
-        //     description: "Requests",
-        //     to: "/requests"
-        // }
     ]
 
     return (

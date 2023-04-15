@@ -24,7 +24,7 @@ function ProfilePage() {
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
     newUser.removeActivity(activity);
-    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+    userManager.setLoggedInUser(user);
     setUser(newUser);
   };
 
