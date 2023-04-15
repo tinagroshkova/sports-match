@@ -132,7 +132,7 @@ footer {
     cursor: pointer;
 
     &:hover {
-      background-color: rgb(0, 38, 100);
+      background-color: $contrast-transperant;
 
     }
   }

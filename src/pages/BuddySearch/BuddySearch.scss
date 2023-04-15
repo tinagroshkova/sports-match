@@ -1,81 +1,96 @@
-.buddyCardContainer{
+@import "../../variables";
+@import "../../mixins";
+
+.buddyPage {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     width: 80%;
     margin: auto;
-    gap: 40px;
-    margin-top: 45px;
-    margin-bottom: 200px;
 
-    h3, p {
-        color: white;
+    flex-direction: column;
+    .buddyCardContainer{
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        gap: 40px;
+        margin-top: 45px;
+        margin-bottom: 200px;
+        width: 600px;
+        height: auto;
     }
-}
-
-.buddyCard {
-    width: fit-content;
-    margin-top: 30px;
-    box-shadow: -1rem 0 3rem #000;
-    transition: 0.4s ease-out;
-    border-width: 6px;
-    border-style: solid;
-    border-image: linear-gradient(to right, rgb(38, 38, 219), rgb(239, 160, 0)) 1;
-    border-radius: 10px;
-    // border-image: linear-gradient(to right, rgb(142, 170, 2), rgb(0, 114, 136)) 1;
-
-    &:hover {
-        transform: translateY(-10px);
+    .siteSloganTitle {
+        text-align: center;
+        font-size: 50px;
+        // width: 800px;
+    }
+    
+    .buddyCard {
+        width: fit-content;
+        margin-top: 30px;
+        box-shadow: -1rem 0 3rem #000;
         transition: 0.4s ease-out;
-    }
+        border-width: 6px;
+        border-style: solid;
+        border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
 
-    img {
-        height: 200px;
-        width: 300px;
-        padding: 5px;
-        background: transparent;
-        border: 2px solid rgba(255, 255, 255, .5);
-        justify-content: center;
-        align-items: center;
+        &:hover {
+            transform: translateY(-10px);
+            transition: 0.4s ease-out;
+        }
+    
+        img {
+            height: 200px;
+            width: 600px;
+            object-fit: cover;
+            padding: 5px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .inner {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+    
+        h3,
+        img {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            margin: auto;
+        }
+        p {
+            font-size: 16px;
+            text-align: center;
+        }
     }
-
-    .inner {
-        color: white;
+    button {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-    }
+        justify-content: center;
+        margin: auto;
 
-    a {
-        color: white;
-    }
-
-    form {
+        @include button();
         width: 100px;
-        height: 100px;
+        margin-bottom: 30px;
+        background-color: $contrast-transperant;
+        color: $almost-white-color;
+        &:hover {
+            background-color: $medium-main-color;
+        }
     }
-
-    h3,
-    p,
-    img {
+    
+    .buddySearchWrapper {
         display: flex;
         justify-content: center;
-        font-size: 20px;
+        .buddySearchSelect {
+            @include select();
+        }
     }
-
-}
-
-.buddySearchWrapper {
-    display: flex;
-    justify-content: center;
-}
-
-.buddySearchSelect {
-    background-color: rgb(255, 255, 255);
-    padding: 5px;
-    color: rgb(5, 5, 5);
-    border: 2px solid black;
-    margin: 5px 5px 5px 9px;
-    height: 38px;
+    
 }

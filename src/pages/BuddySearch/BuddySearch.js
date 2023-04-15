@@ -4,10 +4,6 @@ import userManager from '../../services/UserManager';
 import Chat from '../../components/Chat/Chat';
 import "./BuddySearch.scss";
 
-
-// import ChatPage from '../Chat/Chat';
-// import { Navigate } from 'react-router-dom';
-
 export default function BuddySearchPage() {
     const [selectedValue, setSelectedValue] = useState('');
 
@@ -31,8 +27,8 @@ export default function BuddySearchPage() {
 
 
     return (
-        <div>
-            <h2 className="siteSloganTitle">Find someone that share your sport passion</h2>
+        <div className="buddyPage">
+            <h2 className="siteSloganTitle">Find someone that shares your sport passion</h2>
             <div className="buddySearchWrapper">
                 <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
                     <option value="">Select an activity</option>
@@ -48,7 +44,7 @@ export default function BuddySearchPage() {
                     <div className='buddyCard' >
                         <img src={user.image} alt={user.username} />
                         <h3>{user.username}</h3>
-                        <p>Activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
+                        <p>Favourite activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
                         <button onClick={() => handleStartChat(user)}>Start Chat</button>
                     </div>
                 </div>

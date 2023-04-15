@@ -34,5 +34,22 @@
     margin-bottom: 50px;
     box-shadow: $box-shadow;
     background-color: rgba(255, 255, 255, 0.2);
+}
+@mixin select {
+    @include search();
+    color: $almost-white-color;
+    font-size: 18px;
+    width: 300px;
+    height: 40px;
+    margin-top: 50px;
+    option {
+        background-color: $light-main-color;
+    }
+}
 
+@mixin gradientBorder {
+    border-width: 6px;
+    border-style: solid;
+    border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
+    border-radius: 10px;
 }

@@ -16,6 +16,12 @@
         img {
             width: 100px;
             height: auto;
+            transition: transform 0.5s ease-in-out;
+            /* add transition property */
+
+            &:hover {
+                transform: scale(1.2);
+            }
         }
 
         a {
@@ -25,10 +31,10 @@
         h2 {
             color: $almost-white-color;
             font-size: 28px;
-        }
 
-        h2:hover {
-            color: $super-contrast;
+            &:hover {
+                color: $contrast-color;
+            }
         }
     }
 }

@@ -5,21 +5,13 @@ import "./Profile.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faChild, faMapMarkerAlt, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
+import userImage from "../../images/user.png"
 
 function ProfilePage() {
   const [user, setUser] = useState(userManager.getLoggedInUser());
   const [isEditing, setIsEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(user.image);
+  const [profileImage, setProfileImage] = useState(userImage);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setUser(userManager.getLoggedInUser());
-    if (!user) {
-      alert("You have to log in first!");
-      navigate('/login');
-      return;
-    }
-  }, []);
 
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
@@ -43,6 +35,7 @@ function ProfilePage() {
     reader.onloadend = () => {
       setProfileImage(reader.result);
       setUser({ ...user, image: reader.result });
+      sessionStorage.setItem('userImage', reader.result); // save the image to the session storage
     };
     reader.readAsDataURL(file);
   };
@@ -54,6 +47,8 @@ function ProfilePage() {
       navigate('/login');
       return;
     }
+    const savedImage = sessionStorage.getItem('userImage'); // retrieve the saved image from the session storage
+    setProfileImage(savedImage || userImage); // set the saved image as the profile image, or use the default image if there is no saved image
     setUser(loggedInUser);
   }, []);
 
@@ -67,17 +62,17 @@ function ProfilePage() {
             <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
           )}
         </div>
-        <h2>
-          <span className="icon">
-            <FontAwesomeIcon icon={faUser} />{' '}
-            {isEditing ? (
-              <input type="text" name="username" value={user.username} onChange={handleEdit} />
-            ) : (
-              user.username
-            )}
-          </span>
-        </h2>
         <div className="userInfo">
+          <h2>
+            <span className="icon">
+              <FontAwesomeIcon icon={faUser} />{' '}
+              {isEditing ? (
+                <input type="text" name="username" value={user.username} onChange={handleEdit} />
+              ) : (
+                user.username
+              )}
+            </span>
+          </h2>
           <span className="icon">
             <FontAwesomeIcon icon={faChild} /> {' '}
             {isEditing ? (

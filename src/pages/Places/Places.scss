@@ -18,13 +18,5 @@
 }
 
 .selectSearch {
-    @include search();
-    color: $almost-white-color;
-    font-size: 18px;
-    width: 300px;
-    height: 40px;
-    margin-top: 50px;
-    option {
-        background-color: $light-main-color;
-    }
+    @include select();
 }

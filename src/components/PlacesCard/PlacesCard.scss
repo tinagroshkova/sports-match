@@ -1,15 +1,14 @@
-// @import "../../variables";
-// @import "../../mixins";
+@import "../../variables";
+@import "../../mixins";
 
 .sportPlaceCard {
     box-shadow: -1rem 0 3rem #000;
     transition: 0.4s ease-out;
     border-width: 6px;
     border-style: solid;
-    border-image: linear-gradient(to right, rgb(38, 38, 219), rgb(239, 160, 0)) 1;
+    border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
     border-radius: 10px;
-    // border-image: linear-gradient(to right, rgb(142, 170, 2), rgb(0, 114, 136)) 1;
-   
+
     &:hover {
         transform: translateY(-10px);
         transition: 0.4s ease-out;
