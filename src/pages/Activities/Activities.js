@@ -60,10 +60,8 @@ export default function ActivitiesPage() {
                     type="text"
                     value={searchInput}
                     placeholder="Search for sport"
-                    onChange={handleSearchInputChange}
-                />
+                    onChange={handleSearchInputChange}/>
             </div>
-
             <div className="activitiesContainer">
                 {activities
                     .filter((activity) =>

@@ -18,7 +18,7 @@
 
     box-shadow: 10px 10px 10px -6px black;
     align-items: center;
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.2);
 
     img {
         width: auto;
@@ -60,7 +60,7 @@
     height: 150px;
     width: 150px;
     box-shadow: $box-shadow;
-    background-color: $almost-white-color;
+    background-color: rgba(255, 255, 255, 0.2);
     font-size: 16px;
     border-radius: 50%;
     display: flex;

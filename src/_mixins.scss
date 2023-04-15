@@ -23,3 +23,16 @@
     backdrop-filter: blur(15px);
     box-shadow: $box-shadow;
 }
+
+@mixin search(){
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    height: 30px;
+    width: 160px;
+    margin: auto;
+    margin-bottom: 50px;
+    box-shadow: $box-shadow;
+    background-color: rgba(255, 255, 255, 0.2);
+
+}

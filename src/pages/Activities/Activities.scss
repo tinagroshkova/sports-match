@@ -4,6 +4,7 @@
 .activitiesPageContainer {
     position: relative;
     display: flex;
+    flex-direction: column;
 
     .activitiesContainer {
         display: flex;
@@ -12,9 +13,8 @@
         width: 80%;
         margin: auto;
         gap: 40px;
-        margin-top: 100px;
+        margin-top: 50px;
     }
-
     .siteNameTitle {
         color: $almost-white-color;
         position: absolute;
@@ -22,23 +22,20 @@
         font-size: 42px;
         text-align: right;
         left: 4%;
-        top: 50px;
+        top: 86px;
 
         @media screen and (max-width: 1366px) {
             font-size: 26px;
             width: 10%;
             top: 4.7%;
-
         }
     }
 
     .searchContainer {
-        position: absolute;
-        right: 14%;
-        top: 2%;
-        display: flex;
-        justify-content: center;
         height: 30px;
+        width: 150px;
+        margin: auto;
+        margin-top: 50px;
         @media screen and (max-width: 1366px) {
             font-size: 30px;
             width: 12%;
@@ -48,13 +45,12 @@
     }
 
     #activitySearch {
-        border: none;
-        border-radius: 15px;
-        padding: 5px;
-        height: 30px;
-        margin-bottom: 50px;
-        box-shadow: $box-shadow;
-        position: absolute;
-        right: 19%;
+        @include search();
+        color: $almost-white-color;
+        &::placeholder,
+        &:focus  {
+            color: $almost-white-color;
+        }
     }
+
 }

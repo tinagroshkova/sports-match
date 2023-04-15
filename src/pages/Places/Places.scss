@@ -1,3 +1,6 @@
+@import "../../variables";
+@import "../../mixins";
+
 .sportsPageContainer {
     display: flex;
     flex-wrap: wrap;
@@ -14,12 +17,14 @@
     justify-content: center;
 }
 
-.selectSearch{
-    background-color: whitesmoke;
-    padding: 5px;
-    color: black;
-    border: 2px solid black;
-    margin: 5px 5px 5px 9px;
-    height: 38px;
-    
+.selectSearch {
+    @include search();
+    color: $almost-white-color;
+    font-size: 18px;
+    width: 300px;
+    height: 40px;
+    margin-top: 50px;
+    option {
+        background-color: $light-main-color;
+    }
 }
