@@ -16,7 +16,8 @@
         background-color: rgba(255, 255, 255, 0.2);
         height: 400px;
         box-shadow: $box-shadow;
-        @include gradientBorder();
+        border-radius: 10px;
+        // @include gradientBorder();
         .userInfo {
             width: 500px;
             button {

@@ -1,6 +1,7 @@
 @mixin button() {
     position: relative;
     top: 10px;
+    right: 5px;
     width: 80%;
     height: 40px;
     background: $almost-white-color;
@@ -10,13 +11,14 @@
     font-weight: 600;
     font-size: 17px;
     box-shadow: $box-shadow;
+    cursor: pointer;
 
     &:hover {
         background-color: $super-contrast;
     }
 }
 
-@mixin border(){
+@mixin border() {
     border: 2px solid $super-contrast;
     border-radius: 20px;
     background: transparent;
@@ -24,7 +26,7 @@
     box-shadow: $box-shadow;
 }
 
-@mixin search(){
+@mixin search() {
     border: none;
     border-radius: 15px;
     padding: 5px;
@@ -35,6 +37,7 @@
     box-shadow: $box-shadow;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
 @mixin select {
     @include search();
     color: $almost-white-color;
@@ -42,6 +45,8 @@
     width: 300px;
     height: 40px;
     margin-top: 50px;
+    cursor: pointer;
+
     option {
         background-color: $light-main-color;
     }
