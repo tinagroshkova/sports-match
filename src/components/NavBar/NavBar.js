@@ -1,4 +1,5 @@
 import React from "react";
+// import "../NavBar/NavBar.scss";
 import "../NavBar/NavBar.scss";
 import "../../index.scss";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -22,7 +23,7 @@ function NavBar() {
     <>
       {hideButton ? null : (
         <div className="logoutContainer">
-          <button className="logoutBtn" onClick={userManager.logoutUser}>Logout</button>
+          <button className="logoutButton" onClick={userManager.logoutUser}>Logout</button>
         </div>
       )
       }

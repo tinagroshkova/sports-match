@@ -4,7 +4,7 @@ import football from "../../images/activitiesPage/football.png";
 import badminton from "../../images/activitiesPage/badminton.png";
 import squash from "../../images/activitiesPage/squash.png";
 import running from "../../images/activitiesPage/running.png";
-import basketball from "../../images/activitiesPage/basketball.png";
+import basketball from "../../images/activitiesPage/basketball2.png";
 import volleyball from "../../images/activitiesPage/volleyball.png";
 import ski from "../../images/activitiesPage/ski.png";
 import snowboard from "../../images/activitiesPage/snowboard.png";
@@ -21,6 +21,22 @@ import pool from "../../images/activitiesPage/pool.png";
 import golf from "../../images/activitiesPage/golf.png";
 import fitness from "../../images/activitiesPage/fitness.png";
 import boxing from "../../images/activitiesPage/boxing.png";
+import poledance from "../../images/activitiesPage/poledance.png";
+import baseball from "../../images/activitiesPage/baseball.png";
+import fencing from "../../images/activitiesPage/fencing.png";
+import cycling from "../../images/activitiesPage/cycling.png";
+import motorcycling from "../../images/activitiesPage/motorcycling.png";
+import rafting from "../../images/activitiesPage/rafting.png";
+import canoe from "../../images/activitiesPage/canoe.png"
+import curling from "../../images/activitiesPage/curling.png"
+import petanka from "../../images/activitiesPage/petanka.webp"
+import swimming from "../../images/activitiesPage/swimming.png"
+import martialArts from "../../images/activitiesPage/martialArts.png"
+import equestrianism from "../../images/activitiesPage/equestrianism.png"
+import hockey from "../../images/activitiesPage/hockey.png"
+import skating from "../../images/activitiesPage/skating.png"
+import yoga from "../../images/activitiesPage/yoga.png"
+
 
 const activitiesData = [
     {
@@ -115,6 +131,68 @@ const activitiesData = [
         name: "Boxing",
         image: boxing,
     },
+    {
+        name: "Pole Dance",
+        image: poledance,
+    },
+    {
+        name: "Baseball",
+        image: baseball,
+    },
+    {
+        name: "Fencing",
+        image: fencing,
+    },
+    {
+        name: "Cycling",
+        image: cycling,
+    },
+    {
+        name: "Motorcycling",
+        image: motorcycling,
+    },
+    {
+        name: "Rafting",
+        image: rafting,
+    },
+    {
+        name: "Kayak",
+        image: canoe,
+    },
+    {
+        name: "Curling",
+        image: curling,
+    },
+    {
+        name: "Petanka",
+        image: petanka,
+    },
+    {
+        name: "Swimming",
+        image: swimming,  
+    },
+    {
+        name: "Martial arts",
+        image: martialArts,  
+    },
+    {
+        name: "Equestrianism",
+        image: equestrianism,  
+    },
+    {
+        name: "Hockey",
+        image: hockey,  
+    },
+    {
+        name: "Roller skating",
+        image: skating,  
+    },
+    {
+        name: "Yoga",
+        image: yoga,  
+    },
+    
+
 ];
 
 export class Activity {
