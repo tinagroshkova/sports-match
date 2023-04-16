@@ -52,6 +52,11 @@ function ProfilePage() {
     setUser(loggedInUser);
   }, []);
 
+  const loggedInUser = userManager.getLoggedInUser();
+  if (!loggedInUser) {
+    navigate('/login');
+    return;
+  }
 
   return (
     <div className="profilePageContainer">

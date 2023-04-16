@@ -21,7 +21,7 @@ export default function PlacesPage() {
     return (
         <div>
             {/* <h2 className="siteNameTitle">Places</h2> */}
-            {/* <h2 className="siteSloganTitle">Choose a place to play your favorite sport</h2> */}
+            <h2 style={{display: "flex", justifyContent: "center"}} className="siteSloganTitle">Choose your favorite sport and get suggestions where to play in Sofia</h2>
             <div className='searchWrapper'>
                 <select className='selectSearch' value={selectedItem ? selectedItem.name : ""} onChange={handleSelect}>
                     <option value="">Search for a place</option>
