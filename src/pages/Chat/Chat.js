@@ -58,97 +58,95 @@
 //     );
 // }
 
-
-
 // Secondaries
 
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
-class Chat extends Component {
-  constructor(props) {
-    super(props);
+// class Chat extends Component {
+//   constructor(props) {
+//     super(props);
 
-    // Check if the chat state exists in session storage
-    const chatState = sessionStorage.getItem("chatState");
-    if (chatState) {
-      this.state = JSON.parse(chatState);
-    } else {
-      this.state = {
-        messages: [],
-        currentUser: props.currentUser || "Guest",
-      };
-    }
+//     // Check if the chat state exists in session storage
+//     const chatState = sessionStorage.getItem("chatState");
+//     if (chatState) {
+//       this.state = JSON.parse(chatState);
+//     } else {
+//       this.state = {
+//         messages: [],
+//         currentUser: props.currentUser || "Guest",
+//       };
+//     }
 
-    this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
-    this.broadcastChannel = new BroadcastChannel("chatMessages");
-  }
+//     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
+//     this.broadcastChannel = new BroadcastChannel("chatMessages");
+//   }
 
-  componentDidMount() {
-    // Listen for messages from other tabs/windows
-    this.broadcastChannel.onmessage = (event) => {
-      this.setState({ messages: event.data });
-    };
-  }
+//   componentDidMount() {
+//     // Listen for messages from other tabs/windows
+//     this.broadcastChannel.onmessage = (event) => {
+//       this.setState({ messages: event.data });
+//     };
+//   }
 
-  componentWillUnmount() {
-    // Close the Broadcast Channel when the component unmounts
-    this.broadcastChannel.close();
-  }
+//   componentWillUnmount() {
+//     // Close the Broadcast Channel when the component unmounts
+//     this.broadcastChannel.close();
+//   }
 
-  handleMessageSubmit(event) {
-    event.preventDefault();
+//   handleMessageSubmit(event) {
+//     event.preventDefault();
 
-    const messageInput = event.target.elements.message;
-    const message = {
-      text: messageInput.value,
-      timestamp: new Date().toISOString(),
-      user: this.state.currentUser,
-    };
+//     const messageInput = event.target.elements.message;
+//     const message = {
+//       text: messageInput.value,
+//       timestamp: new Date().toISOString(),
+//       user: this.state.currentUser,
+//     };
 
-    // Update the state with the new message
-    this.setState(
-      (prevState) => ({
-        messages: [...prevState.messages, message],
-      }),
-      () => {
-        // Store the updated state in session storage
-        sessionStorage.setItem("chatState", JSON.stringify(this.state));
+//     // Update the state with the new message
+//     this.setState(
+//       (prevState) => ({
+//         messages: [...prevState.messages, message],
+//       }),
+//       () => {
+//         // Store the updated state in session storage
+//         sessionStorage.setItem("chatState", JSON.stringify(this.state));
 
-        // Broadcast the updated messages to other tabs/windows
-        this.broadcastChannel.postMessage(this.state.messages);
-      }
-    );
+//         // Broadcast the updated messages to other tabs/windows
+//         this.broadcastChannel.postMessage(this.state.messages);
+//       }
+//     );
 
-    // Clear the message input field
-    messageInput.value = "";
-  }
+//     // Clear the message input field
+//     messageInput.value = "";
+//   }
 
-  render() {
-    const { messages, currentUser } = this.state;
+//   render() {
+//     const { messages, currentUser } = this.state;
 
-    return (
-      <div>
-        <h1>Chat Interface</h1>
-        <p>Logged in as: {currentUser}</p>
-        <ul>
-          {messages.map((message, index) => (
-            <li key={index}>
-              <strong>{message.user}: </strong>
-              {message.text} ({message.timestamp})
-            </li>
-          ))}
-        </ul>
-        <form onSubmit={this.handleMessageSubmit}>
-          <label htmlFor="message">Message:</label>
-          <input type="text" id="message" />
-          <button type="submit">Send</button>
-        </form>
-      </div>
-    );
-  }
-}
+//     return (
+//       <div>
+//         <h1>Chat Interface</h1>
+//         <p>Logged in as: {currentUser}</p>
+//         <ul>
+//           {messages.map((message, index) => (
+//             <li key={index}>
+//               <strong>{message.user}: </strong>
+//               {message.text} ({message.timestamp})
+//             </li>
+//           ))}
+//         </ul>
+//         <form onSubmit={this.handleMessageSubmit}>
+//           <label htmlFor="message">Message:</label>
+//           <input type="text" id="message" />
+//           <button type="submit">Send</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
 
-export default Chat;
+// export default Chat;
 
 
 

@@ -46,8 +46,13 @@ export default function BuddySearchPage() {
       <h2 className="siteSloganTitle">Find someone that shares your sport passion</h2>
       <div className="buddySearchWrapper">
         <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
-          <option value="">Select an activity</option>
+          {/* <option value="">Select an activity</option>
           {selectValues.map((activity) => (
+            <option key={activity.type} value={activity.type}>
+              {activity.type}
+            </option> */}
+          <option value="">Select an activity</option>
+          {selectValues.sort((a, b) => a.type.localeCompare(b.type)).map((activity) => (
             <option key={activity.type} value={activity.type}>
               {activity.type}
             </option>
