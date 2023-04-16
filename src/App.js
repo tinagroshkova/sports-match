@@ -11,7 +11,7 @@ function App() {
 
             <BrowserRouter>
                 <Navbar />
-                <ChatPage />
+                {/* <ChatPage /> */}
             </BrowserRouter>
 
 
