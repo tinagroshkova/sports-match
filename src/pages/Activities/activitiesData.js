@@ -36,6 +36,8 @@ import equestrianism from "../../images/activitiesPage/equestrianism.png"
 import hockey from "../../images/activitiesPage/hockey.png"
 import skating from "../../images/activitiesPage/skating.png"
 import yoga from "../../images/activitiesPage/yoga.png"
+import trampolines from "../../images/activitiesPage/trampolines.png"
+import archery from "../../images/activitiesPage/archery.png"
 
 
 const activitiesData = [
@@ -176,7 +178,7 @@ const activitiesData = [
         image: martialArts,  
     },
     {
-        name: "Equestrianism",
+        name: "Horse riding",
         image: equestrianism,  
     },
     {
@@ -190,6 +192,14 @@ const activitiesData = [
     {
         name: "Yoga",
         image: yoga,  
+    },
+    {
+        name: "Trampolines",
+        image: trampolines,  
+    },
+    {
+        name: "Archery",
+        image: archery,  
     },
     
 
