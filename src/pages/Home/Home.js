@@ -2,11 +2,11 @@ import React from "react";
 import HomeCard from "../../components/HomeCard/HomeCard";
 import "./Home.scss"
 
-import myProfile from "../../images/homePage/sportMatch.png";
-import activities from "../../images/homePage/zz.png";
-import buddySearch from "../../images/homePage/sportMatch.png";
-import messages from "../../images/homePage/zz.png";
-import places from "../../images/homePage/sportMatch.png";
+import myProfile from "../../images/homePage/homePageProfile.png";
+import activities from "../../images/homePage/Icons8_flat_sports_mode.svg.png";
+import buddySearch from "../../images/homePage/homePageRequests.png";
+import messages from "../../images/homePage/mess.png";
+import places from "../../images/homePage/homePagePlaces.png";
 
 export default function HomePage() {
 
