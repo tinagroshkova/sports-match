@@ -1,4 +1,5 @@
 @import "../variables";
+
 $font-size: 16px;
 
 .chatContainer {
@@ -10,7 +11,9 @@ $font-size: 16px;
     margin: 0 auto;
     font-size: $font-size;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    // position: relative;
 
     h1 {
         font-size: 24px;
@@ -32,7 +35,7 @@ $font-size: 16px;
         list-style: none;
         margin: 0;
         padding: 0;
-        max-height: calc(100vh - 200px);
+        max-height: calc(100vh - 350px);
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -40,35 +43,56 @@ $font-size: 16px;
         }
 
         li {
+            display: flex;
+            flex-direction: column;
             margin-bottom: 10px;
             padding: 10px;
-            // background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            color: $almost-white-color;
             font-size: 18px;
 
-            strong {
-                font-weight: bold;
-                color: rgb(0 221 178);
+            &.sender {
+                margin-right: 50px;
+                align-self: flex-start;
+                width: 550px;
+                background-color: rgba(255, 255, 255, 0.2);
+                color: $almost-white-color;
+                border-bottom-left-radius: 0;
+
+                strong {
+                    font-weight: bold;
+                    color: rgb(0 221 178);
+                }
+            }
+
+            &.receiver {
+                margin-left: 50px;
+
+                align-self: flex-end;
+                background-color: $contrast-color;
+                color: #fff;
+                border-bottom-right-radius: 0;
+
+                strong {
+                    font-weight: bold;
+                    color: $almost-white-color;
+
+                }
             }
 
             span {
                 color: #555;
             }
         }
-
-        li:nth-child(even) {
-            // background-color: rgba(255, 255, 255, 0.2);
-            color: rgb(255, 255, 255);
-        }
     }
 
-    form {
-        height: 135px;
+    .messagesForm {
+        height: 100px;
         margin-top: 20px;
-        position: absolute;
-        left: 0;
+        width: calc(100% - 40px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         label {
             font-weight: bold;
@@ -77,6 +101,7 @@ $font-size: 16px;
         }
 
         input[type="text"] {
+            flex: 1;
             padding: 10px;
             font-size: $font-size;
             border: 1px solid $contrast-color;
@@ -89,13 +114,8 @@ $font-size: 16px;
             }
         }
 
-        .buttonWrapper {
-            display: flex;
-        }
-
         button {
             background-color: $contrast-color;
-            color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;

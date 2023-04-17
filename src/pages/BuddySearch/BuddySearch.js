@@ -32,6 +32,7 @@ export default function BuddySearchPage() {
 
   const handleStartChat = (otherUser) => {
     const loggedInUser = userManager.getLoggedInUser();
+    
     window.localStorage.removeItem('chatState'); // clear chat messages
     window.location.href = "/messages";
 

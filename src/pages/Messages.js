@@ -33,7 +33,7 @@ const Chat = ({ otherUser }) => {
       // Close the Broadcast Channel when the component unmounts
       broadcastChannel.close();
     };
-  }, []);
+  }, [otherUser]);
 
   useEffect(() => {
     // Scroll to the bottom of the message list whenever the messages are updated
@@ -48,9 +48,9 @@ const Chat = ({ otherUser }) => {
     const messageInput = event.target.elements.message;
     const message = {
       text: messageInput.value,
-      // timestamp: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
       timestamp: new Date().toLocaleTimeString() + ' ' + new Date().toLocaleDateString(),
       user: userManager.getLoggedInUser()?.username,
+      receiver: otherUser // why this doesnt work?
     };
 
     // Update the state with the new message
@@ -80,13 +80,13 @@ const Chat = ({ otherUser }) => {
       {/* <p>Logged in as: {userManager.getLoggedInUser()?.username}</p> */}
       <ul className="messageList" ref={messageListRef}>
         {messages.map((message, index) => (
-          <li key={index}>
+          <li key={index} className={message.user === userManager.getLoggedInUser()?.username ? 'sender' : 'receiver'}>
             <strong>{message.user === userManager.getLoggedInUser()?.username ? "You" : message.user}: </strong>
             {message.text} ({message.timestamp})
           </li>
         ))}
       </ul>
-      <form onSubmit={handleMessageSubmit}>
+      <form className="messagesForm" onSubmit={handleMessageSubmit}>
         <label htmlFor="message">Message:</label>
         <input type="text" id="message" />
         <div className="buttonWrapper">
