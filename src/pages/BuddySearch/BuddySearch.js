@@ -30,10 +30,10 @@ export default function BuddySearchPage() {
   );
 
   const handleStartChat = (otherUser) => {
-    const loggedInUser = userManager.getLoggedInUser();
+    // const loggedInUser = userManager.getLoggedInUser();
     const newChat = { messages: [], toUser: otherUser.username };
     window.localStorage.setItem('chatState', JSON.stringify(newChat));
-    window.location.href = "/messages";
+    navigate ("/messages");
   };
 
 

@@ -1,5 +1,6 @@
 class User {
   constructor(username, password) {
+    this.id = Math.random().toString(36).substr(2, 9); // generate unique id
     this.username = username;
     this.password = password;
     this.image = "";
@@ -59,7 +60,9 @@ class UserManager {
   constructor() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     this.users = users.map((user) => {
-      return new User(user.username, user.password);
+      const newUser = new User(user.username, user.password);
+      newUser.id = user.id; // set existing user's id
+      return newUser;
     });
   }
 
@@ -114,7 +117,7 @@ class UserManager {
 
   setLoggedInUser = (user) => {
     const loggedInUser = this.getLoggedInUser();
-  
+
     if (loggedInUser) {
       loggedInUser.username = user.username;
       loggedInUser.age = user.age;
@@ -123,7 +126,7 @@ class UserManager {
       loggedInUser.image = user.image;
       loggedInUser.activities = user.activities; // Add this line to copy the activities property
       loggedInUser.saveUserData();
-  
+
       // Store all the users and their properties in localStorage
       const users = this.users.map(u => {
         if (u.username === loggedInUser.username) {

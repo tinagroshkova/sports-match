@@ -68,7 +68,7 @@ const Chat = ({ otherUser }) => {
   
     return (
       <div className="chatContainer">
-        <h2>Chatting with {toUser}</h2>
+        {/* <h2>Chatting with {toUser}</h2> */}
           <ul className="messagesList" ref={messageListRef}>
             {messages.map((message, index) => (
               <li key={index} className={message.user === userManager.getLoggedInUser()?.username ? 'sender' : 'receiver'}>
@@ -87,6 +87,32 @@ const Chat = ({ otherUser }) => {
   };
 
 export default Chat;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //тук има напредък в сториджа
