@@ -12,9 +12,10 @@ function ActivityComponent({ activity, onAdd, added, onRemove }) {
       {onRemove && <button onClick={() => onRemove(activity)}>{removeButtonText}</button>}
     </div>
   );
+
 }
 
-function ActivityComponentCircle({ activity, onRemove  }) {
+function ActivityComponentCircle({ activity, onRemove }) {
   const removeButtonText = "X";
   return (
     <div className="activityContainerCircle">

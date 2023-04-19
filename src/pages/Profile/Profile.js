@@ -1,62 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import userManager from '../../services/UserManager';
-import { ActivityComponentCircle } from '../../components/Activity/Activity';
-import "./Profile.scss";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faChild, faMapMarkerAlt, faVenusMars } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from "react-router-dom";
-import userImage from "../../images/user.png"
+import userManager from "../../services/UserManager";
+import { ActivityComponentCircle } from "../../components/Activity/Activity";
+import "./Profile.scss";
+import profileImage from "../../images/user.png";
 
-function ProfilePage() {
-  const [user, setUser] = useState(userManager.getLoggedInUser());
+export default function ProfilePage() {
+  const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(userImage);
-  const navigate = useNavigate();
-
-  const handleRemoveActivity = (activity) => {
-    const newUser = userManager.getLoggedInUser();
-    newUser.removeActivity(activity);
-    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-    setUser(newUser);
-  };
-
-  const handleEdit = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
-  };
-
-  const handleSave = () => {
-    userManager.setLoggedInUser(user);
-    setIsEditing(false);
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProfileImage(reader.result);
-      setUser({ ...user, image: reader.result });
-      sessionStorage.setItem('userImage', reader.result); // save the image to the session storage
-    };
-    reader.readAsDataURL(file);
-  };
+  const [imageFile, setImageFile] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const loggedInUser = userManager.getLoggedInUser();
     if (!loggedInUser) {
       alert("You have to log in first!");
-      navigate('/login');
+      window.location.replace("/login")
       return;
     }
-    const savedImage = sessionStorage.getItem('userImage'); // retrieve the saved image from the session storage
-    setProfileImage(savedImage || userImage); // set the saved image as the profile image, or use the default image if there is no saved image
     setUser(loggedInUser);
   }, []);
 
-  const loggedInUser = userManager.getLoggedInUser();
-  if (!loggedInUser) {
-    navigate('/login');
-    return;
-  }
+  const handleEdit = (event) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageFile(file);
+  };
+
+  const handleSave = () => {
+    if (!user.username) {
+      setError("Username cannot be empty");
+      return;
+    }
+    setIsEditing(false);
+    if (imageFile) {
+      // code to upload image file
+    }
+    userManager.setLoggedInUser(user);
+  };
+
+  const handleRemoveActivity = (activity) => {
+    userManager.removeActivity(activity);
+    setUser(prevUser => {
+      const newActivities = prevUser.activities.filter(a => a.name !== activity.name);
+      return { ...prevUser, activities: newActivities };
+    });
+  };
 
   return (
     <div className="profilePageContainer">
@@ -72,7 +66,7 @@ function ProfilePage() {
             <span className="icon">
               <FontAwesomeIcon icon={faUser} />{' '}
               {isEditing ? (
-                <input type="text" name="username" value={user.username} onChange={handleEdit} />
+                <input type="text" name="username" value={user.username} onChange={handleEdit} placeholder="Edit your username" />
               ) : (
                 user.username
               )}
@@ -81,9 +75,9 @@ function ProfilePage() {
           <span className="icon">
             <FontAwesomeIcon icon={faChild} /> {' '}
             {isEditing ? (
-              <input type="number" name="age" value={user.age} onChange={handleEdit} />
+              <input type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
             ) : (
-              user.age
+              typeof user.age === 'number' ? user.age : ''
             )}
           </span>
           <p>
@@ -91,7 +85,7 @@ function ProfilePage() {
               <FontAwesomeIcon icon={faMapMarkerAlt} /> {' '}
             </span>
             {isEditing ? (
-              <input type="text" name="city" value={user.city} onChange={handleEdit} />
+              <input type="text" name="city" value={user.city} onChange={handleEdit} placeholder="Edit your location" />
             ) : (
               user.city
             )}
@@ -134,5 +128,3 @@ function ProfilePage() {
     </div >
   );
 }
-
-export default ProfilePage;

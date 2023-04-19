@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import userManager from "../../services/UserManager";
@@ -29,29 +30,34 @@ export default function ActivitiesPage() {
         const user = userManager.getLoggedInUser();
         if (!user) {
             alert("You have to log in first!");
-            navigate('/login');
+            navigate("/login");
             return;
         }
         if (user.hasActivity(activity)) {
-            user.removeActivity(activity);
-            user.saveUserData();
-            // userManager.setLoggedInUser(user);
-            setAddedActivities(prevActivities =>
-                prevActivities.filter(a => a.name !== activity.name)
+            userManager.removeActivity(activity);
+            setAddedActivities((prevActivities) =>
+                prevActivities.filter((a) => a.name !== activity.name)
             );
         } else {
-            user.addActivity(activity);
-            console.log(user);
-            user.saveUserData();
-            // userManager.setLoggedInUser(user);
-            setAddedActivities(prevActivities => [...prevActivities, activity]);
+            userManager.addActivity(activity);
+            setAddedActivities((prevActivities) => [
+                ...prevActivities,
+                activity,
+            ]);
         }
     }
+
+    useEffect(() => {
+        const user = userManager.getLoggedInUser();
+        setAddedActivities(user ? user.activities || [] : []);
+    }, [userManager.getLoggedInUser()]);
 
     return (
         <div className="activitiesPageContainer">
             <div className="titleWrapper">
-                <h2 className="siteNameTitle">ADD favorite sports to your profile so that other people can find YOU</h2>
+                <h2 className="siteNameTitle">
+                    ADD favorite sports to your profile so that other people can find YOU
+                </h2>
             </div>
             <div className="searchContainer">
                 <label htmlFor="activitySearch"></label>
@@ -60,7 +66,8 @@ export default function ActivitiesPage() {
                     type="text"
                     value={searchInput}
                     placeholder="Search for sport"
-                    onChange={handleSearchInputChange}/>
+                    onChange={handleSearchInputChange}
+                />
             </div>
             <div className="activitiesContainer">
                 {activities

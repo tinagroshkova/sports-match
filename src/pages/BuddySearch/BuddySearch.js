@@ -3,9 +3,11 @@ import selectValues from "./activities.json";
 import userManager from "../../services/UserManager";
 import "./BuddySearch.scss";
 import { useNavigate } from "react-router-dom";
-
+import userImage from "../../images/user.png";
+import BuddyCard from "../../components/BuddyCard/BuddyCard";
 
 export default function BuddySearchPage() {
+  const [users, setUsers] = useState(userManager.users);
   const [selectedValue, setSelectedValue] = useState("");
   const navigate = useNavigate();
 
@@ -16,14 +18,19 @@ export default function BuddySearchPage() {
       navigate('/login');
       return;
     }
+    setUsers(userManager.users);
   }, []);
+
+  useEffect(() => {
+    setUsers(userManager.users);
+  }, [userManager.getLoggedInUser()?.activities]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
   // Filter the users array to find users with matching activities
-  const filteredUsers = userManager.users.filter(
+  const filteredUsers = users.filter(
     (user) =>
       user.username !== userManager.getLoggedInUser()?.username &&
       user.activities.some((activity) => activity.name === selectedValue)
@@ -52,12 +59,7 @@ export default function BuddySearchPage() {
       </div>
       {filteredUsers.map((user) => (
         <div className="buddyCardContainer" key={user.username}>
-          <div className='buddyCard' >
-            <img src={user.image} alt={user.username} />
-            <h3>{user.username}</h3>
-            <p>Favourite activities: {user.activities.map((activity) => activity.name).join(', ')}</p>
-            <button onClick={() => handleStartChat(user)}>Start Chat</button>
-          </div>
+          <BuddyCard user={user} defaultImage={userImage} onChatClick={() => handleStartChat(user)} />
         </div>
       ))}
     </div>
