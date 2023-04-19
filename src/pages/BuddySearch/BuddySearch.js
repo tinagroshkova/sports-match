@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import selectValues from "./activities.json";
+// import selectValues from "./activities.json";
 import userManager from "../../services/UserManager";
 import "./BuddySearch.scss";
 import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
 import BuddyCard from "../../components/BuddyCard/BuddyCard";
+import activitiesData from "../Activities/activitiesData";
 
 export default function BuddySearchPage() {
   const [users, setUsers] = useState(userManager.users);
@@ -54,9 +55,9 @@ export default function BuddySearchPage() {
       <div className="buddySearchWrapper">
         <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
           <option value="">Select an activity</option>
-          {selectValues.sort((a, b) => a.type.localeCompare(b.type)).map((activity) => (
-            <option key={activity.type} value={activity.type}>
-              {activity.type}
+          {activitiesData.sort((a, b) => a.name.localeCompare(b.name)).map((activity) => (
+            <option key={activity.name} value={activity.name}>
+              {activity.name}
             </option>
           ))}
         </select>

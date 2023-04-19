@@ -53,6 +53,7 @@
         background-color: $contrast-color;
         left: 0;
         bottom: 0;
+        cursor: pointer;
 
         &:hover {
             background-color: $medium-main-color;
