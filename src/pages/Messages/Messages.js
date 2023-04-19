@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import userManager from "../../services/UserManager";
-import { Message, MessagesManager, MessageComponent } from "../../services/MessagesManager";
+import { Message, messagesManager, MessageComponent } from "../../services/MessagesManager";
 import { useNavigate } from "react-router-dom";
 import "./Messages.scss";
 import { useLocation } from "react-router-dom";
@@ -12,8 +11,7 @@ const Messages = (props) => {
   const [receiverName, setReceiverName] = useState("");
   const navigate = useNavigate();
   const messageListRef = useRef(null);
-  const messagesManager = new MessagesManager();
-
+  
   const handleSendMessage = (event) => {
     event.preventDefault();
     const loggedInUser = userManager.getLoggedInUser();
@@ -24,13 +22,7 @@ const Messages = (props) => {
     }
     const messageText = event.target.message.value;
     const receiver = location.state?.receiver || "";
-    const message = {
-      text: messageText,
-      timestamp: new Date(),
-      sender: loggedInUser.username,
-      receiver: receiver,
-    };
-
+    const message = new Message(messageText, new Date(), loggedInUser.username, receiver);
     messagesManager.addMessage(message);
     event.target.reset();
   };
@@ -41,9 +33,7 @@ const Messages = (props) => {
   };
 
   const handleMessageUpdate = () => {
-    setTimeout(() => {
-      setMessages(messagesManager.getMessagesByReceiver(location.state?.receiver || ""));
-    }, 2000);
+    setMessages(messagesManager.getMessagesByReceiver(location.state?.receiver || ""));
   };
 
   useEffect(() => {
@@ -53,15 +43,20 @@ const Messages = (props) => {
       navigate('/login');
       return;
     }
-
+  
     // Load messages from local storage
     messagesManager.loadMessagesFromStorage();
+    
+    // Set the onUpdate callback to update the messages state when new messages arrive
     messagesManager.setOnUpdate(handleMessageUpdate);
-    messagesManager.checkStorage();
-
+    
+    // Start checking local storage for new messages
+    messagesManager.startCheckingStorage();
+  
     // Clean up the event listener when the component unmounts
     return () => {
       messagesManager.removeOnUpdate(handleMessageUpdate);
+      messagesManager.stopCheckingStorage();
     };
   }, []);
 
@@ -82,10 +77,7 @@ const Messages = (props) => {
       <div className="messagesWrapper">
         <ul className="messagesList" ref={messageListRef}>
           {messages.map((message, index) => (
-            <li key={index} className={message.sender === userManager.getLoggedInUser()?.username ? 'sender' : 'receiver'}>
-              <strong>{message.sender === userManager.getLoggedInUser()?.username ? "You" : message.sender}: </strong>
-              {message.text} ({message.timestamp.toString()})
-            </li>
+            <MessageComponent key={index} message={message} />
           ))}
         </ul>
 

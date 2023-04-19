@@ -1,4 +1,3 @@
-
 class Message {
   constructor(text, timestamp, sender, receiver) {
     this.text = text;
@@ -13,11 +12,18 @@ const CHAT_STORAGE_KEY = 'chatState';
 class MessagesManager {
   constructor() {
     this.messages = [];
-    this.loadMessagesFromStorage();
     this.onUpdateCallbacks = [];
     this.timeoutId = null;
+    this.checkStorage();
   }
-
+  loadMessagesFromStorage() {
+    const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
+    if (Array.isArray(storedMessages)) {
+      this.messages = storedMessages.map(message => new Message(message.text, new Date(message.timestamp), message.sender, message.receiver));
+    } else {
+      this.messages = [];
+    }
+  }
   addMessage(message) {
     this.messages.push(message);
     this.saveMessagesToStorage();
@@ -25,21 +31,7 @@ class MessagesManager {
   }
 
   getMessagesByReceiver(receiverName) {
-    return this.messages.filter((message) => message.receiver === receiverName);
-  }
-
-  loadMessagesFromStorage() {
-    const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
-    if (Array.isArray(storedMessages)) {
-      this.messages = storedMessages.map(message => ({
-        text: message.text,
-        timestamp: new Date(message.timestamp),
-        sender: message.sender,
-        receiver: message.receiver,
-      }));
-    } else {
-      this.messages = [];
-    }
+    return this.messages.filter(message => message.receiver === receiverName);
   }
 
   saveMessagesToStorage() {
@@ -49,21 +41,18 @@ class MessagesManager {
   checkStorage() {
     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY));
     if (storedMessages && Array.isArray(storedMessages)) {
-      // Update messages if there are new ones in storage
-      const newMessages = storedMessages.filter((message) => !this.messages.some(m => m.timestamp === message.timestamp));
+      const newMessages = storedMessages.filter(message => !this.messages.some(m => new Date(m.timestamp).toString() === new Date(message.timestamp).toString()));
       if (newMessages.length > 0) {
         this.messages.push(...newMessages.map(m => new Message(m.text, new Date(m.timestamp), m.sender, m.receiver)));
         this.onUpdateCallbacks.forEach(callback => callback());
       }
     }
-    // Schedule the next check in 2 seconds
-    this.timeoutId = setTimeout(() => this.checkStorage(), 2000);
+    this.timeoutId = setTimeout(() => this.checkStorage(), 5000);
   }
 
   setOnUpdate(onUpdate) {
     this.onUpdateCallbacks.push(onUpdate);
   }
-
   removeOnUpdate(callback) {
     const index = this.onUpdateCallbacks.indexOf(callback);
     if (index !== -1) {
@@ -72,7 +61,6 @@ class MessagesManager {
   }
 
   startCheckingStorage() {
-    // Schedule the first check immediately
     this.timeoutId = setTimeout(() => this.checkStorage(), 0);
   }
 
@@ -89,7 +77,12 @@ const MessageComponent = ({ message }) => {
     </li>
   );
 };
-export { Message, MessagesManager, MessageComponent };
+
+const messagesManager = new MessagesManager();
+export { Message, messagesManager, MessageComponent };
+
+
+
 
 // class Message {
 //   constructor(text, timestamp, sender, receiver) {
@@ -105,34 +98,26 @@ export { Message, MessagesManager, MessageComponent };
 // class MessagesManager {
 //   constructor() {
 //     this.messages = [];
-//     this.broadcastChannel = new BroadcastChannel("chatMessages");
-//     this.loadMessagesFromStorage();
 //     this.onUpdateCallbacks = [];
+//     this.timeoutId = null;
+//     this.checkStorage();
 //   }
-
+//   loadMessagesFromStorage() {
+//     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
+//     if (Array.isArray(storedMessages)) {
+//       this.messages = storedMessages.map(message => new Message(message.text, new Date(message.timestamp), message.sender, message.receiver));
+//     } else {
+//       this.messages = [];
+//     }
+//   }
 //   addMessage(message) {
 //     this.messages.push(message);
 //     this.saveMessagesToStorage();
-//     this.broadcastChannel.postMessage(message);
 //     this.onUpdateCallbacks.forEach(callback => callback());
 //   }
 
 //   getMessagesByReceiver(receiverName) {
-//     return this.messages.filter((message) => message.receiver === receiverName);
-//   }
-
-//   loadMessagesFromStorage() {
-//     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
-//     if (Array.isArray(storedMessages)) {
-//       this.messages = storedMessages.map(message => ({
-//         text: message.text,
-//         timestamp: new Date(message.timestamp),
-//         sender: message.sender,
-//         receiver: message.receiver,
-//       }));
-//     } else {
-//       this.messages = [];
-//     }
+//     return this.messages.filter(message => message.receiver === receiverName);
 //   }
 
 //   saveMessagesToStorage() {
@@ -142,47 +127,48 @@ export { Message, MessagesManager, MessageComponent };
 //   checkStorage() {
 //     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY));
 //     if (storedMessages && Array.isArray(storedMessages)) {
-//       // Update messages if there are new ones in storage
-//       const newMessages = storedMessages.filter((message) => !this.messages.some(m => m.timestamp === message.timestamp));
+//       const newMessages = storedMessages.filter(message => !this.messages.some(m => new Date(m.timestamp).toString() === new Date(message.timestamp).toString()));
 //       if (newMessages.length > 0) {
 //         this.messages.push(...newMessages.map(m => new Message(m.text, new Date(m.timestamp), m.sender, m.receiver)));
-//         this.broadcastChannel.postMessage(newMessages);
 //         this.onUpdateCallbacks.forEach(callback => callback());
 //       }
 //     }
+//     this.timeoutId = setTimeout(() => this.checkStorage(), 5000);
 //   }
 
 //   setOnUpdate(onUpdate) {
-//     this.onUpdate = onUpdate;
+//     this.onUpdateCallbacks.push(onUpdate);
 //   }
-
 //   removeOnUpdate(callback) {
 //     const index = this.onUpdateCallbacks.indexOf(callback);
 //     if (index !== -1) {
 //       this.onUpdateCallbacks.splice(index, 1);
 //     }
 //   }
-//   startListening(onNewMessage) {
-//     this.broadcastChannel.addEventListener('message', onNewMessage);
+
+//   startCheckingStorage() {
+//     this.timeoutId = setTimeout(() => this.checkStorage(), 0);
 //   }
 
-//   stopListening(onNewMessage) {
-//     this.broadcastChannel.removeEventListener('message', onNewMessage);
+//   stopCheckingStorage() {
+//     clearTimeout(this.timeoutId);
 //   }
 // }
 
-// // const MessageComponent = ({ message }) => {
-// //   return (
-// //     <li>
-// //       <strong>{message.sender}: </strong>
-// //       {message.text} ({message.timestamp.toString()})
-// //     </li>
-// //   );
-// // };
+// const MessageComponent = ({ message }) => {
+//   return (
+//     <li>
+//       <strong>{message.sender}: </strong>
+//       {message.text} ({message.timestamp.toString()})
+//     </li>
+//   );
+// };
+
+// const messagesManager = new MessagesManager(); 
+
+// export { Message, messagesManager, MessageComponent };
 
 
-
-// export { Message, MessagesManager };
 
 
 
