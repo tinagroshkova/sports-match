@@ -7,7 +7,7 @@ import HomePage from "../../pages/Home/Home";
 import ProfilePage from "../../pages/Profile/Profile";
 import ActivitiesPage from "../../pages/Activities/Activities";
 import BuddySearchPage from "../../pages/BuddySearch/BuddySearch";
-import MessagesPage from "../../pages/Messages";
+import MessagesPage from "../../pages/Messages/Messages";
 import PlacesPage from "../../pages/Places/Places";
 import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";

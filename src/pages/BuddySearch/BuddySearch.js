@@ -63,7 +63,7 @@ export default function BuddySearchPage() {
       </div>
       {filteredUsers.map((user) => (
         <div className="buddyCardContainer" key={user.username}>
-          <BuddyCard user={user} defaultImage={userImage} onChatClick={() => handleStartChat(user)} />
+          <BuddyCard user={user} defaultImage={userImage} onStartChat={() => handleStartChat(user)} />
         </div>
       ))}
     </div>
