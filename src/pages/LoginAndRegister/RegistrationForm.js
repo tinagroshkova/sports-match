@@ -24,6 +24,7 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
 
     const errors = {};
@@ -55,14 +56,10 @@ const RegistrationForm = () => {
     if (Object.keys(errors).length === 0) {
       try {
         await userManager.registerUser(username, password);
-        await userManager.loginUser(username, password);
-        setUsername("");
-        setPassword("");
-        setConfirmPassword("");
-        setErrors({});
-        navigate("/home");
+        alert("Registration successful! Please login.");
+        navigate("/login"); 
       } catch (error) {
-    
+        console.error(error);
       }
     } else {
       setErrors(errors);
