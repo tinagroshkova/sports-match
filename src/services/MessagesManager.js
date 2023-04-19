@@ -13,15 +13,14 @@ const CHAT_STORAGE_KEY = 'chatState';
 class MessagesManager {
   constructor() {
     this.messages = [];
-    this.broadcastChannel = new BroadcastChannel("chatMessages");
     this.loadMessagesFromStorage();
     this.onUpdateCallbacks = [];
+    this.timeoutId = null;
   }
 
   addMessage(message) {
     this.messages.push(message);
     this.saveMessagesToStorage();
-    this.broadcastChannel.postMessage(message);
     this.onUpdateCallbacks.forEach(callback => callback());
   }
 
@@ -54,14 +53,15 @@ class MessagesManager {
       const newMessages = storedMessages.filter((message) => !this.messages.some(m => m.timestamp === message.timestamp));
       if (newMessages.length > 0) {
         this.messages.push(...newMessages.map(m => new Message(m.text, new Date(m.timestamp), m.sender, m.receiver)));
-        this.broadcastChannel.postMessage(newMessages);
         this.onUpdateCallbacks.forEach(callback => callback());
       }
     }
+    // Schedule the next check in 2 seconds
+    this.timeoutId = setTimeout(() => this.checkStorage(), 2000);
   }
 
   setOnUpdate(onUpdate) {
-    this.onUpdate = onUpdate;
+    this.onUpdateCallbacks.push(onUpdate);
   }
 
   removeOnUpdate(callback) {
@@ -70,27 +70,26 @@ class MessagesManager {
       this.onUpdateCallbacks.splice(index, 1);
     }
   }
-  startListening(onNewMessage) {
-    this.broadcastChannel.addEventListener('message', onNewMessage);
+
+  startCheckingStorage() {
+    // Schedule the first check immediately
+    this.timeoutId = setTimeout(() => this.checkStorage(), 0);
   }
 
-  stopListening(onNewMessage) {
-    this.broadcastChannel.removeEventListener('message', onNewMessage);
+  stopCheckingStorage() {
+    clearTimeout(this.timeoutId);
   }
 }
 
-// const MessageComponent = ({ message }) => {
-//   return (
-//     <li>
-//       <strong>{message.sender}: </strong>
-//       {message.text} ({message.timestamp.toString()})
-//     </li>
-//   );
-// };
-
-
-
-export { Message, MessagesManager };
+const MessageComponent = ({ message }) => {
+  return (
+    <li>
+      <strong>{message.sender}: </strong>
+      {message.text} ({message.timestamp.toString()})
+    </li>
+  );
+};
+export { Message, MessagesManager, MessageComponent };
 
 // class Message {
 //   constructor(text, timestamp, sender, receiver) {
