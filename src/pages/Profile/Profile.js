@@ -148,55 +148,73 @@ import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
 
 export default function ProfilePage() {
-  const [user, setUser] = useState(userManager.getLoggedInUser());
-  const [isEditing, setIsEditing] = useState(false);
-  const [profileImage, setProfileImage] = useState(userImage);
-  const navigate = useNavigate();
-
-  const handleRemoveActivity = (activity) => {
-    userManager.removeActivity(activity);
-    setUser(prevUser => {
-      const newActivities = prevUser.activities.filter(a => a.name !== activity.name);
-      return { ...prevUser, activities: newActivities };
-    });
-  };
-
-  const handleEdit = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
-  };
-
-  const handleSave = () => {
-    userManager.setLoggedInUser(user);
-    setIsEditing(false);
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProfileImage(reader.result);
-      setUser({ ...user, image: reader.result });
+    const [user, setUser] = useState(userManager.getLoggedInUser());
+    const [isEditing, setIsEditing] = useState(false);
+    const [profileImage, setProfileImage] = useState(userImage);
+    const navigate = useNavigate();
+  
+    const handleRemoveActivity = (activity) => {
+      const newUser = userManager.getLoggedInUser();
+      newUser.removeActivity(activity);
+      sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+      setUser(newUser);
     };
-    reader.readAsDataURL(file);
-  };
-
-  useEffect(() => {
+  
+    const handleEdit = (event) => {
+      setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
+      if (event.target.name === 'gender') {
+        setUser({ ...user, gender: event.target.value });
+      }
+    };
+  
+    const handleSave = () => {
+      userManager.setLoggedInUser(user);
+      setIsEditing(false);
+    };
+  
+    const handleImageChange = (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+        const loggedInUser = userManager.getLoggedInUser();
+        if (loggedInUser) {
+          loggedInUser.image = reader.result;
+          userManager.saveUserData(); // save the updated user data to localStorage
+        }
+        setUser({ ...loggedInUser });
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        setProfileImage(userImage);
+        const loggedInUser = userManager.getLoggedInUser();
+        if (loggedInUser) {
+          loggedInUser.image = "";
+          userManager.saveUserData(); // save the updated user data to localStorage
+        }
+        setUser({ ...loggedInUser });
+      }
+    };
+  
+    useEffect(() => {
+      const loggedInUser = userManager.getLoggedInUser();
+      if (!loggedInUser) {
+        alert("You have to log in first!");
+        navigate('/login');
+        return;
+      }
+      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
+      setProfileImage(userImage); // set the profile image to the retrieved image data
+      setUser({ ...loggedInUser });
+    }, []);
+  
     const loggedInUser = userManager.getLoggedInUser();
     if (!loggedInUser) {
-      alert("You have to log in first!");
       navigate('/login');
       return;
     }
-    const savedImage = sessionStorage.getItem('userImage'); // retrieve the saved image from the session storage
-    setProfileImage(savedImage || userImage); // set the saved image as the profile image, or use the default image if there is no saved image
-    setUser(loggedInUser);
-  }, []);
 
-  const loggedInUser = userManager.getLoggedInUser();
-  if (!loggedInUser) {
-    navigate('/login');
-    return;
-  }
   return (
     <div className="profilePageContainer">
       <div className="profileInfo">
