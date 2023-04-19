@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import "../components/../LoginAndRegister/LoginAndRegister.scss";
 import userManager from "../../services/UserManager";
 import { Link, useNavigate } from "react-router-dom";
+import CustomAlert from "../../components/CustomAlert/CustomAlert";
 
 const RegistrationForm = () => {
 
@@ -11,6 +12,7 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [alert, setAlert] = useState({ show: false, variant: "", message: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +23,45 @@ const RegistrationForm = () => {
     } else if (name === "confirmPassword") {
       setConfirmPassword(value);
     }
+    validateField(name, value);
+  };
+
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+
+    if (name === "username") {
+      if (!value) {
+        newErrors.username = "Username is required";
+      } else if (value.length < 3) {
+        newErrors.username = "Username must be at least 3 characters long";
+      } else if (/^\d/.test(value)) {
+        newErrors.username = "Username cannot start with a number";
+      } else if (/^[^a-zA-Z0-9]/.test(value)) {
+        newErrors.username = "Username cannot start with a special character";
+      } else {
+        delete newErrors.username;
+      }
+    } else if (name === "password") {
+      if (!value) {
+        newErrors.password = "Password is required";
+      } else if (value.length < 6) {
+        newErrors.password = "Password must be at least 6 characters long";
+      } else if (!/\d/.test(value)) {
+        newErrors.password = "Password must contain at least one number";
+      } else if (!/[A-Z]/.test(value)) {
+        newErrors.password = "Password must contain at least one uppercase letter";
+      } else {
+        delete newErrors.password;
+      }
+    } else if (name === "confirmPassword") {
+      if (value !== password) {
+        newErrors.confirmPassword = "Passwords do not match";
+      } else {
+        delete newErrors.confirmPassword;
+      }
+    }
+
+    setErrors(newErrors);
   };
 
   const handleSubmit = async (e) => {
@@ -55,12 +96,15 @@ const RegistrationForm = () => {
     if (Object.keys(errors).length === 0) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       if (users.some((user) => user.username === username)) {
-        alert("Username already taken.");
+        setAlert({ show: true, variant: "danger", message: "Username already taken." });
       } else {
         try {
           await userManager.registerUser(username, password);
-          alert("Registration successful! Please login.");
-          navigate("/login");
+          setAlert({ show: true, variant: "success", message: "Registration successful! Redirecting to login." });
+          setTimeout(() => {
+            navigate("/login");
+          }, 1300);
+          // navigate("/login");
         } catch (error) {
           console.error(error);
         }
@@ -74,7 +118,7 @@ const RegistrationForm = () => {
       <section>
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
-
+          {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
           <Form.Group controlId="username">
             <div className="inputBox">
               <span className="icon"><ion-icon name="person"></ion-icon></span>

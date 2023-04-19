@@ -15,8 +15,23 @@
 .searchWrapper {
     display: flex;
     justify-content: center;
-}
+    margin: 20px;
 
-.selectSearch {
-    @include select();
+
+    .selectSearch {
+        @include select();
+        height: 50px;
+        margin-left: 30px;
+    }
+
+    .inputSearch {
+        @include select();
+        cursor: auto;
+        margin-right: 30px;
+
+        &::placeholder {
+            color: $almost-white-color;
+        }
+
+    }
 }
