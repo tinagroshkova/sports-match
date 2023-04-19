@@ -54,9 +54,9 @@ function NavBar() {
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/places" element={<PlacesPage />} />
         {/* <Route path="/requests" element={<RequestsPage />} /> */}
-        <Route path="*" element={<><h2 style={{ color: "red" }}>Спечели си error трофей! Винаги може да се върнеш за още.</h2>
+        <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Спечели си error трофей! Винаги може да се върнеш за още.</h2>
           <div className="errorImage">
-            <img width={200} src="https://media.istockphoto.com/id/1168757141/vector/gold-trophy-with-the-name-plate-of-the-winner-of-the-competition.jpg?s=612x612&w=0&k=20&c=ljsP4p0yuJnh4f5jE2VwXfjs96CC0x4zj8CHUoMo39E=" alt="errorImage"></img></div></>} />
+            <img src="https://shorturl.at/zBG01" alt="errorImage"></img></div></>} />
       </Routes>
 
       <footer>
