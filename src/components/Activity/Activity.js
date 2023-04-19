@@ -8,11 +8,10 @@ function ActivityComponent({ activity, onAdd, added, onRemove }) {
     <div className="activityContainerSquare">
       <h2>{activity.name}</h2>
       <img src={activity.image} alt={activity.name} />
-      {onAdd && <button onClick={() => onAdd(activity)}>{addButtonText}</button>}
-      {onRemove && <button onClick={() => onRemove(activity)}>{removeButtonText}</button>}
+      {onAdd && <button className={added ? "addedButton" : "addButton"} onClick={() => onAdd(activity)}>{addButtonText}</button>}
+      {onRemove && <button className="removeButton" onClick={() => onRemove(activity)}>{removeButtonText}</button>}
     </div>
   );
-
 }
 
 function ActivityComponentCircle({ activity, onRemove }) {

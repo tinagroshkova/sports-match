@@ -50,27 +50,23 @@
         font-size: 22px;
         font-weight: 800;
         position: absolute;
-        background-color: $contrast-transperant;
+        background-color: $contrast-color;
         left: 0;
         bottom: 0;
+
         &:hover {
             background-color: $medium-main-color;
-    
+
         }
     }
-    
-    // .addedButton {
-    //     position: absolute;
-    //     background-color: $medium-main-color;
-    //     bottom: 0;
-    //     left: 0;
-    // }
 
-    // .addButton {
-    //     position: absolute;
-    //     left: 0;
-    //     bottom: 0;
-    // }
+    .addedButton {
+        background-color: $medium-main-color;
+        &:hover {
+            background-color: $contrast-color;
+        }
+    }
+
 
 
     @media screen and (max-width: 1366px) {

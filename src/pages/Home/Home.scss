@@ -1,8 +1,9 @@
 @import "../../variables";
 
-.logoutButton {
-    visibility: hidden;
+.logoutContainer .logoutButton {
+    display: none;
 }
+
 .homeContainer {
     position: relative;
     height: calc(100vh - 350px);
