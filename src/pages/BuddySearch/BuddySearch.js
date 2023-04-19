@@ -37,13 +37,6 @@ export default function BuddySearchPage() {
       user.activities.some((activity) => activity.name === selectedValue)
   );
 
-  // const handleStartChat = (otherUser) => {
-  //   // const loggedInUser = userManager.getLoggedInUser();
-  //   const newChat = { messages: [], toUser: otherUser.username };
-  //   window.localStorage.setItem('chatState', JSON.stringify(newChat));
-  //   navigate ("/messages");
-  // };
-
   const handleStartChat = (otherUser) => {
     navigate('/messages', { state: { receiver: otherUser.username } });
   };
