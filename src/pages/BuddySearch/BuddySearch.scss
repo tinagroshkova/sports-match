@@ -5,6 +5,7 @@
     display: flex;
     width: 80%;
     margin: auto;
+    height: calc(100vh - 300px);
 
     flex-direction: column;
     .buddyCardContainer{

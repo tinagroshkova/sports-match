@@ -1,8 +1,11 @@
 @import "../../variables";
 
+.logoutButton {
+    visibility: hidden;
+}
 .homeContainer {
     position: relative;
-
+    height: calc(100vh - 350px);
     .siteNameTitle {
         display: flex;
         justify-content: center;
@@ -73,17 +76,9 @@
             }
         }
 
-        .logo {
-            display: flex;
-            justify-content: center;
-        }
-
     }
 
     .logoutBtn {
         display: none;
-
     }
-
-
 }

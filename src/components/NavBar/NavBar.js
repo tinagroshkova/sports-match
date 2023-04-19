@@ -1,5 +1,4 @@
 import React from "react";
-// import "../NavBar/NavBar.scss";
 import "../NavBar/NavBar.scss";
 import "../../index.scss";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";

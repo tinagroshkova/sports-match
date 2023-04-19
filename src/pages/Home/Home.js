@@ -42,7 +42,6 @@ export default function HomePage() {
         <div className="homeContainer">
             <h2 className="siteNameTitle">SPORTS MATCH</h2>
             <div className="logo">
-                {/* <img src={tempLogo}></img> */}
             </div>
             <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it TOGETHER</h2>
 
