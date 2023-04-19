@@ -148,72 +148,72 @@ import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
 
 export default function ProfilePage() {
-    const [user, setUser] = useState(userManager.getLoggedInUser());
-    const [isEditing, setIsEditing] = useState(false);
-    const [profileImage, setProfileImage] = useState(userImage);
-    const navigate = useNavigate();
-  
-    const handleRemoveActivity = (activity) => {
-      const newUser = userManager.getLoggedInUser();
-      newUser.removeActivity(activity);
-      sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-      setUser(newUser);
-    };
-  
-    const handleEdit = (event) => {
-      setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
-      if (event.target.name === 'gender') {
-        setUser({ ...user, gender: event.target.value });
-      }
-    };
-  
-    const handleSave = () => {
-      userManager.setLoggedInUser(user);
-      setIsEditing(false);
-    };
-  
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-        const loggedInUser = userManager.getLoggedInUser();
-        if (loggedInUser) {
-          loggedInUser.image = reader.result;
-          userManager.saveUserData(); // save the updated user data to localStorage
-        }
-        setUser({ ...loggedInUser });
-      };
-      if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        setProfileImage(userImage);
-        const loggedInUser = userManager.getLoggedInUser();
-        if (loggedInUser) {
-          loggedInUser.image = "";
-          userManager.saveUserData(); // save the updated user data to localStorage
-        }
-        setUser({ ...loggedInUser });
-      }
-    };
-  
-    useEffect(() => {
+  const [user, setUser] = useState(userManager.getLoggedInUser());
+  const [isEditing, setIsEditing] = useState(false);
+  const [profileImage, setProfileImage] = useState(userImage);
+  const navigate = useNavigate();
+
+  const handleRemoveActivity = (activity) => {
+    const newUser = userManager.getLoggedInUser();
+    newUser.removeActivity(activity);
+    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+    setUser(newUser);
+  };
+
+  const handleEdit = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
+    if (event.target.name === 'gender') {
+      setUser({ ...user, gender: event.target.value });
+    }
+  };
+
+  const handleSave = () => {
+    userManager.setLoggedInUser(user);
+    setIsEditing(false);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfileImage(reader.result);
       const loggedInUser = userManager.getLoggedInUser();
-      if (!loggedInUser) {
-        alert("You have to log in first!");
-        navigate('/login');
-        return;
+      if (loggedInUser) {
+        loggedInUser.image = reader.result;
+        userManager.saveUserData(); // save the updated user data to localStorage
       }
-      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
-      setProfileImage(userImage); // set the profile image to the retrieved image data
       setUser({ ...loggedInUser });
-    }, []);
-  
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setProfileImage(userImage);
+      const loggedInUser = userManager.getLoggedInUser();
+      if (loggedInUser) {
+        loggedInUser.image = "";
+        userManager.saveUserData(); // save the updated user data to localStorage
+      }
+      setUser({ ...loggedInUser });
+    }
+  };
+
+  useEffect(() => {
     const loggedInUser = userManager.getLoggedInUser();
     if (!loggedInUser) {
+      alert("You have to log in first!");
       navigate('/login');
       return;
     }
+    const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
+    setProfileImage(userImage); // set the profile image to the retrieved image data
+    setUser({ ...loggedInUser });
+  }, []);
+
+  const loggedInUser = userManager.getLoggedInUser();
+  if (!loggedInUser) {
+    navigate('/login');
+    return;
+  }
 
   return (
     <div className="profilePageContainer">
@@ -227,7 +227,7 @@ export default function ProfilePage() {
         <div className="userInfo">
           <h2>
             <span className="icon">
-              <FontAwesomeIcon icon={faUser} />{' '}
+              <ion-icon name="accessibility-outline"></ion-icon>{' '}
               {isEditing ? (
                 <input type="text" name="username" value={user.username} onChange={handleEdit} placeholder="Edit your username" />
               ) : (
@@ -236,16 +236,16 @@ export default function ProfilePage() {
             </span>
           </h2>
           <span className="icon">
-            <FontAwesomeIcon icon={faChild} /> {' '}
+            <ion-icon name="calendar-outline"></ion-icon>{' '}
             {isEditing ? (
-              <input type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
+              <input style={{ position: "relative", left: "5px" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
             ) : (
               typeof user.age === 'number' ? user.age : ''
             )}
           </span>
           <p>
             <span className="icon">
-              <FontAwesomeIcon icon={faMapMarkerAlt} /> {' '}
+              <ion-icon name="location-outline"></ion-icon> {' '}
             </span>
             {isEditing ? (
               <input type="text" name="city" value={user.city} onChange={handleEdit} placeholder="Edit your location" />
@@ -255,7 +255,7 @@ export default function ProfilePage() {
           </p>
           <p>
             <span className="icon">
-              <FontAwesomeIcon icon={faVenusMars} /> {' '}
+              <ion-icon name="transgender-outline"></ion-icon>{' '}
             </span>
             {isEditing ? (
               <select name="gender" value={user.gender} onChange={handleEdit}>

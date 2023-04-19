@@ -24,7 +24,6 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
 
     const errors = {};
@@ -54,17 +53,22 @@ const RegistrationForm = () => {
     }
 
     if (Object.keys(errors).length === 0) {
-      try {
-        await userManager.registerUser(username, password);
-        alert("Registration successful! Please login.");
-        navigate("/login"); 
-      } catch (error) {
-        console.error(error);
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      if (users.some((user) => user.username === username)) {
+        alert("Username already taken.");
+      } else {
+        try {
+          await userManager.registerUser(username, password);
+          alert("Registration successful! Please login.");
+          navigate("/login");
+        } catch (error) {
+          console.error(error);
+        }
       }
     } else {
       setErrors(errors);
     }
-  }
+  };
   return (
     <div className="loginPageHolder">
       <section>
