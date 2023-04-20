@@ -16,7 +16,7 @@ function LoginForm() {
 
   const handleChange = (e) => {
     if (e.target.name === "username") {
-      setUsername(e.target.value);
+      setUsername(e.target.value.trim());
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
     }

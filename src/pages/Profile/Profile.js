@@ -11,21 +11,55 @@ export default function ProfilePage() {
   const [profileImage, setProfileImage] = useState(userImage);
   const navigate = useNavigate();
 
+  // const handleRemoveActivity = (activity) => {
+  //   const newUser = userManager.getLoggedInUser();
+  //   userManager.removeActivity(activity);
+  //   sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+  //   setUser(newUser); // update the user state immediately
+  // };
+
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
     userManager.removeActivity(activity);
     sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-    setUser(newUser);
+    const updatedUser = { ...newUser };
+    updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+    setUser(updatedUser);
+    return updatedUser;
+
   };
 
+  // const handleEdit = (event) => {
+  //   setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
+  //   if (event.target.name === 'gender') {
+  //     setUser({ ...user, gender: event.target.value });
+  //   }
+  // };
+
+  // const handleSave = () => {
+  //   userManager.setLoggedInUser(user);
+  //   setIsEditing(false);
+  // };
+
   const handleEdit = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
-    if (event.target.name === 'gender') {
+    setUser({
+      ...user,
+      [event.target.name]:
+        event.target.type === "number"
+          ? parseInt(event.target.value)
+          : event.target.value.trim(),
+    });
+    if (event.target.name === "gender") {
       setUser({ ...user, gender: event.target.value });
     }
   };
 
   const handleSave = () => {
+    if (user.username.trim() === "" || user.username.trim().length < 3) {
+      // If the username is empty or has less than three characters, prevent the user from saving
+      alert("Username should have at least three characters");
+      return;
+    }
     userManager.setLoggedInUser(user);
     setIsEditing(false);
   };
