@@ -41,12 +41,6 @@
         height: 50px;
         border: none;
         border-radius: 0;
-        font-size: 20px;
-        color: white;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        box-shadow: 0px -8px 6px -6px black;
-        text-shadow: 1px 1px 1px black;
         font-size: 22px;
         font-weight: 800;
         position: absolute;
@@ -54,15 +48,74 @@
         left: 0;
         bottom: 0;
         cursor: pointer;
+        box-shadow: 0px -8px 6px -6px black;
+        text-shadow: 1px 1px 1px black;
+        color: rgba(255, 255, 255, 0.2);
+        transition: 0.5s;
+        z-index: 1;
 
         &:hover {
             background-color: $medium-main-color;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // background: linear-gradient(45deg, #fb0094, #00f, #0f0, #ff0, #f00 #fb0094, #00f, #0f0, #ff0, #f00);
+            background: linear-gradient(45deg, #fb0094, #00f, #0f0, #ff0, #f00);
+            background-size: 400%;
+            opacity: 0;
+            transform: 0.5s;
+            animation: animate 20s linear infinite;
 
         }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #fb0094, #00f, #0f0, #ff0, #f00, #fb0094, #00f, #0f0, #ff0, #f00);
+            background-size: 400%;
+            opacity: 0;
+            filter: blur(20px);
+            transform: 0.5s;
+            animation: animate 20s linear infinite;
+
+        }
+
+        &:hover::before,
+        :hover::after {
+            opacity: 1;
+        }
+
+        @keyframes animate {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 330% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
     }
 
     .addedButton {
         background-color: $medium-main-color;
+
         &:hover {
             background-color: $contrast-color;
         }
@@ -90,7 +143,6 @@
     align-items: center;
     position: relative;
 
-
     img {
         width: 120px;
         height: auto;
@@ -111,3 +163,24 @@
         }
     }
 }
+
+
+
+// button {
+//     width: 100%;
+//     height: 50px;
+//     border: none;
+//     border-radius: 0;
+//     font-size: 22px;
+//     font-weight: 800;
+//     position: absolute;
+//     background-color: $contrast-color;
+//     left: 0;
+//     bottom: 0;
+//     cursor: pointer;
+
+//     &:hover {
+//         background-color: $medium-main-color;
+//         color: rgba(255, 255, 255, 1);
+//     }
+// }
