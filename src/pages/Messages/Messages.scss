@@ -13,6 +13,7 @@ $font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-top: 200px;
 
     h1 {
         font-size: 24px;
@@ -52,19 +53,17 @@ $font-size: 16px;
             color: white;
 
             &.sender {
-                margin-right: 100px;
-                align-self: flex-start;
-                // width: 520px;
-                background-color: $contrast-transperant;
-                border-bottom-left-radius: 0;
-            }
-
-            &.receiver {
                 margin-left: 100px;
+                align-self: flex-start;
+                border-bottom-left-radius: 0;
                 background-color: rgba(255, 255, 255, 0.2);
+            }
+            
+            &.receiver {
+                background-color: $contrast-transperant;
+                margin-right: 100px;
                 align-self: flex-end;
                 border-bottom-right-radius: 0;
-                width: 520px;
 
             }
         }
@@ -76,8 +75,9 @@ $font-size: 16px;
         margin-top: 20px;
         width: calc(100% - 40px);
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        width: 500px;
 
         label {
             font-weight: bold;

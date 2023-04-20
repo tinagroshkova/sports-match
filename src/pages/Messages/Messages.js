@@ -26,11 +26,6 @@ const Messages = (props) => {
     event.target.reset();
   };
 
-  const handleResetClick = () => {
-    localStorage.removeItem("chatState");
-    messagesManager.loadMessagesFromStorage();
-  };
-
   const handleMessageUpdate = () => {
     setMessages(messagesManager.getMessagesByReceiver(receiver));
   };
@@ -101,7 +96,6 @@ const Messages = (props) => {
         <form className="messagesForm" onSubmit={handleSendMessage}>
           <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
           <button type="submit">Send</button>
-          <button type="button" onClick={handleResetClick}>Reset</button>
         </form>
       </div>
     </div>
