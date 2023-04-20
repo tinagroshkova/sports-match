@@ -58,11 +58,11 @@ const Messages = (props) => {
   const formatDate = (date) => {
     const currentDate = new Date();
     const messageDate = new Date(date);
-    
+
     let dateString = '';
     if (currentDate.getDate() !== messageDate.getDate() ||
-        currentDate.getMonth() !== messageDate.getMonth() ||
-        currentDate.getFullYear() !== messageDate.getFullYear()) {
+      currentDate.getMonth() !== messageDate.getMonth() ||
+      currentDate.getFullYear() !== messageDate.getFullYear()) {
       const dateOptions = {
         year: 'numeric',
         month: 'short',
@@ -70,37 +70,40 @@ const Messages = (props) => {
       };
       dateString = messageDate.toLocaleString('en-US', dateOptions) + ', ';
     }
-  
+
     const timeOptions = {
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
     };
     const timeString = messageDate.toLocaleString('bg-BG', timeOptions);
-    
+
     return dateString + timeString;
   }
 
   return (
-    <div className="chatContainer">
-      {loggedInUser && (
-        <h1>{receiver ? receiver : "nobody"}</h1>
-      )}
-      <div className="messagesWrapper">
-        <ul className="messagesList" ref={messageListRef}>
-          {messages.map((message, index) => (
-            <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} />
-          ))}
-        </ul>
+    <div className="chatPage">
+      <div className="chatContainer">
+        {loggedInUser && (
+          <h1>{receiver ? receiver : "nobody"}</h1>
+        )}
+        <div className="messagesWrapper">
+          <ul className="messagesList" ref={messageListRef}>
+            {messages.map((message, index) => (
+              <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} />
+            ))}
+          </ul>
 
-        <form className="messagesForm" onSubmit={handleSendMessage}>
-          <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
-          <button type="submit">Send</button>
-        </form>
+          <form className="messagesForm" onSubmit={handleSendMessage}>
+            <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
+            <button type="submit">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
+
 const MessageComponent = ({ message, loggedInUser, formatDate }) => {
   const isSentByLoggedInUser = message.sender === loggedInUser?.username;
   const timestamp = formatDate(message.timestamp);

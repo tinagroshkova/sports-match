@@ -36,7 +36,7 @@ export default function PlacesPage() {
   };
 
   return (
-    <div>
+    <div className="placesPage">
       <h2 style={{ display: "flex", justifyContent: "center" }} className="siteSloganTitle">Choose your favorite sport and get suggestions where to play in Sofia</h2>
 
       <div className='searchWrapper'>

@@ -1,37 +1,40 @@
 @import "../../variables";
 @import "../../mixins";
 
-.sportsPageContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
-    gap: 40px;
-    margin-top: 45px;
-    margin-bottom: 200px;
-}
-
-.searchWrapper {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-
-
-    .selectSearch {
-        @include select();
-        height: 50px;
-        margin-left: 30px;
+.placesPage {
+    height: calc(100vh - 350px);
+    .sportsPageContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 80%;
+        margin: auto;
+        gap: 40px;
+        margin-top: 45px;
+        margin-bottom: 200px;
     }
-
-    .inputSearch {
-        @include select();
-        cursor: auto;
-        margin-right: 30px;
-
-        &::placeholder {
-            color: $almost-white-color;
+    
+    .searchWrapper {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+    
+    
+        .selectSearch {
+            @include select();
+            height: 50px;
+            margin-left: 30px;
         }
-
+    
+        .inputSearch {
+            @include select();
+            cursor: auto;
+            margin-right: 30px;
+    
+            &::placeholder {
+                color: $almost-white-color;
+            }
+    
+        }
     }
 }
