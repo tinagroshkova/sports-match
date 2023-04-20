@@ -53,7 +53,6 @@ function NavBar() {
         <Route path="/buddySearch" element={<BuddySearchPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/places" element={<PlacesPage />} />
-        {/* <Route path="/requests" element={<RequestsPage />} /> */}
         <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Спечели си error трофей! Винаги може да се върнеш за още.</h2>
           <div className="errorImage">
             <img src="https://shorturl.at/zBG01" alt="errorImage"></img></div></>} />

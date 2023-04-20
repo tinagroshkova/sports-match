@@ -4,6 +4,7 @@
 .buddyCard {
     width: fit-content;
     margin-top: 30px;
+    // height: auto;
     box-shadow: -1rem 0 3rem #000;
     transition: 0.4s ease-out;
     border-width: 6px;
@@ -17,7 +18,7 @@
 
     img {
         height: 200px;
-        width: 600px;
+        width: 400px;
         object-fit: cover;
         padding: 5px;
         background: transparent;

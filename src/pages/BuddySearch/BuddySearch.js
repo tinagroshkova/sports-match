@@ -44,7 +44,7 @@ export default function BuddySearchPage() {
       <h2 className="siteSloganTitle">Find someone that shares your sport passion</h2>
       <div className="buddySearchWrapper">
         <select className='buddySearchSelect' id="activity-select" value={selectedValue} onChange={handleChange}>
-          <option value="">Select an activity</option>
+          <option value="">Search buddy by activity</option>
           {activitiesData.sort((a, b) => a.name.localeCompare(b.name)).map((activity) => (
             <option key={activity.name} value={activity.name}>
               {activity.name}
@@ -52,11 +52,13 @@ export default function BuddySearchPage() {
           ))}
         </select>
       </div>
-      {filteredUsers.map((user) => (
-        <div className="buddyCardContainer" key={user.username}>
-          <BuddyCard user={user} defaultImage={userImage} onStartChat={() => handleStartChat(user)} />
-        </div>
-      ))}
+      <div className="buddiesHolder">
+        {filteredUsers.map((user) => (
+          <div className="buddyCardContainer" key={user.username}>
+            <BuddyCard user={user} defaultImage={userImage} onStartChat={() => handleStartChat(user)} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

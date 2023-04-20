@@ -2,26 +2,20 @@
 @import "../../mixins";
 
 .buddyPage {
-    display: flex;
-    width: 80%;
     margin: auto;
-    height: calc(100vh - 300px);
-
-    flex-direction: column;
-    .buddyCardContainer{
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: auto;
-        gap: 40px;
-        margin-top: 45px;
-        margin-bottom: 200px;
-        width: 600px;
-        height: auto;
+    height: calc(100vh - 370px);
+    width: 80%;
+    
+    flex-direction: row;
+    .buddiesHolder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
     }
     .siteSloganTitle {
         text-align: center;
         font-size: 50px;
-        // width: 800px;
     }
     
     .buddySearchWrapper {

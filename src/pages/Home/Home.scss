@@ -1,12 +1,12 @@
 @import "../../variables";
 
-.logoutContainer .logoutButton {
+.logoutContainer {
     display: none;
 }
 
 .homeContainer {
-    position: relative;
     height: calc(100vh - 350px);
+
     .siteNameTitle {
         display: flex;
         justify-content: center;

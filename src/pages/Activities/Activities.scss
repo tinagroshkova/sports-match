@@ -36,12 +36,14 @@
         width: 150px;
         margin: auto;
         margin-top: 50px;
+        
         @media screen and (max-width: 1366px) {
             font-size: 30px;
             width: 12%;
             top: 2%;
             right: 14.2%;
         }
+
     }
 
     #activitySearch {
@@ -50,6 +52,7 @@
         &::placeholder,
         &:focus  {
             color: $almost-white-color;
+            // padding: 10px;
         }
     }
 }
