@@ -56,9 +56,11 @@ export default function ProfilePage() {
 
   const handleSave = () => {
     if (user.username.trim() === "" || user.username.trim().length < 3) {
-      // If the username is empty or has less than three characters, prevent the user from saving
       alert("Username should have at least three characters");
       return;
+    }
+    if (user.age < 0) {
+      setUser({ ...user, age: 0 });
     }
     userManager.setLoggedInUser(user);
     setIsEditing(false);
