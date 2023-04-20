@@ -1,99 +1,3 @@
-// import userManager from "./UserManager";
-
-// class Message {
-//   constructor(text, timestamp, sender, receiver) {
-//     this.text = text;
-//     this.timestamp = timestamp;
-//     this.sender = sender;
-//     this.receiver = receiver;
-//   }
-// }
-
-// const CHAT_STORAGE_KEY = 'chatState';
-
-// class MessagesManager {
-//   constructor() {
-//     this.messages = [];
-//     this.onUpdateCallbacks = [];
-//     this.timeoutId = null;
-//     this.checkStorage();
-//   }
-//   loadMessagesFromStorage() {
-//     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
-//     if (Array.isArray(storedMessages)) {
-//       this.messages = storedMessages.map(message => new Message(message.text, new Date(message.timestamp), message.sender, message.receiver));
-//     } else {
-//       this.messages = [];
-//     }
-//   }
-//   addMessage(message) {
-//     this.messages.push(message);
-//     this.saveMessagesToStorage();
-//     this.onUpdateCallbacks.forEach(callback => callback());
-//   }
-
-//   getMessagesByReceiver(receiver) {
-//     const loggedInUser = userManager.getLoggedInUser();
-//     if (!loggedInUser) {
-//       return [];
-//     }
-
-//     return this.messages.filter(message =>
-//       message.sender === receiver && message.receiver === loggedInUser.username ||
-//       message.sender === loggedInUser.username && message.receiver === receiver
-//     );
-//   }
-
-//   getMessagesByUsers(user1, user2) {
-//     return this.messages.filter(message => 
-//       (message.sender === user1 && message.receiver === user2) || 
-//       (message.sender === user2 && message.receiver === user1)
-//     );
-//   }
-
-//   saveMessagesToStorage() {
-//     localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(this.messages));
-//   }
-
-//   checkStorage() {
-//     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY));
-//     if (storedMessages && Array.isArray(storedMessages)) {
-//       const newMessages = storedMessages.filter(message => !this.messages.some(m => new Date(m.timestamp).toString() === new Date(message.timestamp).toString()));
-//       if (newMessages.length > 0) {
-//         this.messages.push(...newMessages.map(m => new Message(m.text, new Date(m.timestamp), m.sender, m.receiver)));
-//         this.onUpdateCallbacks.forEach(callback => callback());
-//       }
-//     }
-//     this.timeoutId = setTimeout(() => this.checkStorage(), 5000);
-//   }
-
-//   setOnUpdate(onUpdate) {
-//     this.onUpdateCallbacks.push(onUpdate);
-//   }
-//   removeOnUpdate(callback) {
-//     const index = this.onUpdateCallbacks.indexOf(callback);
-//     if (index !== -1) {
-//       this.onUpdateCallbacks.splice(index, 1);
-//     }
-//   }
-
-//   startCheckingStorage() {
-//     this.timeoutId = setTimeout(() => this.checkStorage(), 0);
-//   }
-
-//   stopCheckingStorage() {
-//     clearTimeout(this.timeoutId);
-//   }
-// }
-// const MessageComponent = ({ message, loggedInUser, formatDate }) => {
-//   const isSentByLoggedInUser = message.sender === loggedInUser?.username;
-//   const senderLabel = isSentByLoggedInUser ? "You:" : `${message.sender}:`;
-
-// }
-// const messagesManager = new MessagesManager();
-// export { Message, messagesManager, MessageComponent };
-
-
 import userManager from "./UserManager";
 
 class Message {
@@ -111,9 +15,10 @@ class MessagesManager {
   constructor() {
     this.messages = [];
     this.onUpdateCallbacks = [];
-    this.timeoutId = null;
-    this.checkStorage();
+    this.intervalId = null;
+    this.startCheckingStorage();
   }
+
   loadMessagesFromStorage() {
     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
     if (Array.isArray(storedMessages)) {
@@ -122,6 +27,7 @@ class MessagesManager {
       this.messages = [];
     }
   }
+
   addMessage(message) {
     this.messages.push(message);
     this.saveMessagesToStorage();
@@ -135,8 +41,8 @@ class MessagesManager {
     }
 
     return this.messages.filter(message =>
-      message.sender === receiver && message.receiver === loggedInUser.username ||
-      message.sender === loggedInUser.username && message.receiver === receiver
+      (message.sender === receiver && message.receiver === loggedInUser.username) ||
+      (message.sender === loggedInUser.username && message.receiver === receiver)
     );
   }
 
@@ -153,7 +59,6 @@ class MessagesManager {
         this.onUpdateCallbacks.forEach(callback => callback());
       }
     }
-    this.timeoutId = setTimeout(() => this.checkStorage(), 5000);
   }
 
   setOnUpdate(onUpdate) {
@@ -167,11 +72,7 @@ class MessagesManager {
   }
 
   startCheckingStorage() {
-    this.timeoutId = setTimeout(() => this.checkStorage(), 0);
-  }
-
-  stopCheckingStorage() {
-    clearTimeout(this.timeoutId);
+    this.intervalId = setInterval(() => this.checkStorage(), 5000);
   }
 }
 

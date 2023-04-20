@@ -155,7 +155,7 @@ export default function ProfilePage() {
 
   const handleRemoveActivity = (activity) => {
     const newUser = userManager.getLoggedInUser();
-    newUser.removeActivity(activity);
+    userManager.removeActivity(activity);
     sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
     setUser(newUser);
   };
