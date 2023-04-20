@@ -61,16 +61,36 @@ const Messages = (props) => {
   }, [messages]);
 
   const formatDate = (date) => {
-    const options = {
-      year: 'numeric', month: 'short', day: 'numeric',
-      hour: 'numeric', minute: 'numeric'
+    const currentDate = new Date();
+    const messageDate = new Date(date);
+    
+    let dateString = '';
+    if (currentDate.getDate() !== messageDate.getDate() ||
+        currentDate.getMonth() !== messageDate.getMonth() ||
+        currentDate.getFullYear() !== messageDate.getFullYear()) {
+      const dateOptions = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      };
+      dateString = messageDate.toLocaleString('en-US', dateOptions) + ', ';
+    }
+  
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
     };
-    return new Date(date).toLocaleString('en-US', options);
+    const timeString = messageDate.toLocaleString('bg-BG', timeOptions);
+    
+    return dateString + timeString;
   }
 
   return (
     <div className="chatContainer">
-      <h1>Messages</h1>
+      {loggedInUser && (
+        <h1>{receiver ? receiver : "nobody"}</h1>
+      )}
       <div className="messagesWrapper">
         <ul className="messagesList" ref={messageListRef}>
           {messages.map((message, index) => (
@@ -84,24 +104,23 @@ const Messages = (props) => {
           <button type="button" onClick={handleResetClick}>Reset</button>
         </form>
       </div>
-      {loggedInUser && (
-        <p>You are sending messages to {receiver ? receiver : "nobody"}</p>
-      )}
     </div>
   );
-};
-
+}
 const MessageComponent = ({ message, loggedInUser, formatDate }) => {
   const isSentByLoggedInUser = message.sender === loggedInUser?.username;
-  const senderLabel = isSentByLoggedInUser ? "You:" : `${message.sender}:`;
+  const timestamp = formatDate(message.timestamp);
+
   return (
-    <li className={`message ${isSentByLoggedInUser ? "sent" : "received"}`}>
-      <p className="senderLabel">{senderLabel}</p>
-      <p className="messageContent">{message.text}</p>
-      <p className="messageTimestamp">{formatDate(message.timestamp)}</p>
-    </li>
+    <>
+      <span className="shortTimestamp">{timestamp}</span>
+      <li className={`message ${isSentByLoggedInUser ? "sender" : "receiver"}`}>
+        {message.text}
+      </li>
+    </>
   );
 }
+
 
 export default Messages;
 

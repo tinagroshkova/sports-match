@@ -17,17 +17,13 @@ $font-size: 16px;
     h1 {
         font-size: 24px;
         margin-bottom: 10px;
-        color: $contrast-color;
+        color: $almost-white-color;
         text-align: center;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
     }
-
-    p {
-        font-size: 14px;
-        margin-bottom: 20px;
-        color: $contrast-color;
-        text-align: center;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    .shortTimestamp {
+        display: flex;
+        justify-content: center;
     }
 
     ul {
@@ -49,41 +45,31 @@ $font-size: 16px;
             border-radius: 5px;
             box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             font-size: 18px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            padding: 10px;
+            margin: 10px;
+            color: white;
 
             &.sender {
-                margin-right: 50px;
+                margin-right: 100px;
                 align-self: flex-start;
-                width: 550px;
-                background-color: rgba(255, 255, 255, 0.2);
-                color: $almost-white-color;
+                // width: 520px;
+                background-color: $contrast-transperant;
                 border-bottom-left-radius: 0;
-
-                strong {
-                    font-weight: bold;
-                    color: rgb(0 221 178);
-                }
             }
 
             &.receiver {
-                margin-left: 50px;
-
+                margin-left: 100px;
+                background-color: rgba(255, 255, 255, 0.2);
                 align-self: flex-end;
-                background-color: $contrast-color;
-                color: #fff;
                 border-bottom-right-radius: 0;
+                width: 520px;
 
-                strong {
-                    font-weight: bold;
-                    color: $almost-white-color;
-
-                }
-            }
-
-            span {
-                color: #555;
             }
         }
     }
+
 
     .messagesForm {
         height: 100px;
@@ -99,12 +85,13 @@ $font-size: 16px;
             color: $contrast-color;
         }
 
-        input[type="text"] {
+        input {
             flex: 1;
+            flex-wrap: wrap;
             padding: 10px;
             font-size: $font-size;
             border: 1px solid $contrast-color;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: none;
 
             &:focus {
@@ -117,12 +104,14 @@ $font-size: 16px;
             background-color: $contrast-color;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.2s;
+            color: white;
+            height: 40px;
 
             &:hover {
-                background-color: darken($contrast-color, 10%);
+                background-color: $medium-main-color;
             }
         }
     }
