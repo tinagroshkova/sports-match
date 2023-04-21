@@ -7,151 +7,153 @@ section {
     align-items: center;
 }
 
-.loginPageHolder {
-    width: 100%;
-    height: 100vh;
-    background-image: url('../../images/projectBackground3.png');
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: bottom; 
-  
-}
-.background {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.loginForm, 
-.registrationForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    position: absolute;
-    top: 20%;
-    background: transparent;
-    box-shadow: 0px -1px 50px 12px $dark-main-color;
-    position: absolute;
-    top: 440px;
-    z-index: 20;
-    box-shadow: 0px -1px 40px 1px rgb(3, 107, 38);
-    @include border();
-
-
-    .noAccount {
+.loginPage, 
+.registerPage {
+    height: calc(100vh - 550px);
+    .loginPageHolder {
+        height: 100vh;
+        background-image: url('../../images/projectBackground3.png');
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-position: bottom; 
         position: relative;
-        top: 30px;
+        width: 100%;
+    
+      
     }
-
-    h2 {
-        font-size: 2em;
-        color: $almost-white-color;
+    
+    .loginForm, 
+    .registrationForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-    }
-
-    .registerTitle {
-        position: relative;
-        top: 10px;
-    }
-
-    .haveAnAcount {
-        position: relative;
-        top: 12px;
-    }
-
-    .text-danger,
-    .form-text {
-        color: red;
-    }
-
-    .btn-primary {
-        @include button();
-        margin-top: 20px;
-    }
-
-    .registerLink {
-        text-decoration: none;
-
-        /* Цвят на "Don't have an account?" */
-        color: $almost-white-color;
-
-        a {
+        justify-content: center;
+        position: absolute;
+        top: 20%;
+        background: transparent;
+        box-shadow: 0px -1px 50px 12px $dark-main-color;
+        position: absolute;
+        z-index: 20;
+        box-shadow: 0px -1px 40px 1px rgb(3, 107, 38);
+        @include border();
+    
+        .noAccount {
+            position: relative;
+            top: 30px;
+        }
+    
+        h2 {
+            font-size: 2em;
             color: $almost-white-color;
+            text-align: center;
+        }
+    
+        .registerTitle {
+            position: relative;
+            top: 10px;
+        }
+    
+        .haveAnAcount {
+            position: relative;
+            top: 12px;
+        }
+    
+        .text-danger,
+        .form-text {
+            color: red;
+        }
+    
+        .btn-primary {
+            @include button();
+            margin-top: 20px;
+        }
+    
+        .registerLink {
             text-decoration: none;
-            font-weight: 600;
-
-            &:hover {
-                color: $super-contrast;
+    
+            /* Цвят на "Don't have an account?" */
+            color: $almost-white-color;
+    
+            a {
+                color: $almost-white-color;
+                text-decoration: none;
+                font-weight: 600;
+    
+                &:hover {
+                    color: $super-contrast;
+                }
+            }
+        }
+    
+        @media (max-width: 1980px) {
+            top: 10%;
+        }
+        @media (max-width: 1366px) {
+            top: 8%;
+        }
+    }
+    
+    
+    .inputBox {
+        position: relative;
+        width: 336px;
+        margin: 30px;
+        border-bottom: 2px solid $almost-white-color;
+    
+        label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            color: $almost-white-color;
+            font-weight: 400;
+            pointer-events: none;
+            transition: .5s;
+        }
+    
+        input {
+    
+            &:focus~label,
+            &:valid~label {
+                top: -5px;
+            }
+    
+            width: 100%;
+            height: 46px;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #f0eded;
+        }
+    
+        .icon {
+            position: absolute;
+            right: 8px;
+            color: $super-contrast;
+            font-size: 1.2em;
+            line-height: 57px;
+        }
+    
+        @media (max-width: 360px) {
+            .inputBox {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
             }
         }
     }
-
-    @media (max-width: 1980px) {
-        top: 10%;
+    
+    
+    .loginForm {
+        height: 500px;
+        top: 300px;
     }
-    @media (max-width: 1366px) {
-        top: 8%;
-    }
-}
-
-
-.inputBox {
-    position: relative;
-    width: 336px;
-    margin: 30px;
-    border-bottom: 2px solid $almost-white-color;
-
-    label {
-        position: absolute;
-        top: 50%;
-        left: 5px;
-        transform: translateY(-50%);
-        color: $almost-white-color;
-        font-weight: 400;
-        pointer-events: none;
-        transition: .5s;
+    
+    .registrationForm {
+        height: 620px;
+        top: 200px;
     }
 
-    input {
-
-        &:focus~label,
-        &:valid~label {
-            top: -5px;
-        }
-
-        width: 100%;
-        height: 46px;
-        background: transparent;
-        border: none;
-        outline: none;
-        color: #f0eded;
-    }
-
-    .icon {
-        position: absolute;
-        right: 8px;
-        color: $super-contrast;
-        font-size: 1.2em;
-        line-height: 57px;
-    }
-
-    @media (max-width: 360px) {
-        .inputBox {
-            width: 100%;
-            height: 100vh;
-            border: none;
-            border-radius: 0;
-        }
-    }
-}
-
-
-.loginForm {
-    height: 500px;
-}
-
-.registrationForm {
-    height: 620px;
 }

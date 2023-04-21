@@ -114,8 +114,8 @@ const RegistrationForm = () => {
     }
   };
   return (
-    <div className="loginPageHolder">
-      <section>
+    <div className="registerPage">
+      <section className="loginPageHolder">
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
           {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}

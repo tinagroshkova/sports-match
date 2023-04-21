@@ -129,6 +129,7 @@ export default function ProfilePage() {
               )}
             </span>
           </h2>
+          <p>
           <span className="icon">
             <ion-icon name="calendar-outline"></ion-icon>{' '}
             {isEditing ? (
@@ -137,6 +138,7 @@ export default function ProfilePage() {
               typeof user.age === 'number' ? user.age : ''
             )}
           </span>
+          </p>
           <p>
             <span className="icon">
               <ion-icon name="location-outline"></ion-icon> {' '}
