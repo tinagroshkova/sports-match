@@ -20,12 +20,12 @@ function NavBar() {
   const hideButton = location.pathname !== "/home";
   return (
     <>
-      {hideButton ? null : (
+      {/* {hideButton ? null : (
         <div className="logoutContainer">
-          <button className="logoutButton" onClick={userManager.logoutUser}>Logout</button>
+          <button className="" onClick={userManager.logoutUser}>Logout</button>
         </div>
       )
-      }
+      } */}
 
       {hideNav ? null : (
         <nav className="navbar">

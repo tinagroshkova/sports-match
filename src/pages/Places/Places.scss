@@ -30,7 +30,8 @@
             @include select();
             cursor: auto;
             margin-right: 30px;
-    
+            height: 28px;
+
             &::placeholder {
                 color: $almost-white-color;
             }

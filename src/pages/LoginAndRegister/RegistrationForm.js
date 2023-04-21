@@ -17,7 +17,7 @@ const RegistrationForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "username") {
-      setUsername(value);
+      setUsername(value.trim());
     } else if (name === "password") {
       setPassword(value);
     } else if (name === "confirmPassword") {
