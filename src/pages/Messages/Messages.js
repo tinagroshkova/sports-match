@@ -261,7 +261,7 @@ const Messages = (props) => {
     <div className="chatPage">
       <div className="chatContainer">
         {loggedInUser && (
-          <h1>{receiver ? receiver : "nobody"}</h1>
+          <h1>{receiver ? receiver : "You have no messages yet from buddy match"}</h1>
         )}
         <div className="messagesWrapper">
           <ul className="messagesList" ref={messageListRef}>
