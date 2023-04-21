@@ -167,7 +167,9 @@ class MessagesManager {
         conversationSet.add(message.sender);
       }
     });
-    return Array.from(conversationSet);
+    // Filter out the loggedInUser's username from the conversation list
+    const conversationArray = Array.from(conversationSet).filter(conversationUser => conversationUser !== username);
+    return conversationArray;
   }
 
   setOnUpdate(onUpdate) {
@@ -181,7 +183,7 @@ class MessagesManager {
   }
 
   startCheckingStorage() {
-    this.intervalId = setInterval(() => this.checkStorage(), 5000);
+    this.intervalId = setInterval(() => this.checkStorage(), 2000);
   }
 }
 
