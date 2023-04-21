@@ -45,8 +45,8 @@ function LoginForm() {
   }, []);
 
   return (
-    <div className="loginPageHolder">
-      <section>
+    <div className="loginPage">
+      <section className="loginPageHolder">
         <form className="loginForm" onSubmit={handleSubmit}>
           <h2>Login</h2>
           <div className="inputBox">

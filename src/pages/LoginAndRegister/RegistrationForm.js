@@ -114,8 +114,8 @@ const RegistrationForm = () => {
     }
   };
   return (
-    <div className="loginPageHolder">
-      <section>
+    <div className="registerPage">
+      <section className="loginPageHolder">
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
           {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
@@ -133,6 +133,7 @@ const RegistrationForm = () => {
               <label>Username</label>
             </div>
           </Form.Group>
+          <Form.Control.Feedback className="text-danger" type="invalid">{errors.username}</Form.Control.Feedback>
 
           <Form.Group controlId="password">
             <div className="inputBox">
@@ -148,6 +149,7 @@ const RegistrationForm = () => {
               <label>Password</label>
             </div>
           </Form.Group>
+          <Form.Control.Feedback className="text-danger" type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
 
           <Form.Group controlId="confirmPassword">
             <div className="inputBox">
@@ -164,8 +166,8 @@ const RegistrationForm = () => {
             </div>
           </Form.Group>
 
-          <Form.Control.Feedback className="text-danger" type="invalid">{errors.username}</Form.Control.Feedback>
-          <Form.Control.Feedback className="text-danger" type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
+
+          
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.password}</Form.Control.Feedback>
 
           <Button className="btn-primary" type="submit">Register</Button>

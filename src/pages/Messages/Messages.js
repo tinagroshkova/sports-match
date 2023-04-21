@@ -147,21 +147,27 @@ const Messages = (props) => {
         </div>
   
         <div className="messagesWrapper">
-        <ul className="messagesList" ref={messageListRef}>
-          {filteredMessages.map((message, index) => (
-            <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} />
-          ))}
-        </ul>
-  
-        <form className="messagesForm" onSubmit={handleSendMessage}>
-          <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
-          <button type="submit">Send</button>
-        </form>
+          <ul className="messagesList" ref={messageListRef}>
+            {messages
+              .filter(
+                (message) =>
+                  (message.sender === loggedInUser.username && message.receiver === receiver) ||
+                  (message.sender === receiver && message.receiver === loggedInUser.username)
+              )
+              .map((message, index) => (
+                <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} />
+              ))}
+          </ul>
+
+          <form className="messagesForm" onSubmit={handleSendMessage}>
+            <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
+            <button type="submit">Send</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
   );
-          }
+};
 
 
 const MessageComponent = ({ message, loggedInUser, formatDate }) => {
