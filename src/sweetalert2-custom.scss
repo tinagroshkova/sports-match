@@ -2,11 +2,11 @@
 
 .swal2-title {
     font-size: 24px;
-    color: $almost-white-color;
+    color: $almost-white-color !important;
 }
 
 .swal2-popup {
-    background-color: $dark-main-color;
+    background-color: $dark-main-color !important;
     border-radius: 10px; 
     color: $almost-white-color;
 }
@@ -14,7 +14,6 @@
 .swal2-confirm {
     background-color: $contrast-color !important;
     border: none;
-
     &:hover {
         background-color: $medium-main-color;
     }
