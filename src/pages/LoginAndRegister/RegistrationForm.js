@@ -13,6 +13,7 @@ const RegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ show: false, variant: "", message: "" });
+  const [formValid, setFormValid] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +62,11 @@ const RegistrationForm = () => {
       }
     }
 
+
+    const hasErrors = Object.keys(newErrors).length > 0;
+    // Update form validity
+    setFormValid(!hasErrors);
+
     setErrors(newErrors);
   };
 
@@ -93,6 +99,7 @@ const RegistrationForm = () => {
       errors.confirmPassword = "Passwords do not match";
     }
 
+
     if (Object.keys(errors).length === 0) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       if (users.some((user) => user.username === username)) {
@@ -103,8 +110,7 @@ const RegistrationForm = () => {
           setAlert({ show: true, variant: "success", message: "Registration successful! Redirecting to login." });
           setTimeout(() => {
             navigate("/login");
-          }, 1300);
-          // navigate("/login");
+          }, 1000);
         } catch (error) {
           console.error(error);
         }
@@ -166,15 +172,16 @@ const RegistrationForm = () => {
             </div>
           </Form.Group>
 
-
-          
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.password}</Form.Control.Feedback>
-
-          <Button className="btn-primary" type="submit">Register</Button>
-          <div className="registerLink">
-            <p className="haveAnAcount">Already have an account?
-              <Link to="/login"><span className="registerHover"> Log in</span></Link></p>
-          </div>
+          <span className="btnHolder">
+            <Button type="submit" className={`submit-btn ${formValid ? "enabled" : ""}`}>
+              Register
+            </Button>
+            <div className="registerLink">
+              <p className="haveAnAcount">Already have an account?
+                <Link to="/login"><span className="registerHover"> Log in</span></Link></p>
+            </div>
+          </span>
         </form>
       </section>
     </div>

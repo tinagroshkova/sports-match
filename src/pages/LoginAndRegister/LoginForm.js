@@ -13,6 +13,7 @@ function LoginForm() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [formValid, setFormValid] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.name === "username") {
@@ -44,6 +45,32 @@ function LoginForm() {
     setCurrentUser(user);
   }, []);
 
+  useEffect(() => {
+    const errorsCopy = { ...errors };
+    let formIsValid = true;
+
+    // Check for errors in the form
+    if (username.trim() === "") {
+      errorsCopy.username = "Username is required";
+      formIsValid = false;
+    } else {
+      delete errorsCopy.username;
+    }
+
+    if (password === "") {
+      errorsCopy.password = "Password is required";
+      formIsValid = false;
+    } else if (!/\d/.test(password)) {
+      errorsCopy.password = "Password must contain at least one number";
+      formIsValid = false;
+    } else {
+      delete errorsCopy.password;
+    }
+
+    setErrors(errorsCopy);
+    setFormValid(formIsValid);
+  }, [username, password]);
+
   return (
     <div className="loginPage">
       <section className="loginPageHolder">
@@ -55,22 +82,25 @@ function LoginForm() {
             <label>Username</label>
           </div>
 
-          {errors.username && <Form.Text className="text-danger">{errors.username}</Form.Text>}
-
           <div className="inputBox">
             <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
             <input type="password" name="password" value={password} required onChange={handleChange}></input>
             <label>Password</label>
           </div>
 
-          {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
-          {errors.general && <Form.Text className="text-danger">{errors.general}</Form.Text>}
+          {/* <Form.Control.Feedback className="text-danger" type="invalid">{errors.username}</Form.Control.Feedback>
+          <Form.Control.Feedback className="text-danger" type="invalid">{errors.password}</Form.Control.Feedback> */}
+          <Form.Control.Feedback className="text-danger" type="invalid">{errors.general}</Form.Control.Feedback>
 
-          <Button className="btn-primary" type="submit" disabled={isLoading}>{isLoading ? "Loading..." : "Log in"}</Button>
-          <div className="registerLink">
-            <p className="haveAnAcount">Don"t have an account?
-              <Link to="/register"> <span className="registerHover">Sign up</span></Link></p>
-          </div>
+          <span className="btnHolder">
+          <Button type="submit" className={`submit-btn ${formValid ? "enabled" : ""}`}>
+              Login
+            </Button>
+            <div className="registerLink">
+              <p className="haveAnAcount">Don"t have an account?
+                <Link to="/register"> <span className="registerHover">Sign up</span></Link></p>
+            </div>
+          </span>
         </form>
       </section>
     </div>
