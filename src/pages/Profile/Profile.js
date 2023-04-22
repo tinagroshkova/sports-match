@@ -4,6 +4,8 @@ import { ActivityComponentCircle } from "../../components/Activity/Activity";
 import "./Profile.scss";
 import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
+import Swal from "sweetalert2"; 
+import "../../sweetalert2-custom.scss";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(userManager.getLoggedInUser());
@@ -11,35 +13,30 @@ export default function ProfilePage() {
   const [profileImage, setProfileImage] = useState(userImage);
   const navigate = useNavigate();
 
-  // const handleRemoveActivity = (activity) => {
-  //   const newUser = userManager.getLoggedInUser();
-  //   userManager.removeActivity(activity);
-  //   sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-  //   setUser(newUser); // update the user state immediately
-  // };
-
   const handleRemoveActivity = (activity) => {
-    const newUser = userManager.getLoggedInUser();
-    userManager.removeActivity(activity);
-    sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-    const updatedUser = { ...newUser };
-    updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
-    setUser(updatedUser);
-    return updatedUser;
-
+    Swal.fire({
+      title: 'Do you really want to remove this activity?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      customClass: {
+        popup: 'swal2-popup',
+        title: 'swal2-title',
+        confirmButton: 'swal2-confirm',
+        cancelButton: 'swal2-cancel'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newUser = userManager.getLoggedInUser();
+        userManager.removeActivity(activity);
+        sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        const updatedUser = { ...newUser };
+        updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+        setUser(updatedUser);
+      }
+    });
   };
-
-  // const handleEdit = (event) => {
-  //   setUser({ ...user, [event.target.name]: event.target.type === 'number' ? parseInt(event.target.value) : event.target.value });
-  //   if (event.target.name === 'gender') {
-  //     setUser({ ...user, gender: event.target.value });
-  //   }
-  // };
-
-  // const handleSave = () => {
-  //   userManager.setLoggedInUser(user);
-  //   setIsEditing(false);
-  // };
 
   const handleEdit = (event) => {
     setUser({
@@ -115,7 +112,9 @@ export default function ProfilePage() {
         <div className="profileImage">
           <img src={user.profilePic || profileImage} alt={user.username} />
           {isEditing && (
-            <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
+            <span className="changePicture">
+              <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
+            </span>
           )}
         </div>
         <div className="userInfo">
@@ -130,14 +129,14 @@ export default function ProfilePage() {
             </span>
           </h2>
           <p>
-          <span className="icon">
-            <ion-icon name="calendar-outline"></ion-icon>{' '}
-            {isEditing ? (
-              <input style={{ position: "relative", left: "5px" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
-            ) : (
-              typeof user.age === 'number' ? user.age : ''
-            )}
-          </span>
+            <span className="icon">
+              <ion-icon name="calendar-outline"></ion-icon>{' '}
+              {isEditing ? (
+                <input style={{ position: "relative", left: "5px" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
+              ) : (
+                typeof user.age === 'number' ? user.age : ''
+              )}
+            </span>
           </p>
           <p>
             <span className="icon">

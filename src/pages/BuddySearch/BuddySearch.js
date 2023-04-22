@@ -38,7 +38,6 @@ export default function BuddySearchPage() {
 
   const handleStartChat = (otherUser) => { navigate('/messages', { state: { receiver: otherUser.username } }); }
 
-
   return (
     <div className="buddyPage">
       <h2 className="siteSloganTitle">Find someone that shares your sport passion</h2>

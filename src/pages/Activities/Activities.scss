@@ -56,3 +56,23 @@
         }
     }
 }
+
+.swal2-title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .swal2-popup {
+    background-color: $dark-main-color;
+    border-radius: 10px;
+  }
+  
+  .swal2-confirm {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: #66bb6a;
+    }
+  }
+  

@@ -96,22 +96,31 @@ class UserManager {
   }
 
   addActivity(activity) {
-    const user = this.getLoggedInUser();
-    if (user && !user.hasActivity(activity)) {
-      user.activities.push(activity);
-      this.saveUserData();
-    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const user = this.getLoggedInUser();
+        if (user && !user.hasActivity(activity)) {
+          user.activities.push(activity);
+          this.saveUserData();
+        }
+        resolve();
+      }, 1000); 
+    });
   }
 
   removeActivity(activity) {
-    const user = this.getLoggedInUser();
-    if (user && user.hasActivity(activity)) {
-      user.activities = user.activities.filter(a => a.name !== activity.name);
-      this.saveUserData();
-    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const user = this.getLoggedInUser();
+        if (user && user.hasActivity(activity)) {
+          user.activities = user.activities.filter(a => a.name !== activity.name);
+          this.saveUserData();
+        }
+        resolve();
+      }, 1000); 
+    });
   }
 }
 const userManager = new UserManager();
 
 export default userManager;
-

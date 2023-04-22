@@ -66,7 +66,6 @@ const RegistrationForm = () => {
     const hasErrors = Object.keys(newErrors).length > 0;
     // Update form validity
     setFormValid(!hasErrors);
-
     setErrors(newErrors);
   };
 
