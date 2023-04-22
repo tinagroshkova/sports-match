@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import "../../sweetalert2-custom.scss";
 import { ActivityComponent } from '../../components/Activity/Activity';
 import useDebounce from "../../components/Utils/Debounce";
+import LoginModal from '../../components/Modals/LoginModal';
 
 const activities = activitiesData.map(activity => new Activity(activity.name, activity.image));
 
@@ -29,25 +30,24 @@ export default function ActivitiesPage() {
         setAddedActivities(user ? user.activities || [] : []);
     }, []);
 
-    function handleAddActivity(activity) {
+    // const handleLogin = async () => {
+    //     const credentials = await LoginModal();
+    //     if (credentials) {
+    //         const [email, password] = credentials;
+    //         // Perform the login process with the provided email and password
+    //     }
+    // };
+
+    async function handleAddActivity(activity) {
         const user = userManager.getLoggedInUser();
         if (!user) {
-            Swal.fire({
-                icon: "warning",
-                title: "You have to log in first!",
-                confirmButtonText: "Log in",
-                customClass: {
-                    popup: 'swal2-popup',
-                    title: 'swal2-title',
-                    confirmButton: 'swal2-confirm'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate("/login");
-                }
-            });
-            return;
+          const shouldNavigateToLogin = await LoginModal();
+          if (shouldNavigateToLogin) {
+            navigate('/login');
+          }
+          return;
         }
+        
         if (user.hasActivity(activity)) {
             userManager.removeActivity(activity);
             setAddedActivities((prevActivities) =>
