@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
 import BuddyCard from "../../components/BuddyCard/BuddyCard";
 import activitiesData from "../Activities/activitiesData";
+import swal from "sweetalert2";
 
 export default function BuddySearchPage() {
   const [users, setUsers] = useState(userManager.users);
@@ -12,11 +13,33 @@ export default function BuddySearchPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const checkLoggedInUser = async () => {
+      const loggedInUser = userManager.getLoggedInUser();
+      if (!loggedInUser) {
+        const alertResult = await swal.fire({
+          title: 'You are not logged in!',
+          text: 'You need to be logged in to use Buddy Search.',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+        });
+
+        if (alertResult.isConfirmed) {
+          navigate('/login');
+          return;
+        }
+      }
+      setUsers(userManager.users);
+    };
+
+    checkLoggedInUser();
+  }, []);
+
+  useEffect(() => {
     const loggedInUser = userManager.getLoggedInUser();
     if (!loggedInUser) {
-      alert("You have to log in first!");
-      navigate('/login');
-      return;
+      // alert("You have to log in first!");
+      // navigate('/login');
+      // return;
     }
     setUsers(userManager.users);
   }, []);

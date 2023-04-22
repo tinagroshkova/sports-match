@@ -4,8 +4,12 @@ import { Message, messagesManager } from "../../services/MessagesManager";
 import { useNavigate } from "react-router-dom";
 import "./Messages.scss";
 import { useLocation } from "react-router-dom";
+import "../../sweetalert2-custom.scss";
+import ConfirmModal from "../../components/Modals/ConfirmModal";
+import LoginModal from "../../components/Modals/LoginModal";
+import swal from "sweetalert2";
 
-// const CHAT_STORAGE_KEY = 'chatState';
+
 
 const Messages = (props) => {
   const location = useLocation();
@@ -14,6 +18,26 @@ const Messages = (props) => {
   const navigate = useNavigate();
   const messageListRef = useRef(null);
   const loggedInUser = userManager.getLoggedInUser();
+
+  useEffect(() => {
+    const checkLoggedInUser = async () => {
+      if (!loggedInUser) {
+        const alertResult = await swal.fire({
+          title: 'You are not logged in!',
+          text: 'You need to be logged in to view messages.',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+        });
+  
+        if (alertResult.isConfirmed) {
+          navigate('/login');
+          return;
+        }
+      }
+    };
+  
+    checkLoggedInUser();
+  }, []);
 
   useEffect(() => {
     messagesManager.loadMessagesFromStorage();
@@ -37,11 +61,11 @@ const Messages = (props) => {
 
   const handleSendMessage = (event) => {
     event.preventDefault();
-    if (!loggedInUser) {
-      alert("You have to log in first!");
-      navigate('/login');
-      return;
-    }
+    // if (!loggedInUser) {
+    //   alert("You have to log in first!");
+    //   navigate('/login');
+    //   return;
+    // }
     const messageText = event.target.message.value;
     const message = new Message(messageText, new Date(), loggedInUser.username, currentReceiver);
     messagesManager.addMessage(message);

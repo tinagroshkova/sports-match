@@ -39,7 +39,7 @@
 //       'Do you really want to remove this activity?',
 //       'This action cannot be undone.'
 //     );
-  
+
 //     if (shouldRemove) {
 //         const newUser = userManager.getLoggedInUser();
 //         userManager.removeActivity(activity);
@@ -190,7 +190,8 @@ import { useNavigate } from "react-router-dom";
 import userImage from "../../images/user.png";
 import "../../sweetalert2-custom.scss";
 import ConfirmModal from "../../components/Modals/ConfirmModal";
-import LoginModal from "../../components/Modals/LoginModal";
+// import LoginModal from "../../components/Modals/LoginModal";
+import swal from "sweetalert2";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(userManager.getLoggedInUser());
@@ -203,17 +204,17 @@ export default function ProfilePage() {
       'Do you really want to remove this activity?',
       'This action cannot be undone.'
     );
-  
+
     if (shouldRemove) {
-        const newUser = userManager.getLoggedInUser();
-        userManager.removeActivity(activity);
-        sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
-        const updatedUser = { ...newUser };
-        updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
-        setUser(updatedUser);
-      }
-    };
-  
+      const newUser = userManager.getLoggedInUser();
+      userManager.removeActivity(activity);
+      sessionStorage.setItem('loggedInUser', JSON.stringify(newUser));
+      const updatedUser = { ...newUser };
+      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+      setUser(updatedUser);
+    }
+  };
+
 
   const handleEdit = (event) => {
     setUser({
@@ -269,9 +270,15 @@ export default function ProfilePage() {
     const checkLoggedInUser = async () => {
       const loggedInUser = userManager.getLoggedInUser();
       if (!loggedInUser) {
-        // Use the LoginModal component if the user is not logged in
-        const isLoggedIn = await LoginModal();
-        if (!isLoggedIn) {
+        const alertResult = await swal.fire({
+          title: 'You are not logged in!',
+          text: 'You need to be logged in to view the profile page.',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+          
+        });
+
+        if (alertResult.isConfirmed) {
           navigate('/login');
           return;
         }
@@ -293,7 +300,7 @@ export default function ProfilePage() {
     <div className="profilePageContainer">
       <div className="profileInfo">
         <div className="profileImage">
-        <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
+          <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
           {isEditing && (
             <span className="changePicture">
               <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
@@ -301,7 +308,7 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="userInfo">
-          <h2>
+          {/* <h2>
             <span className="icon">
               <ion-icon name="accessibility-outline"></ion-icon>{' '}
               {isEditing ? (
@@ -309,6 +316,12 @@ export default function ProfilePage() {
               ) : (
                 user.username
               )}
+            </span>
+          </h2> */}
+          <h2>
+            <span className="icon">
+              <ion-icon name="accessibility-outline"></ion-icon>{' '}
+              {user.username}
             </span>
           </h2>
           <p>
