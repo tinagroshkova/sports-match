@@ -12,6 +12,9 @@ class User {
   hasActivity(activity) {
     return this.activities.some(a => a.name === activity.name);
   }
+  getImage() {
+    return this.image;
+  }
 }
 
 class UserManager {
