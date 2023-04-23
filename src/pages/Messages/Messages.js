@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Messages.scss";
 import { useLocation } from "react-router-dom";
 import "../../sweetalert2-custom.scss";
-import ConfirmModal from "../../components/Modals/ConfirmModal";
 import LoginModal from "../../components/Modals/LoginModal";
-import swal from "sweetalert2";
-
-
 
 const Messages = (props) => {
   const location = useLocation();
@@ -22,20 +18,16 @@ const Messages = (props) => {
   useEffect(() => {
     const checkLoggedInUser = async () => {
       if (!loggedInUser) {
-        const alertResult = await swal.fire({
-          title: 'You are not logged in!',
-          text: 'You need to be logged in to view messages.',
-          icon: 'warning',
-          confirmButtonText: 'OK',
-        });
-  
-        if (alertResult.isConfirmed) {
+        const isLoggedIn = await LoginModal();
+        if (!isLoggedIn) {
           navigate('/login');
+          return;
+        } else {
+          navigate('/login', { state: { from: '/profile' } });
           return;
         }
       }
-    };
-  
+    }
     checkLoggedInUser();
   }, []);
 
