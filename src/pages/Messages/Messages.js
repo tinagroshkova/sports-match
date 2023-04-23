@@ -111,7 +111,7 @@ const Messages = (props) => {
   return (
     <div className="chatPage">
       <div className="conversationList">
-        <h2>Chats</h2>
+        <h1>Chats</h1>
         <ul>
           {messagesManager.getConversations(loggedInUser?.username).map((receiver, index) => (
             <li key={index} onClick={() => handleConversationClick(receiver)}>

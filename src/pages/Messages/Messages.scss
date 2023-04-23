@@ -3,10 +3,26 @@
 
 .chatPage {
     display: flex;
+    width: 75vh;
+    margin: auto;
+    position: relative;
+    margin-top: 10vh;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid $contrast-color;
+    border-radius: 10px;
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.5);
+
+    h1 {
+        font-size: 24px;
+        padding-top: 20px;
+        color: $almost-white-color;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    }
 
     .senderReply {
         display: flex;
-        align-items: center;
+
 
         .senderInfo {
             display: flex;
@@ -27,29 +43,22 @@
             }
         }
     }
+    
 
 
     .chatContainer {
-        background-color: rgba(255, 255, 255, 0.2);
-        padding: 20px;
-        border: 1px solid $contrast-color;
-        border-radius: 10px;
-        width: 500px;
-        max-height: 65vh;
-        margin: 0 auto;
+
+        width: 50vh;
+        height: 70vh;
+        box-sizing: border-box;
+        padding: 0 20px;
+
         font-size: $font-size;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        margin-top: 10vh;
 
-        h1 {
-            font-size: 24px;
-            padding-top: 20px;
-            color: $almost-white-color;
-            text-align: center;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        }
+
 
         .shortTimestamp {
             display: flex;
@@ -63,7 +72,6 @@
                 align-items: center;
                 flex-direction: row;
                 margin-bottom: 10px;
-                padding: 10px;
                 border-radius: 5px;
                 box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
                 font-size: 18px;
@@ -81,14 +89,14 @@
                 }
 
                 &.sender .messageText {
-                    width: 350px;
+                    width: 30vh;
                     margin-left: 100px;
                     background-color: rgba(255, 255, 255, 0.2);
                     border-bottom-right-radius: 0;
                 }
 
                 &.receiver .messageText {
-                    width: 450px;
+                    width: 35vh;
                     background-color: $contrast-transperant;
                     border-bottom-left-radius: 0;
 
@@ -103,7 +111,7 @@
             .senderInfo {
                 display: flex;
                 align-items: center;
-                margin-right: 8px; // Add spacing between the image and the text
+                margin-right: 10px; // Add spacing between the image and the text
 
                 img {
                     width: 40px;
@@ -117,12 +125,10 @@
 
         .messagesForm {
             height: 100px;
-            margin-top: 20px;
-            width: calc(100% - 40px);
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 500px;
+            width: 30vh
 
             label {
                 font-weight: bold;
@@ -164,16 +170,15 @@
 
 
     .conversationList {
-        background-color: rgba(255, 255, 255, 0.05);
-        width: 15vh;
-        height: calc(100vh - 100px);
+        box-sizing: border-box;
+        width: 25vh;
+        height: 70vh;
         border-right: 1px solid $contrast-color;
-        position: absolute;
 
-        h2 {
-            margin-top: 20px;
-            text-align: center;
+        h1 {
+            padding-top: 70px;
         }
+
 
         li {
             height: 30px;
@@ -219,4 +224,3 @@
         vertical-align: middle;
     }
 }
-
