@@ -123,7 +123,7 @@ const RegistrationForm = () => {
       <section className="loginPageHolder">
         <form className="registrationForm" onSubmit={handleSubmit}>
           <h2 className="registerTitle">Register</h2>
-          <h5 className="registerTitle">Choose wisely, username cannot be changed later.</h5>
+          {/* <h5 className="registerTitle">Choose wisely, username cannot be changed later.</h5> */}
           {alert.show && <CustomAlert variant={alert.variant} message={alert.message} />}
           <Form.Group controlId="username">
             <div className="inputBox">

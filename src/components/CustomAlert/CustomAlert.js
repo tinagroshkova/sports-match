@@ -17,13 +17,3 @@ function CustomAlert({ variant, message }) {
 }
 
 export default CustomAlert;
-
-// const CustomAlert = ({ message, type, onClose }) => {
-//     return (
-//       <Alert variant={type} onClose={onClose} dismissible>
-//         {message}
-//       </Alert>
-//     );
-//   };
-  
-//   export default CustomAlert;

@@ -20,16 +20,7 @@ class MessagesManager {
     this.startCheckingStorage();
   }
 
-  // loadMessagesFromStorage() {
-  //   const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
-  //   if (Array.isArray(storedMessages)) {
-  //     console.log(storedMessages);
-  //     return this.messages = storedMessages.map(message => new Message(message.text, new Date(message.timestamp), message.sender, message.receiver));
-  //     // console.log(this.messages);
-  //   } else {
-  //     this.messages = [];
-  //   }
-  // }
+
 
   loadMessagesFromStorage() {
     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];

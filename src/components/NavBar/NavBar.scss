@@ -35,7 +35,7 @@
     letter-spacing: 0.05em;
 
     &:hover {
-      color: $contrast-transperant;
+      color: $contrast-color;
       text-shadow: 1px 1px 1px black;
     }
   }
@@ -137,7 +137,7 @@ footer {
     cursor: pointer;
 
     &:hover {
-      background-color: $contrast-transperant;
+      background-color: $contrast-color;
     }
   }
 }
