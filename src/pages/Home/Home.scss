@@ -9,8 +9,6 @@
         display: none;
     }
 
-
-
     .siteNameTitle {
         display: flex;
         justify-content: center;
@@ -41,8 +39,6 @@
             width: 24%;
             margin-left: 220px;
         }
-
-
     }
 
     .homeCardContainerWrapper {
@@ -90,13 +86,6 @@
     .logoutBtn {
         display: none;
     }
-
-    // .sphere {
-    //     @include sphere();
-    //     width: 170px;
-    //     top: 10%;
-    //     left: 5%;
-    // }
     .homeLineCont {
         display: flex;
         justify-content: center;
@@ -104,11 +93,13 @@
         .homeLine {
             border-radius: 150px;
             position: absolute;
-            top: 73%;
-            left: 22%;
+            height: 200px;
+            width: 70%;
+            object-fit: fit;
+            bottom: 8%;
+            left: 15%;
             z-index: -1;
+            rotate: 180deg;
         }
     }
-
-
 }

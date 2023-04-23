@@ -14,6 +14,27 @@ export default function ProfilePage() {
   const [profileImage, setProfileImage] = useState(userImage);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const checkLoggedInUser = async () => {
+      if (!loggedInUser) {
+        const isLoggedIn = await LoginModal();
+        if (!isLoggedIn) {
+          navigate('/home', { state: { from: '/profile' } });
+          return; // User clicked "No", do not navigate
+        }
+        navigate('/login', { state: { from: '/profile' } });
+      }
+      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
+      setProfileImage(userImage); // set the profile image to the retrieved image data
+      setUser({ ...loggedInUser });
+    };
+    checkLoggedInUser();
+  }, []);
+
+  const loggedInUser = userManager.getLoggedInUser();
+  if (!loggedInUser) {
+    return;
+  }
   const handleRemoveActivity = async (activity) => {
     const shouldRemove = await ConfirmModal(
       'Do you really want to remove this activity?',
@@ -28,7 +49,6 @@ export default function ProfilePage() {
       setUser(updatedUser);
     }
   };
-
 
   const handleEdit = (event) => {
     setUser({
@@ -80,33 +100,6 @@ export default function ProfilePage() {
     }
   };
 
-  useEffect(() => {
-    const checkLoggedInUser = async () => {
-      const loggedInUser = userManager.getLoggedInUser();
-      if (!loggedInUser) {
-        // Use the LoginModal component if the user is not logged in
-        const isLoggedIn = await LoginModal();
-        if (!isLoggedIn) {
-          navigate('/login');
-          return;
-        } else {
-          navigate('/login', { state: { from: '/profile' } });
-          return;
-        }
-      }
-      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
-      setProfileImage(userImage); // set the profile image to the retrieved image data
-      setUser({ ...loggedInUser });
-    };
-    checkLoggedInUser();
-  }, []);
-
-  const loggedInUser = userManager.getLoggedInUser();
-  if (!loggedInUser) {
-    navigate('/login');
-    return;
-  }
-
   return (
     <div className="profilePageContainer">
       <div className="profileInfo">
@@ -119,16 +112,6 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="userInfo">
-          {/* <h2>
-            <span className="icon">
-              <ion-icon name="accessibility-outline"></ion-icon>{' '}
-              {isEditing ? (
-                <input type="text" name="username" value={user.username} onChange={handleEdit} placeholder="Edit your username" />
-              ) : (
-                user.username
-              )}
-            </span>
-          </h2> */}
           <h2>
             <span className="icon">
               <ion-icon name="accessibility-outline"></ion-icon>{' '}

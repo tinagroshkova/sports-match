@@ -7,18 +7,19 @@
     .senderReply {
         display: flex;
         align-items: center;
-        
+
         .senderInfo {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
+
             img {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
                 object-fit: cover;
             }
-            
+
             .senderName {
                 margin-right: 8px;
                 color: $almost-white-color;
@@ -26,7 +27,7 @@
             }
         }
     }
-    
+
 
     .chatContainer {
         background-color: rgba(255, 255, 255, 0.2);
@@ -57,9 +58,9 @@
 
         ul {
             li {
-                
+
                 display: flex; // Add this line
-                align-items: center; 
+                align-items: center;
                 flex-direction: row;
                 margin-bottom: 10px;
                 padding: 10px;
@@ -78,14 +79,14 @@
                     padding: 5px 0 0 10px;
                     border-radius: 10px;
                 }
-                
-                &.sender .messageText{
+
+                &.sender .messageText {
                     width: 350px;
                     margin-left: 100px;
                     background-color: rgba(255, 255, 255, 0.2);
                     border-bottom-right-radius: 0;
                 }
-                
+
                 &.receiver .messageText {
                     width: 450px;
                     background-color: $contrast-transperant;
@@ -93,25 +94,25 @@
 
                 }
             }
+
             .messageContent {
                 display: flex;
                 align-items: center;
-              }
-      
-              .senderInfo {
+            }
+
+            .senderInfo {
                 display: flex;
                 align-items: center;
                 margin-right: 8px; // Add spacing between the image and the text
-                
-                img {
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 50%;
-                  object-fit: cover;
-                }
-              }
-        }
 
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
 
 
         .messagesForm {
@@ -161,6 +162,7 @@
         }
     }
 
+
     .conversationList {
         background-color: rgba(255, 255, 255, 0.05);
         width: 15vh;
@@ -177,6 +179,7 @@
             height: 30px;
             padding: 10px 20px 10px 70px;
             font-size: 18px;
+
             .receiverImage {
                 width: 30px;
                 height: 30px;
@@ -184,7 +187,7 @@
                 object-fit: cover;
                 position: absolute;
                 left: 30px;
-              }
+            }
 
             &:hover {
                 background-color: rgba(21, 172, 142, 0.4);
@@ -199,11 +202,20 @@
         overflow-y: auto;
         padding: 0;
     }
+
     img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
+    }
+}
+
+.emoji {
+    img {
+        height: 30px;
+        width: 30px;
+        vertical-align: middle;
     }
 }
 
