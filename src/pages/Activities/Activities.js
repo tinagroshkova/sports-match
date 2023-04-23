@@ -9,6 +9,7 @@ import "../../sweetalert2-custom.scss";
 import { ActivityComponent } from '../../components/Activity/Activity';
 import useDebounce from "../../components/Utils/Debounce";
 import LoginModal from '../../components/Modals/LoginModal';
+import sphere from "../../images/homePage/sphere.gif";
 
 const activities = activitiesData.map(activity => new Activity(activity.name, activity.image));
 
@@ -73,6 +74,7 @@ export default function ActivitiesPage() {
                 <h2 className="siteNameTitle">
                     ADD favorite sports to your profile so that other people can find YOU
                 </h2>
+                <img className="sphere" src={sphere} alt="sphere image"></img>
             </div>
             <div className="searchContainer">
                 <label htmlFor="activitySearch"></label>

@@ -18,10 +18,16 @@ export default function PlacesPage() {
     if (debouncedSearchText === "") {
       setItems([]);
     } else {
-      const filteredItems = placesData.filter((item) => item.type.toLowerCase().includes(debouncedSearchText.toLowerCase()));
+      const filteredItems = placesData.filter((item) => {
+        const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
+        const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
+        const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
+        const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
+        return nameMatch || addressMatch || siteMatch || workMatch;
+      });
       setItems(filteredItems);
     }
-  }, [debouncedSearchText]);
+  }, [debouncedSearchText, placesData]);
 
   useEffect(() => {
     if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
@@ -38,7 +44,7 @@ export default function PlacesPage() {
   // const handleSearch = (event) => {
   //   const searchText = event.target.value.toLowerCase();
   //   setSearchText(searchText);
-  
+
   //   if (searchText === "") {
   //     setItems([]);
   //   } else {
@@ -60,13 +66,13 @@ export default function PlacesPage() {
 
       <div className='searchWrapper'>
         <div>
-          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Type a sport" />
+          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Search by name or address" />
         </div>
-        
+
         <div>
           or
           <select className='selectSearch' value={selectedItem ? selectedItem.name : ""} onChange={handleSelect}>
-            <option value="">Choose sport</option>
+            <option value="">Choose sport category</option>
             {sportsTypes.map(sport => <option key={sport} value={sport}>{sport.charAt(0).toUpperCase() + sport.slice(1)}</option>)}
           </select>
         </div>

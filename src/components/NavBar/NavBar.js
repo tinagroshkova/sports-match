@@ -13,6 +13,7 @@ import LoginForm from "../../pages/LoginAndRegister/LoginForm";
 import RegistrationForm from "../../pages/LoginAndRegister/RegistrationForm";
 import { useLocation } from "react-router-dom";
 import userManager from "../../services/UserManager";
+import errorpic from "../../images/errorPage.gif"
 
 function NavBar() {
   const location = useLocation();
@@ -53,9 +54,10 @@ function NavBar() {
         <Route path="/buddySearch" element={<BuddySearchPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/places" element={<PlacesPage />} />
-        <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Спечели си error трофей! Винаги може да се върнеш за още.</h2>
+        <Route path="*" element={<><h2 style={{ color: "white", display: "flex", justifyContent: "center" }}>Page not found. You've taken a wrong turn, but you found a hedgehog.</h2>
           <div className="errorImage">
-            <img src="https://shorturl.at/zBG01" alt="errorImage"></img></div></>} />
+            {/* <img src="https://shorturl.at/zBG01" alt="errorImage"></img></div></>} /> */}
+            <img width={650} src={errorpic} alt="errorImage"></img></div></>} />
       </Routes>
 
       <footer>

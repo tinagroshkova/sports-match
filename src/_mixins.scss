@@ -59,3 +59,8 @@
     border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
     border-radius: 10px;
 }
+
+@mixin sphere {
+    border-radius: 110px;
+    position: absolute;
+}

@@ -1,8 +1,10 @@
 @import "../../variables";
+@import "../../mixins";
 
 
 .homeContainer {
-        height: 100vh;
+    height: 100vh;
+
     .logoutContainer {
         display: none;
     }
@@ -88,4 +90,25 @@
     .logoutBtn {
         display: none;
     }
+
+    // .sphere {
+    //     @include sphere();
+    //     width: 170px;
+    //     top: 10%;
+    //     left: 5%;
+    // }
+    .homeLineCont {
+        display: flex;
+        justify-content: center;
+
+        .homeLine {
+            border-radius: 150px;
+            position: absolute;
+            top: 73%;
+            left: 22%;
+            z-index: -1;
+        }
+    }
+
+
 }

@@ -15,6 +15,7 @@
         gap: 40px;
         margin-top: 50px;
     }
+
     .siteNameTitle {
         color: $almost-white-color;
         position: absolute;
@@ -36,7 +37,7 @@
         width: 150px;
         margin: auto;
         margin-top: 50px;
-        
+
         @media screen and (max-width: 1366px) {
             font-size: 30px;
             width: 12%;
@@ -49,30 +50,39 @@
     #activitySearch {
         @include search();
         color: $almost-white-color;
+
         &::placeholder,
-        &:focus  {
+        &:focus {
             color: $almost-white-color;
             // padding: 10px;
         }
+    }
+
+    .sphere {
+        @include sphere();
+        width: 200px;
+        top: 25%;
+        left: 3%;
+        z-index: -1;
     }
 }
 
 .swal2-title {
     font-size: 24px;
     color: #333;
-  }
-  
-  .swal2-popup {
+}
+
+.swal2-popup {
     background-color: $dark-main-color;
     border-radius: 10px;
-  }
-  
-  .swal2-confirm {
+}
+
+.swal2-confirm {
     background-color: #4caf50;
     color: #fff;
     border: none;
+
     &:hover {
-      background-color: #66bb6a;
+        background-color: #66bb6a;
     }
-  }
-  
+}

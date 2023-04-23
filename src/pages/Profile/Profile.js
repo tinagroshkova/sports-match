@@ -19,16 +19,16 @@ export default function ProfilePage() {
       'Do you really want to remove this activity?',
       'This action cannot be undone.'
     );
-  
+
     if (shouldRemove) {
-        const newUser = userManager.getLoggedInUser();
-        userManager.removeActivity(activity);
-        const updatedUser = { ...newUser };
-        updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
-        setUser(updatedUser);
-      }
-    };
-  
+      const newUser = userManager.getLoggedInUser();
+      userManager.removeActivity(activity);
+      const updatedUser = { ...newUser };
+      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+      setUser(updatedUser);
+    }
+  };
+
 
   const handleEdit = (event) => {
     setUser({
@@ -111,7 +111,7 @@ export default function ProfilePage() {
     <div className="profilePageContainer">
       <div className="profileInfo">
         <div className="profileImage">
-        <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
+          <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
           {isEditing && (
             <span className="changePicture">
               <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
@@ -119,7 +119,7 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="userInfo">
-          <h2>
+          {/* <h2>
             <span className="icon">
               <ion-icon name="accessibility-outline"></ion-icon>{' '}
               {isEditing ? (
@@ -127,6 +127,12 @@ export default function ProfilePage() {
               ) : (
                 user.username
               )}
+            </span>
+          </h2> */}
+          <h2>
+            <span className="icon">
+              <ion-icon name="accessibility-outline"></ion-icon>{' '}
+              {user.username}
             </span>
           </h2>
           <p>
