@@ -40,6 +40,20 @@ const Messages = (props) => {
   }, []);
 
   useEffect(() => {
+    const fetchMessages = () => {
+      setMessages(messagesManager.loadMessagesFromStorage());
+    };
+
+    const intervalId = setInterval(() => {
+      fetchMessages();
+    }, 2000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
     messagesManager.loadMessagesFromStorage();
     // messagesManager.setOnUpdate(handleMessageUpdate);
     setMessages(messagesManager.loadMessagesFromStorage());
@@ -224,19 +238,19 @@ export default Messages;
 //     setMessages(messagesManager.loadMessagesFromStorage());
 //   }, []);
 
-//   useEffect(() => {
-//     const fetchMessages = () => {
-//       setMessages(messagesManager.loadMessagesFromStorage());
-//     };
+  // useEffect(() => {
+  //   const fetchMessages = () => {
+  //     setMessages(messagesManager.loadMessagesFromStorage());
+  //   };
 
-//     const intervalId = setInterval(() => {
-//       fetchMessages();
-//     }, 2000);
+  //   const intervalId = setInterval(() => {
+  //     fetchMessages();
+  //   }, 2000);
 
-//     return () => {
-//       clearInterval(intervalId);
-//     };
-//   }, []);
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, []);
 
 //   const handleSendMessage = (event) => {
 //     event.preventDefault();
