@@ -20,12 +20,12 @@ export default function ProfilePage() {
         const isLoggedIn = await LoginModal();
         if (!isLoggedIn) {
           navigate('/home', { state: { from: '/profile' } });
-          return; // User clicked "No", do not navigate
+          return;
         }
         navigate('/login', { state: { from: '/profile' } });
       }
-      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
-      setProfileImage(userImage); // set the profile image to the retrieved image data
+      const userImage = loggedInUser.image || profileImage;
+      setProfileImage(userImage);
       setUser({ ...loggedInUser });
     };
     checkLoggedInUser();
@@ -45,7 +45,7 @@ export default function ProfilePage() {
       const newUser = userManager.getLoggedInUser();
       userManager.removeActivity(activity);
       const updatedUser = { ...newUser };
-      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity);
       setUser(updatedUser);
     }
   };
@@ -68,7 +68,7 @@ export default function ProfilePage() {
     if (event.target.name === "age") {
       value = Math.max(0, Math.min(value, 100));
     } else if (event.target.name === "city" && !isNaN(value)) {
-      value = ""; // set value to an empty string if it's a number
+      value = "";
     }
     setUser({
       ...user,
@@ -100,7 +100,7 @@ export default function ProfilePage() {
       const loggedInUser = userManager.getLoggedInUser();
       if (loggedInUser) {
         loggedInUser.image = reader.result;
-        userManager.saveUserData(); // save the updated user data to localStorage
+        userManager.saveUserData();
       }
       setUser({ ...loggedInUser });
     };
@@ -111,7 +111,7 @@ export default function ProfilePage() {
       const loggedInUser = userManager.getLoggedInUser();
       if (loggedInUser) {
         loggedInUser.image = "";
-        userManager.saveUserData(); // save the updated user data to localStorage
+        userManager.saveUserData();
       }
       setUser({ ...loggedInUser });
     }
@@ -162,7 +162,7 @@ export default function ProfilePage() {
               <ion-icon name="transgender-outline"></ion-icon>{' '}
             </span>
             {isEditing ? (
-              <select name="gender" value={user.gender} onChange={handleEdit}>
+              <select style={{ cursor: 'pointer' }} name="gender" value={user.gender} onChange={handleEdit}>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
