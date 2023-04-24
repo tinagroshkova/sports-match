@@ -55,7 +55,7 @@ $color_1: #fff;
         bottom: -2px;
         background: #fff;
         z-index: -1;
-        background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+        background: linear-gradient(235deg, $purple-color, #010615, #00bcd4);
     }
 
     &:after {
@@ -68,20 +68,12 @@ $color_1: #fff;
         background: #fff;
         z-index: -2;
         filter: blur(40px);
-        background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+        background: linear-gradient(235deg, $purple-color, #010615, #00bcd4);
     }
 
     &:nth-child(2)before {
         background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
     }
-
-    // &:nth-child(2)after {
-    //     background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
-    // }
-
-    // &:nth-child(3)before {
-    //     background: linear-gradient(235deg, #772aff, #010615, #2196f3);
-    // }
 
     .content {
         position: absolute;
@@ -89,7 +81,7 @@ $color_1: #fff;
         left: 10px;
         right: 10px;
         bottom: 10px;
-        height: 90px;
+        height: 150px;
         background: rgba(0, 0, 0, 0.4);
         display: flex;
         justify-content: center;
@@ -99,17 +91,15 @@ $color_1: #fff;
         transition: 0.5s;
 
         h3 {
-            font-size: 30px;
-            color: $color_1;
-            font-weight: 500;
-            line-height: 20px;
-            letter-spacing: 1px;
-
+            font-size: 24px;
+            color: $almost-white-color;
+            line-height: 30px;
+            letter-spacing: 2px;
             span {
-                font-size: 26px;
-                color: $color_1;
-                font-weight: 200;
-                letter-spacing: 2px;
+                font-size: 18px;
+                font-weight: 300;
+                padding: 10px;
+                color: $almost-white-color
             }
         }
 
@@ -127,202 +117,8 @@ $color_1: #fff;
 
             &:hover {
                 background-color: $medium-main-color;
+                color: $almost-white-color;
             }
         }
     }
 }
-
-// .buddyCard {
-//     width: 419px;
-//     margin-top: 30px;
-//     height: 500px;
-//     box-shadow: -1rem 0 3rem #000;
-//     transition: 0.4s ease-out;
-//     border-width: 6px;
-//     border-style: solid;
-//     border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
-
-//     &:hover {
-//         transform: translateY(-10px);
-//         transition: 0.4s ease-out;
-//     }
-
-//     img {
-//         height: 300px;
-//         width: 400px;
-//         object-fit: cover;
-//         padding: 5px;
-//         background: transparent;
-//         border: 2px solid rgba(255, 255, 255, 0.5);
-//         justify-content: center;
-//         align-items: center;
-//     }
-
-//     .inner {
-//         color: white;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         align-items: center;
-//     }
-
-//     h3,
-//     img {
-//         display: flex;
-//         justify-content: center;
-//         font-size: 20px;
-//         margin: auto;
-//     }
-
-//     p {
-//         font-size: 16px;
-//         text-align: center;
-//         padding: 0 10px;
-//     }
-// }
-
-// .chatBtn {
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// margin: auto;
-
-// @include button();
-// width: 100px;
-// margin-bottom: 30px;
-// background-color: $contrast-transperant;
-// color: $almost-white-color;
-
-// &:hover {
-//     background-color: $medium-main-color;
-// }
-// }
-
-// .box {
-//     position: relative;
-//     width: 350px;
-//     height: 350px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     margin: 30px;
-//     transform: 0.5s;
-//     background: #060c21;
-// }
-
-// .box:hover {
-//     height: 490px;
-// }
-
-// .box .imgBx {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 355px;
-//     height: 355px;
-//     object-fit: cover;
-//     padding: 10px;
-//     box-sizing: border-box;
-// }
-
-// .box .imgBx img {
-//     max-width: 100%;
-//     opacity: 0.1;
-//     transition: 0.5s;
-// }
-
-// .box:hover .imgBx img {
-//     opacity: 1;
-// }
-
-// .box:before {
-//     content: "";
-//     position: absolute;
-//     top: -2px;
-//     left: -2px;
-//     right: -2px;
-//     bottom: -2px;
-//     background: #fff;
-//     z-index: -1;
-// }
-
-// .box:after {
-//     content: "";
-//     position: absolute;
-//     top: -2px;
-//     left: -2px;
-//     right: -2px;
-//     bottom: -2px;
-//     background: #fff;
-//     z-index: -2;
-//     filter: blur(40px);
-// }
-
-// .box:before,
-// .box:after {
-//     background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
-// }
-
-// .box:nth-child(2)before,
-// .box:nth-child(2)after {
-//     background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
-// }
-
-// .box:nth-child(3)before,
-// .box:nth-child(3)after {
-//     background: linear-gradient(235deg, #772aff, #010615, #2196f3);
-// }
-
-// .box .content {
-//     position: absolute;
-//     bottom: 0;
-//     left: 10px;
-//     right: 10px;
-//     bottom: 10px;
-//     height: 90px;
-//     background: rgba(0, 0, 0, 0.4);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-//     opacity: 0;
-//     transition: 0.5s;
-// }
-
-// .box:hover .content {
-//     opacity: 1;
-// }
-
-// .box .content h3 {
-//     font-size: 30px;
-//     color: #fff;
-//     font-weight: 500;
-//     line-height: 20px;
-//     letter-spacing: 1px;
-
-// }
-
-// .box .content h3 span {
-//     font-size: 26px;
-//     color: #fff;
-//     font-weight: 200;
-//     letter-spacing: 2px;
-
-// }
-
-// .chatBtn {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     margin: auto;
-
-//     @include button();
-//     width: 100px;
-//     margin-bottom: 30px;
-//     background-color: $contrast-transperant;
-//     color: $almost-white-color;
-
-//     &:hover {
-//         background-color: $medium-main-color;
-//     }
-// }

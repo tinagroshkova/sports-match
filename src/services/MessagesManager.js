@@ -55,7 +55,6 @@ class MessagesManager {
       const newMessages = storedMessages.filter(message => !this.messages.some(m => new Date(m.timestamp).toString() === new Date(message.timestamp).toString()));
       if (newMessages.length > 0) {
         this.messages.push(...newMessages.map(m => new Message(m.text, new Date(m.timestamp), m.sender, m.receiver)));
-        // this.onUpdateCallbacks.forEach(callback => callback());
       }
     }
   }
