@@ -69,7 +69,7 @@
             width: 100%;
             height: 100%;
             // background: linear-gradient(45deg, $dark-main-color, $medium-main-color, $contrast-color, $light-main-color, $almost-white-color);
-            background: linear-gradient(70deg, coral, $dark-main-color, $contrast-color, $light-main-color, $almost-white-color, coral);
+            background: linear-gradient(70deg, $purple-color, $dark-main-color, $contrast-color, $light-main-color, $almost-white-color);
             background-size: 400%;
             opacity: 0;
             transform: 0.5s;
@@ -84,8 +84,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            // background: linear-gradient(45deg, #fb0094, #00f, #0f0, #ff0, #f00, #fb0094, #00f, #0f0, #ff0, #f00);
-            background: linear-gradient(70deg, coral, $dark-main-color, $contrast-color, $light-main-color, $almost-white-color, coral);
+            background: linear-gradient(70deg, $purple-color, $dark-main-color, $contrast-color, $light-main-color, $almost-white-color);
             background-size: 400%;
             opacity: 0;
             filter: blur(20px);

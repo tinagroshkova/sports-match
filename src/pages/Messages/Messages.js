@@ -78,12 +78,9 @@ const Messages = (props) => {
     const messageText = event.target.message.value;
     const message = new Message(messageText, new Date(), loggedInUser.username, currentReceiver);
   
-    const currentChatState = JSON.parse(localStorage.getItem('chatState')) || [];
-    currentChatState.push(message);
-    localStorage.setItem('chatState', JSON.stringify(currentChatState));
-    
+    messagesManager.addMessage(message);
     event.target.reset();
-    setMessages(currentChatState);
+    setMessages(messagesManager.loadMessagesFromStorage());
   };
 
   const hasUnreadMessages = (receiver) => {
@@ -98,9 +95,7 @@ const Messages = (props) => {
   const handleConversationClick = (receiver) => {
     setCurrentReceiver(receiver);
   
-    const currentChatState = JSON.parse(localStorage.getItem('chatState')) || [];
-  
-    const updatedChatState = currentChatState.map((message) => {
+    const updatedMessages = messages.map((message) => {
       if (
         message.sender === receiver &&
         message.receiver === loggedInUser?.username &&
@@ -111,8 +106,8 @@ const Messages = (props) => {
       return message;
     });
   
-    localStorage.setItem('chatState', JSON.stringify(updatedChatState));
-    setMessages(updatedChatState);
+    messagesManager.updateMessagesInStorage(updatedMessages);
+    setMessages(updatedMessages);
   };
 
   const formatDate = (date) => {
@@ -164,17 +159,7 @@ const Messages = (props) => {
               />
               {receiver}
               {hasUnreadMessages(receiver) && (
-                <span
-                  className="unreadIndicator"
-                  style={{
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "red",
-                    display: "inline-block",
-                    marginLeft: "5px",
-                  }}
-                ></span>
+                <span className="unreadIndicator"></span>
               )}
             </li>
           ))}
