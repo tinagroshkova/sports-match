@@ -41,21 +41,7 @@ export default function PlacesPage() {
   const handleSearch = (event) => {
     setSearchText(event.target.value);
   };
-  // const handleSearch = (event) => {
-  //   const searchText = event.target.value.toLowerCase();
-  //   setSearchText(searchText);
 
-  //   if (searchText === "") {
-  //     setItems([]);
-  //   } else {
-  //     const filteredItems = placesData.filter((item) => {
-  //       return Object.values(item).some(value =>
-  //         value.toString().toLowerCase().includes(searchText)
-  //       );
-  //     });
-  //     setItems(filteredItems);
-  //   }
-  // };
   const handleSelect = (event) => {
     setSelectedItem(event.target.value);
   };
