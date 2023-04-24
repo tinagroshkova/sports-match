@@ -64,9 +64,9 @@ export default function HomePage() {
                         />
                     ))}
                 </div>
-                <div className="homeLineCont">
+                {/* <div className="homeLineCont">
                     <img className="homeLine" src={lineHome} alt=""></img>
-                </div>
+                </div> */}
             </div>
         </div>
     )

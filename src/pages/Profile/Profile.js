@@ -111,9 +111,9 @@ export default function ProfilePage() {
         <div className="profileImage">
           <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
           {isEditing && (
-            <div class="file-input-container">
+            <div className="file-input-container">
               <input type="file" name="image" id="file-input" className="file-input" onChange={handleImageChange} accept="image/*" />
-              <label for="file-input" className="file-input-label">Choose File</label>
+              <label htmlFor="file-input" className="file-input-label">Choose File</label>
             </div>
 
           )}
@@ -131,7 +131,7 @@ export default function ProfilePage() {
               {isEditing ? (
                 <input style={{ position: "relative" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
               ) : (
-                <>{typeof user.age === 'number' ? user.age : ''} y/o</>
+                <>{typeof user.age === 'number' ? user.age : ''}</>
               )}
             </span>
           </p>

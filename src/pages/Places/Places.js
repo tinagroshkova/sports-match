@@ -24,31 +24,6 @@ export default function PlacesPage() {
     setItems(filteredItems);
   }, [debouncedSearchText, debouncedSelectedItem]);
 
-  // useEffect(() => {
-  //   if (debouncedSearchText === "") {
-  //     setItems([]);
-  //   } else {
-  //     const filteredItems = placesData.filter((item) => {
-  //       // const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // return nameMatch || addressMatch || siteMatch || workMatch;
-  //       return addressMatch;
-  //     });
-  //     setItems(filteredItems);
-  //   }
-  // }, [debouncedSearchText, placesData]);
-
-  // useEffect(() => {
-  //   if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
-  //     setItems([]);
-  //   } else {
-  //     const filteredItems = placesData.filter((item) => item.type === debouncedSelectedItem);
-  //     setItems(filteredItems);
-  //   }
-  // }, [debouncedSelectedItem]);
-
   const handleSearch = (event) => {
     setSearchText(event.target.value);
   };
@@ -74,7 +49,8 @@ export default function PlacesPage() {
           </select>
         </div>
       </div>
-      {items.length > 0 && (
+
+      {items.length > 0 ? (
         <div className='sportsPageContainer'>
           {items.map((item) => (
             <div key={item.phone}>
@@ -90,7 +66,36 @@ export default function PlacesPage() {
             </div>
           ))}
         </div>
+      ) : (
+        <div style={{ textAlign: "center", fontSize: 28 }}>No results</div>
       )}
     </div>
   );
 }
+
+  // useEffect(() => {
+  //   if (debouncedSearchText === "") {
+  //     setItems([]);
+  //   } else {
+  //     const filteredItems = placesData.filter((item) => {
+  //       // const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // return nameMatch || addressMatch || siteMatch || workMatch;
+  //       return addressMatch;
+  //     });
+  //     setItems(filteredItems);
+  //   }
+  // }, [debouncedSearchText, placesData]);
+
+  // useEffect(() => {
+  //   if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
+  //     setItems([]);
+  //   } else {
+  //     const filteredItems = placesData.filter((item) => item.type === debouncedSelectedItem);
+  //     setItems(filteredItems);
+  //   }
+  // }, [debouncedSelectedItem]);
+
+
