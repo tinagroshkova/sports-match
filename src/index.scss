@@ -8,17 +8,14 @@ body {
   background-color: rgb(205, 207, 208);
   color: $almost-white-color;
 
-  /* Background Video */
   background: #000000;
   background-image: url(images/gradient2.jpg);
-  /* No fallback image needed */
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
-  overflow: hidden;
+  overflow: auto;
 }
 
-/* Set the video element to fill the background */
 #background-video {
   position: fixed;
   top: 50%;
@@ -50,7 +47,7 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(110, 116, 113, 0.3);
   border-radius: 4px;
 }
 
