@@ -1,14 +1,12 @@
 @import "../../variables";
 @import "../../mixins";
 
-
 .profilePageContainer {
     width: 80%;
     margin: auto;
     margin-top: 100px;
     text-align: center;
     height: calc(100vh - 430px);
-
 
     .profileInfo {
         // position: relative;
@@ -20,7 +18,6 @@
         height: 400px;
         box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.5);
         @include gradientBorder();
-      
 
         .userInfo {
             width: 500px;
@@ -40,9 +37,9 @@
         height: 400px;
         margin: 0;
         object-fit: cover;
-        
+
     }
-    
+
 
     input[type=file] {
         border: none;
@@ -93,14 +90,41 @@
         margin: 0 10px;
         font-size: 16px;
         font-family: inherit;
+
         &::placeholder {
             color: $almost-white-color;
         }
     }
-    
+
     #file-upload-button {
         border-radius: 40px; // za6to ne raboti
     }
-    
-    
+
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // input[type=number] {
+    //     -moz-appearance: textfield;
+    // }
+
+    .file-input {
+        display: none;
+    }
+
+    .file-input-label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $contrast-transperant;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .file-input-label:hover {
+        background-color: #018613;
+    }
 }
