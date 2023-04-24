@@ -107,7 +107,7 @@ class UserManager {
           this.saveUserData();
         }
         resolve();
-      }, 1000); 
+      }, 500); 
     });
   }
 
@@ -120,7 +120,7 @@ class UserManager {
           this.saveUserData();
         }
         resolve();
-      }, 1000); 
+      }, 500); 
     });
   }
 }
