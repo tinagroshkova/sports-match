@@ -33,7 +33,6 @@ function LoginForm() {
     try {
       await handleLogin();
       navigate("/home");
-      // window.location.reload(); // Refresh the page to reflect the login state
     } catch (err) {
       setErrors({ general: err.message });
     }
@@ -88,8 +87,6 @@ function LoginForm() {
             <label>Password</label>
           </div>
 
-          {/* <Form.Control.Feedback className="text-danger" type="invalid">{errors.username}</Form.Control.Feedback>
-          <Form.Control.Feedback className="text-danger" type="invalid">{errors.password}</Form.Control.Feedback> */}
           <Form.Control.Feedback className="text-danger" type="invalid">{errors.general}</Form.Control.Feedback>
 
           <span className="btnHolder">

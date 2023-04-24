@@ -23,10 +23,10 @@ const Messages = (props) => {
       if (!loggedInUser) {
         const isLoggedIn = await LoginModal();
         if (!isLoggedIn) {
-          navigate('/login');
+          navigate('/home');
           return;
         } else {
-          // navigate('/login', { state: { from: '/profile' } });
+          navigate('/login', { state: { from: '/profile' } });
           return;
         }
       }

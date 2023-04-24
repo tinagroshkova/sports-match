@@ -106,7 +106,7 @@ const RegistrationForm = () => {
       } else {
         try {
           await userManager.registerUser(username, password);
-          setAlert({ show: true, variant: "success", message: "Registration successful! Redirecting to login." });
+          setAlert({ show: true, variant: "success", message: "Registration successful!" });
           setTimeout(() => {
             navigate("/login");
           }, 1000);
