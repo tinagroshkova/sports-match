@@ -17,6 +17,7 @@
         color: $almost-white-color;
         width: 15%;
         margin-left: 20%;
+        text-shadow: $strong-text-shadow;
 
         @media screen and (max-width: 1366px) {
             font-size: 4.5em;
@@ -33,6 +34,7 @@
         margin-top: -2%;
         font-style: italic;
         letter-spacing: 0.05em;
+        text-shadow: $strong-text-shadow;
 
         @media screen and (max-width: 1366px) {
             font-size: 1.1em;

@@ -12,9 +12,11 @@
     font-size: 17px;
     box-shadow: $box-shadow;
     cursor: pointer;
+    text-shadow: $text-shadow;
 
     &:hover {
-        background-color: $super-contrast;
+        background-color: $purple-color;
+        color: $dark-main-color;
     }
 }
 

@@ -19,8 +19,6 @@ class MessagesManager {
     this.startCheckingStorage();
   }
 
-
-
   loadMessagesFromStorage() {
     const storedMessages = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY)) || [];
     if (Array.isArray(storedMessages)) {
@@ -77,7 +75,8 @@ class MessagesManager {
     this.intervalId = setInterval(() => this.checkStorage(), 5000);
   }
   updateMessagesInStorage(updatedMessages) {
-    localStorage.setItem("messages", JSON.stringify(updatedMessages));
+    this.messages = updatedMessages;
+    this.saveMessagesToStorage();
   };
 }
 

@@ -50,19 +50,6 @@ export default function ProfilePage() {
     }
   };
 
-  // const handleEdit = (event) => {
-  //   setUser({
-  //     ...user,
-  //     [event.target.name]:
-  //       event.target.type === "number"
-  //         ? parseInt(event.target.value)
-  //         : event.target.value.trim(),
-  //   });
-  //   if (event.target.name === "gender") {
-  //     setUser({ ...user, gender: event.target.value });
-  //   }
-  // };
-
   const handleEdit = (event) => {
     let value = event.target.value;
     if (event.target.name === "age") {
@@ -125,8 +112,8 @@ export default function ProfilePage() {
           <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
           {isEditing && (
             <div class="file-input-container">
-              <input type="file" name="image" id="file-input" class="file-input" onChange={handleImageChange} accept="image/*" />
-              <label for="file-input" class="file-input-label">Choose File</label>
+              <input type="file" name="image" id="file-input" className="file-input" onChange={handleImageChange} accept="image/*" />
+              <label for="file-input" className="file-input-label">Choose File</label>
             </div>
 
           )}

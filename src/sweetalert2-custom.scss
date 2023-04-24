@@ -12,9 +12,13 @@
 }
 
 .swal2-confirm {
-    background-color: $contrast-color !important;
-    border: none;
+    border: none !important;
+    background-color: $purple-color !important;
     &:hover {
-        background-color: $medium-main-color;
+        background-color: $medium-main-color !important;
     }
+}
+
+.swal2-cancel {
+    background-color: grey !important;
 }

@@ -48,10 +48,10 @@
         width: 100px;
         color: $almost-white-color;
         background-color: $contrast-transperant !important;
+        text-shadow: 1px 1px 1px black;
 
         &:hover {
-            color: $contrast-transperant;
-            text-shadow: 1px 1px 1px black;
+            background-color: $purple-color !important;
         }
     }
 
@@ -94,9 +94,6 @@
         }
     }
 
-    #file-upload-button {
-        border-radius: 40px; // za6to ne raboti
-    }
 
     input[type=number]::-webkit-outer-spin-button,
     input[type=number]::-webkit-inner-spin-button {
@@ -104,25 +101,20 @@
         margin: 0;
     }
 
-    // input[type=number] {
-    //     -moz-appearance: textfield;
-    // }
-
     .file-input {
         display: none;
     }
 
     .file-input-label {
-        display: inline-block;
-        padding: 10px 20px;
+        @include button();
+        padding: 10px;
         background-color: $contrast-transperant;
-        border-radius: 5px;
-        color: #fff;
+        color: $almost-white-color;
         font-weight: bold;
         cursor: pointer;
     }
 
     .file-input-label:hover {
-        background-color: #018613;
+        background-color: $purple-color;
     }
 }
