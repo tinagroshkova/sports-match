@@ -15,28 +15,39 @@ export default function PlacesPage() {
   const debouncedSelectedItem = useDebounce(selectedItem, 300);
 
   useEffect(() => {
-    if (debouncedSearchText === "") {
-      setItems([]);
-    } else {
-      const filteredItems = placesData.filter((item) => {
-        const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
-        const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
-        const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
-        const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
-        return nameMatch || addressMatch || siteMatch || workMatch;
-      });
-      setItems(filteredItems);
-    }
-  }, [debouncedSearchText, placesData]);
+    const filteredItems = placesData.filter((item) => {
+      const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
+      const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
+      const typeMatch = item.type === debouncedSelectedItem;
+      return (nameMatch || addressMatch) && (selectedItem === null || typeMatch);
+    });
+    setItems(filteredItems);
+  }, [debouncedSearchText, debouncedSelectedItem]);
 
-  useEffect(() => {
-    if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
-      setItems([]);
-    } else {
-      const filteredItems = placesData.filter((item) => item.type === debouncedSelectedItem);
-      setItems(filteredItems);
-    }
-  }, [debouncedSelectedItem]);
+  // useEffect(() => {
+  //   if (debouncedSearchText === "") {
+  //     setItems([]);
+  //   } else {
+  //     const filteredItems = placesData.filter((item) => {
+  //       // const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
+  //       // return nameMatch || addressMatch || siteMatch || workMatch;
+  //       return addressMatch;
+  //     });
+  //     setItems(filteredItems);
+  //   }
+  // }, [debouncedSearchText, placesData]);
+
+  // useEffect(() => {
+  //   if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
+  //     setItems([]);
+  //   } else {
+  //     const filteredItems = placesData.filter((item) => item.type === debouncedSelectedItem);
+  //     setItems(filteredItems);
+  //   }
+  // }, [debouncedSelectedItem]);
 
   const handleSearch = (event) => {
     setSearchText(event.target.value);
@@ -52,11 +63,11 @@ export default function PlacesPage() {
 
       <div className='searchWrapper'>
         <div>
-          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Search by name or address" />
+          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Search by address" />
         </div>
 
         <div>
-          or
+          or / and
           <select className='selectSearch' value={selectedItem ? selectedItem.name : ""} onChange={handleSelect}>
             <option value="">Choose sport category</option>
             {sportsTypes.map(sport => <option key={sport} value={sport}>{sport.charAt(0).toUpperCase() + sport.slice(1)}</option>)}

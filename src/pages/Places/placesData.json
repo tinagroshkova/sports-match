@@ -30,7 +30,7 @@
         "image": "https://lh3.googleusercontent.com/p/AF1QipMOUpYWvPNLynsaDfhafrSmd-INeU52GQ5QsPt9=s1360-w1360-h1020",
         "name": "Спортна зала Триадица",
         "site": "www.example.com",
-        "address": "ул. “Метличина поляна” № 14",
+        "address": "кв. Дружба",
         "phone": "0884 951 868",
         "workingHours": "Понеделник - неделя: 06:00 - 23:00",
         "type": "basketball"
@@ -57,7 +57,7 @@
         "image": "https://playground.bg/files/images/535/resize_648_99999.jpg",
         "name": "Зала за билярд",
         "site": "www.example.com",
-        "address": "Адрес",
+        "address": "кв. Дружба",
         "phone": "088888888882",
         "workingHours": "Понеделник - неделя: 06:00 - 23:00",
         "type": "billiards"

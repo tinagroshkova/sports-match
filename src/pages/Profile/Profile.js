@@ -20,12 +20,12 @@ export default function ProfilePage() {
         const isLoggedIn = await LoginModal();
         if (!isLoggedIn) {
           navigate('/home', { state: { from: '/profile' } });
-          return; // User clicked "No", do not navigate
+          return;
         }
         navigate('/login', { state: { from: '/profile' } });
       }
-      const userImage = loggedInUser.image || profileImage; // check if the user has an image and use it, otherwise use the default image
-      setProfileImage(userImage); // set the profile image to the retrieved image data
+      const userImage = loggedInUser.image || profileImage;
+      setProfileImage(userImage);
       setUser({ ...loggedInUser });
     };
     checkLoggedInUser();
@@ -45,32 +45,50 @@ export default function ProfilePage() {
       const newUser = userManager.getLoggedInUser();
       userManager.removeActivity(activity);
       const updatedUser = { ...newUser };
-      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity); // remove the activity from the updated user object
+      updatedUser.activities = updatedUser.activities.filter((a) => a !== activity);
       setUser(updatedUser);
     }
   };
 
+  // const handleEdit = (event) => {
+  //   setUser({
+  //     ...user,
+  //     [event.target.name]:
+  //       event.target.type === "number"
+  //         ? parseInt(event.target.value)
+  //         : event.target.value.trim(),
+  //   });
+  //   if (event.target.name === "gender") {
+  //     setUser({ ...user, gender: event.target.value });
+  //   }
+  // };
+
   const handleEdit = (event) => {
+    let value = event.target.value;
+    if (event.target.name === "age") {
+      value = Math.max(0, Math.min(value, 100));
+    } else if (event.target.name === "city" && !isNaN(value)) {
+      value = "";
+    }
     setUser({
       ...user,
       [event.target.name]:
-        event.target.type === "number"
-          ? parseInt(event.target.value)
-          : event.target.value.trim(),
+        event.target.type === "number" ? parseInt(value) : value.trim(),
     });
     if (event.target.name === "gender") {
-      setUser({ ...user, gender: event.target.value });
+      setUser({ ...user, gender: value });
     }
   };
 
   const handleSave = () => {
-    if (user.username.trim() === "" || user.username.trim().length < 3) {
-      alert("Username should have at least three characters");
-      return;
-    }
-    if (user.age < 0) {
-      setUser({ ...user, age: 0 });
-    }
+    // if (user.username.trim() === "" || user.username.trim().length < 3) {
+    //   alert("Username should have at least three characters");
+    //   return;
+    // }
+    // if (user.age < 0) {
+    //   setUser({ ...user, age: 0 });
+    // }
+
     userManager.setLoggedInUser(user);
     setIsEditing(false);
   };
@@ -83,7 +101,7 @@ export default function ProfilePage() {
       const loggedInUser = userManager.getLoggedInUser();
       if (loggedInUser) {
         loggedInUser.image = reader.result;
-        userManager.saveUserData(); // save the updated user data to localStorage
+        userManager.saveUserData();
       }
       setUser({ ...loggedInUser });
     };
@@ -94,7 +112,7 @@ export default function ProfilePage() {
       const loggedInUser = userManager.getLoggedInUser();
       if (loggedInUser) {
         loggedInUser.image = "";
-        userManager.saveUserData(); // save the updated user data to localStorage
+        userManager.saveUserData();
       }
       setUser({ ...loggedInUser });
     }
@@ -106,9 +124,11 @@ export default function ProfilePage() {
         <div className="profileImage">
           <img src={user && user.profilePic ? user.profilePic : profileImage} alt={user && user.username ? user.username : ''} />
           {isEditing && (
-            <span className="changePicture">
-              <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
-            </span>
+            <div class="file-input-container">
+              <input type="file" name="image" id="file-input" class="file-input" onChange={handleImageChange} accept="image/*" />
+              <label for="file-input" class="file-input-label">Choose File</label>
+            </div>
+
           )}
         </div>
         <div className="userInfo">
@@ -122,9 +142,9 @@ export default function ProfilePage() {
             <span className="icon">
               <ion-icon name="calendar-outline"></ion-icon>{' '}
               {isEditing ? (
-                <input style={{ position: "relative", left: "5px" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
+                <input style={{ position: "relative" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
               ) : (
-                typeof user.age === 'number' ? user.age : ''
+                <>{typeof user.age === 'number' ? user.age : ''} y/o</>
               )}
             </span>
           </p>
@@ -143,7 +163,7 @@ export default function ProfilePage() {
               <ion-icon name="transgender-outline"></ion-icon>{' '}
             </span>
             {isEditing ? (
-              <select name="gender" value={user.gender} onChange={handleEdit}>
+              <select style={{ cursor: 'pointer' }} name="gender" value={user.gender} onChange={handleEdit}>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
