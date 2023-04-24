@@ -170,7 +170,7 @@ export default function ProfilePage() {
             ))}
           </div>
         ) : (
-          <p>You haven't added any activities yet.</p>
+          <p>No activities added yet</p>
         )}
       </div>
     </div >

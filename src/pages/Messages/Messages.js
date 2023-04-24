@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import userManager from "../../services/UserManager";
 import { Message, messagesManager } from "../../services/MessagesManager";
@@ -17,18 +16,21 @@ const Messages = (props) => {
   const [currentReceiver, setCurrentReceiver] = useState(location.state?.receiver || props.location?.state?.receiver || "");
   const messageListRef = useRef(null);
   const loggedInUser = userManager.getLoggedInUser();
+  const [updatedImage, setUpdatedImage] = useState(null);
 
   useEffect(() => {
     const checkLoggedInUser = async () => {
       if (!loggedInUser) {
         const isLoggedIn = await LoginModal();
         if (!isLoggedIn) {
-          navigate('/home', { state: { from: '/profile' } });
-          return; // User clicked "No", do not navigate
+          navigate('/login');
+          return;
+        } else {
+          // navigate('/login', { state: { from: '/profile' } });
+          return;
         }
-        navigate('/login', { state: { from: '/messages' } });
       }
-    };
+    }
     checkLoggedInUser();
   }, []);
 
@@ -50,10 +52,10 @@ const Messages = (props) => {
 
   useEffect(() => {
     messagesManager.loadMessagesFromStorage();
+    // messagesManager.setOnUpdate(handleMessageUpdate);
     setMessages(messagesManager.loadMessagesFromStorage());
   }, []);
 
-  
   useEffect(() => {
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
@@ -69,11 +71,10 @@ const Messages = (props) => {
     setMessages(messagesManager.loadMessagesFromStorage());
   };
 
-  const getReceiverImage = (receiver) => {
-    const receiverObj = userManager.users.find((user) => user.username === receiver);
-    return receiverObj ? receiverObj.getImage() : userImage;
-  };
 
+  const handleConversationClick = (receiver) => {
+    setCurrentReceiver(receiver);
+  }
   const formatDate = (date) => {
     const currentDate = new Date();
     const messageDate = new Date(date);
@@ -99,13 +100,14 @@ const Messages = (props) => {
 
     return dateString + timeString;
   }
-
-  const handleConversationClick = (receiver) => {
-    setCurrentReceiver(receiver);
-  }
   const getSenderImage = (sender) => {
     const senderObj = userManager.users.find((user) => user.username === sender);
-    return senderObj ? senderObj.getImage() : userImage;
+    return updatedImage || (senderObj ? senderObj.getImage() : userImage);
+  };
+
+  const getReceiverImage = (receiver) => {
+    const receiverObj = userManager.users.find((user) => user.username === receiver);
+    return receiverObj && receiverObj.getImage() ? receiverObj.getImage() : userImage;
   };
 
   return (
@@ -127,7 +129,16 @@ const Messages = (props) => {
       </div>
       <div className="chatContainer">
         {loggedInUser && (
-          <h1>{currentReceiver ? currentReceiver : "You have no messages yet from buddy match"}</h1>
+          <div className="receiverHeader">
+            <h1>{currentReceiver ? currentReceiver : "Go back and find a buddy"}</h1>
+            {currentReceiver && (
+              <img
+                src={getReceiverImage(currentReceiver)}
+                alt={currentReceiver}
+                className="receiverImage"
+              />
+            )}
+          </div>
         )}
         <div className="messagesWrapper">
           <ul className="messagesList" ref={messageListRef}>
@@ -138,12 +149,12 @@ const Messages = (props) => {
                   (message.sender === currentReceiver && message.receiver === loggedInUser?.username)
               )
               .map((message, index) => (
-                <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} getSenderImage={getSenderImage} />
+                <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} getSenderImage={getSenderImage} getReceiverImage={getReceiverImage} setUpdatedImage={setUpdatedImage} />
               ))}
           </ul>
           <form className="messagesForm" onSubmit={handleSendMessage}>
-            <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
-            <button type="submit">Send</button>
+            <input type="text" name="message" placeholder="Type a message..." autoComplete="off" disabled={!currentReceiver} />
+            <button type="submit" disabled={!currentReceiver}>Send</button>
           </form>
         </div>
       </div>
@@ -151,7 +162,7 @@ const Messages = (props) => {
   );
 };
 
-const MessageComponent = ({ message, loggedInUser, formatDate, getSenderImage }) => {
+const MessageComponent = ({ message, loggedInUser, formatDate, getReceiverImage, getSenderImage }) => {
   const isSentByLoggedInUser = message.sender === loggedInUser?.username;
   const sender = userManager.users.find((user) => user.username === message.sender);
   const timestamp = formatDate(message.timestamp);
@@ -171,7 +182,7 @@ const MessageComponent = ({ message, loggedInUser, formatDate, getSenderImage })
           <div className="senderInfo">
             <img
               src={senderImage ? senderImage : userImage}
-              alt={sender && sender.username ? sender.username : ''}
+              alt={message.sender}
               className="senderImage"
             />
           </div>
