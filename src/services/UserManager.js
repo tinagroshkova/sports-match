@@ -22,7 +22,7 @@ class UserManager {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     this.users = users.map((user) => {
       const newUser = new User(user.username, user.password);
-      newUser.id = user.id; 
+      newUser.id = user.id;
       newUser.image = user.image || "";
       newUser.age = user.age || "";
       newUser.city = user.city || "";
@@ -94,7 +94,21 @@ class UserManager {
   }
 
   saveUserData() {
-    localStorage.setItem("users", JSON.stringify(this.users));
+    const loggedInUser = this.getLoggedInUser();
+    if (loggedInUser) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const updatedUsers = users.map((user) => {
+        if (user.username === loggedInUser.username) {
+          user.image = loggedInUser.image || user.image;
+          user.age = loggedInUser.age || user.age;
+          user.city = loggedInUser.city || user.city;
+          user.gender = loggedInUser.gender || user.gender;
+          user.activities = loggedInUser.activities || user.activities;
+        }
+        return user;
+      });
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+    }
   }
 
   addActivity(activity) {
@@ -140,7 +154,7 @@ export default userManager;
 //     const users = JSON.parse(localStorage.getItem("users")) || [];
 //     this.users = users.map((user) => {
 //       const newUser = new User(user.username, user.password);
-//       newUser.id = user.id; 
+//       newUser.id = user.id;
 //       newUser.image = user.image || "";
 //       newUser.age = user.age || "";
 //       newUser.city = user.city || "";
@@ -224,7 +238,7 @@ export default userManager;
 //           this.saveUserData();
 //         }
 //         resolve();
-//       }, 500); 
+//       }, 500);
 //     });
 //   }
 
@@ -237,7 +251,7 @@ export default userManager;
 //           this.saveUserData();
 //         }
 //         resolve();
-//       }, 500); 
+//       }, 500);
 //     });
 //   }
 // }
