@@ -17,6 +17,7 @@ const Messages = (props) => {
   const messageListRef = useRef(null);
   const loggedInUser = userManager.getLoggedInUser();
   const [updatedImage, setUpdatedImage] = useState(null);
+  const [shouldUpdateMessages, setShouldUpdateMessages] = useState(false);
 
   useEffect(() => {
     const checkLoggedInUser = async () => {
@@ -34,20 +35,22 @@ const Messages = (props) => {
     checkLoggedInUser();
   }, []);
 
-
   useEffect(() => {
     const fetchMessages = () => {
-      setMessages(messagesManager.loadMessagesFromStorage());
+      const loadedMessages = JSON.parse(localStorage.getItem('chatState')) || [];
+      if (JSON.stringify(loadedMessages) !== JSON.stringify(messages)) {
+        setMessages(loadedMessages);
+      }
     };
-
+  
     const intervalId = setInterval(() => {
       fetchMessages();
     }, 2000);
-
+  
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [messages]);
 
 
   useEffect(() => {
@@ -57,24 +60,61 @@ const Messages = (props) => {
   }, []);
 
   useEffect(() => {
+    if (shouldUpdateMessages) {
+      setMessages(messagesManager.loadMessagesFromStorage());
+      setShouldUpdateMessages(false);
+    }
+  }, [shouldUpdateMessages]);
+
+  useEffect(() => {
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
   }, [messages]);
 
+
   const handleSendMessage = (event) => {
     event.preventDefault();
     const messageText = event.target.message.value;
     const message = new Message(messageText, new Date(), loggedInUser.username, currentReceiver);
-    messagesManager.addMessage(message);
+  
+    const currentChatState = JSON.parse(localStorage.getItem('chatState')) || [];
+    currentChatState.push(message);
+    localStorage.setItem('chatState', JSON.stringify(currentChatState));
+    
     event.target.reset();
-    setMessages(messagesManager.loadMessagesFromStorage());
+    setMessages(currentChatState);
   };
 
+  const hasUnreadMessages = (receiver) => {
+    return messages.some(
+      (message) =>
+        message.status === "unread" &&
+        message.receiver === loggedInUser?.username &&
+        message.sender === receiver
+    );
+  };
 
   const handleConversationClick = (receiver) => {
     setCurrentReceiver(receiver);
-  }
+  
+    const currentChatState = JSON.parse(localStorage.getItem('chatState')) || [];
+  
+    const updatedChatState = currentChatState.map((message) => {
+      if (
+        message.sender === receiver &&
+        message.receiver === loggedInUser?.username &&
+        message.status === "unread"
+      ) {
+        return { ...message, status: "read" };
+      }
+      return message;
+    });
+  
+    localStorage.setItem('chatState', JSON.stringify(updatedChatState));
+    setMessages(updatedChatState);
+  };
+
   const formatDate = (date) => {
     const currentDate = new Date();
     const messageDate = new Date(date);
@@ -123,6 +163,19 @@ const Messages = (props) => {
                 className="receiverImage"
               />
               {receiver}
+              {hasUnreadMessages(receiver) && (
+                <span
+                  className="unreadIndicator"
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "red",
+                    display: "inline-block",
+                    marginLeft: "5px",
+                  }}
+                ></span>
+              )}
             </li>
           ))}
         </ul>

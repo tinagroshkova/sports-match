@@ -1,15 +1,14 @@
 import userManager from "./UserManager";
 
 class Message {
-  constructor(text, timestamp, sender, receiver) {
+  constructor(text, timestamp, sender, receiver, status = 'unread') {
     this.text = text;
     this.timestamp = timestamp;
     this.sender = sender;
     this.receiver = receiver;
-    // this.read = false;
+    this.status = status;
   }
 }
-
 const CHAT_STORAGE_KEY = 'chatState';
 
 class MessagesManager {
@@ -74,19 +73,12 @@ class MessagesManager {
     return Array.from(conversationSet);
   }
 
-  // setOnUpdate(onUpdate) {
-  //   this.onUpdateCallbacks.push(onUpdate);
-  // }
-  // removeOnUpdate(callback) {
-  //   const index = this.onUpdateCallbacks.indexOf(callback);
-  //   if (index !== -1) {
-  //     this.onUpdateCallbacks.splice(index, 1);
-  //   }
-  // }
-
   startCheckingStorage() {
     this.intervalId = setInterval(() => this.checkStorage(), 5000);
   }
+  updateMessagesInStorage(updatedMessages) {
+    localStorage.setItem("messages", JSON.stringify(updatedMessages));
+  };
 }
 
 const messagesManager = new MessagesManager();
