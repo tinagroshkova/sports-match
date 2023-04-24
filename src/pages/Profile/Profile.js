@@ -88,6 +88,7 @@ export default function ProfilePage() {
     // if (user.age < 0) {
     //   setUser({ ...user, age: 0 });
     // }
+
     userManager.setLoggedInUser(user);
     setIsEditing(false);
   };
@@ -143,7 +144,7 @@ export default function ProfilePage() {
               {isEditing ? (
                 <input style={{ position: "relative" }} type="number" name="age" value={user.age || ''} onChange={handleEdit} placeholder="Edit your age" />
               ) : (
-                typeof user.age === 'number' ? user.age : ''
+                <>{typeof user.age === 'number' ? user.age : ''} y/o</>
               )}
             </span>
           </p>
