@@ -8,6 +8,7 @@ import buddySearch from "../../images/homePage/homePageRequests.png";
 import messages from "../../images/homePage/mess.png";
 import places from "../../images/homePage/homePagePlaces.png";
 import lineHome from "../../images/homePage/lineHome.gif";
+import myVideo from "../../images/11.mov";
 
 
 export default function HomePage() {
@@ -41,25 +42,31 @@ export default function HomePage() {
     ]
 
     return (
-        <div className="homeContainer">
-            <h2 className="siteNameTitle">SPORTS MATCH</h2>
-            <div className="logo">
-            </div>
-            <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it TOGETHER</h2>
-            {/* <img className="" src={lineHome} alt=""></img> */}
-            <div className="homeCardContainerWrapper">
-                {navElements.map(data => (
-                    <HomeCard
-                        key={data.description}
-                        image={data.image}
-                        description={data.description}
-                        to={data.to}
-                        className="linkIcon"
-                    />
-                ))}
-            </div>
-            <div className="homeLineCont">
-                <img className="homeLine" src={lineHome} alt=""></img>
+        <div>
+            <video id="background-video" autoPlay muted loop>
+                <source src={myVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div className="homeContainer">
+                <h2 className="siteNameTitle">SPORTS MATCH</h2>
+                <div className="logo">
+                </div>
+                <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it TOGETHER</h2>
+                {/* <img className="" src={lineHome} alt=""></img> */}
+                <div className="homeCardContainerWrapper">
+                    {navElements.map(data => (
+                        <HomeCard
+                            key={data.description}
+                            image={data.image}
+                            description={data.description}
+                            to={data.to}
+                            className="linkIcon"
+                        />
+                    ))}
+                </div>
+                <div className="homeLineCont">
+                    <img className="homeLine" src={lineHome} alt=""></img>
+                </div>
             </div>
         </div>
     )
