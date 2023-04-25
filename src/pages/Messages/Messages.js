@@ -55,7 +55,6 @@ const Messages = (props) => {
 
   useEffect(() => {
     messagesManager.loadMessagesFromStorage();
-    // messagesManager.setOnUpdate(handleMessageUpdate);
     setMessages(messagesManager.loadMessagesFromStorage());
   }, []);
 
@@ -71,6 +70,32 @@ const Messages = (props) => {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
   }, [messages]);
+
+
+  useEffect(() => {
+    const updateImages = async () => {
+      const updatedUsers = await userManager.fetchAllUsers();
+      userManager.users = updatedUsers;
+  
+      const currentSenderObj = updatedUsers.find((user) => user.username === loggedInUser?.username);
+      const currentReceiverObj = updatedUsers.find((user) => user.username === currentReceiver);
+  
+      if (currentSenderObj) {
+        setUpdatedImage(currentSenderObj.getImage());
+      }
+      if (currentReceiverObj) {
+        setUpdatedImage(currentReceiverObj.getImage());
+      }
+    };
+  
+    const intervalId = setInterval(() => {
+      updateImages();
+    }, 10000); 
+  
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [loggedInUser, currentReceiver]);
 
 
   const handleSendMessage = (event) => {
@@ -135,14 +160,15 @@ const Messages = (props) => {
 
     return dateString + timeString;
   }
+
   const getSenderImage = (sender) => {
     const senderObj = userManager.users.find((user) => user.username === sender);
     return updatedImage || (senderObj ? senderObj.getImage() : userImage);
   };
 
-  const getReceiverImage = (receiver) => {
+  const getReceiverImage = (receiver, updatedImage) => {
     const receiverObj = userManager.users.find((user) => user.username === receiver);
-    return receiverObj && receiverObj.getImage() ? receiverObj.getImage() : userImage;
+    return updatedImage || (receiverObj && receiverObj.getImage() ? receiverObj.getImage() : userImage);
   };
 
   return (
@@ -153,7 +179,7 @@ const Messages = (props) => {
           {messagesManager.getConversations(loggedInUser?.username).map((receiver, index) => (
             <li key={index} onClick={() => handleConversationClick(receiver)}>
               <img
-                src={getReceiverImage(receiver)}
+                src={getReceiverImage(receiver, updatedImage)}
                 alt={receiver}
                 className="receiverImage"
               />
@@ -171,7 +197,7 @@ const Messages = (props) => {
             <h1>{currentReceiver ? currentReceiver : "Go back and find a buddy"}</h1>
             {currentReceiver && (
               <img
-                src={getReceiverImage(currentReceiver)}
+                src={getReceiverImage(currentReceiver, updatedImage)}
                 alt={currentReceiver}
                 className="receiverImage"
               />
@@ -199,6 +225,7 @@ const Messages = (props) => {
     </div>
   );
 };
+
 
 const MessageComponent = ({ message, loggedInUser, formatDate, getReceiverImage, getSenderImage }) => {
   const isSentByLoggedInUser = message.sender === loggedInUser?.username;

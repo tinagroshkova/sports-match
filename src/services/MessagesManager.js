@@ -9,6 +9,7 @@ class Message {
     this.status = status;
   }
 }
+
 const CHAT_STORAGE_KEY = 'chatState';
 
 class MessagesManager {
@@ -58,6 +59,7 @@ class MessagesManager {
       }
     }
   }
+
   getConversations(username) {
     const conversationSet = new Set();
     this.messages.forEach(message => {
@@ -73,6 +75,7 @@ class MessagesManager {
   startCheckingStorage() {
     this.intervalId = setInterval(() => this.checkStorage(), 5000);
   }
+  
   updateMessagesInStorage(updatedMessages) {
     this.messages = updatedMessages;
     this.saveMessagesToStorage();
