@@ -62,10 +62,11 @@ const RegistrationForm = () => {
       }
     }
 
+    const usernameValid = !newErrors.username && username;
+    const passwordValid = !newErrors.password && password;
+    const confirmPasswordValid = !newErrors.confirmPassword && confirmPassword;
 
-    const hasErrors = Object.keys(newErrors).length > 0;
-
-    setFormValid(!hasErrors);
+    setFormValid(usernameValid && passwordValid && confirmPasswordValid);
     setErrors(newErrors);
   };
 

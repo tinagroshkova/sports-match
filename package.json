@@ -12,7 +12,6 @@
     "bootstrap": "^5.2.3",
     "emoji-mart": "^5.5.2",
     "emoji-picker-react": "^4.4.8",
-    "firebase": "^9.19.1",
     "mdb-react-ui-kit": "^6.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",

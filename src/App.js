@@ -11,13 +11,9 @@ function App() {
 
             <BrowserRouter>
                 <Navbar />
-                {/* <ChatPage /> */}
             </BrowserRouter>
-
-
         </div>
     )
-
 }
 
 export default App;
