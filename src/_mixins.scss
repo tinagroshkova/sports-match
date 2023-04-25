@@ -62,6 +62,33 @@
     border-radius: 10px;
 }
 
+@mixin profileBorder {
+    border-width: 6px;
+    border-style: solid;
+    border-image: linear-gradient(to right, $contrast-transperant, $almost-white-color) 1;
+    border-radius: 10px;
+    z-index: -1;
+    animation: gradientBorder 4s linear infinite;
+
+    @keyframes gradientBorder {
+        0% {
+            border-image: linear-gradient(235deg, $purple-color, #010615, #00bcd4) 1;
+            background-position: 0 0;
+        }
+
+        50% {
+            border-image: linear-gradient(235deg, $contrast-transperant, $purple-color, #010615) 1;
+            background-position: 50% 0;
+        }
+
+        100% {
+            border-image: linear-gradient(235deg, #010615, #00bcd4, $purple-color) 1;
+            background-position: 100% 0;
+        }
+    }
+}
+
+
 @mixin sphere {
     border-radius: 110px;
     position: absolute;

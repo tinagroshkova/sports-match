@@ -52,7 +52,6 @@ export default function HomePage() {
                 <div className="logo">
                 </div>
                 <h2 className="siteSloganTitle">Choose an activity, meet new people, have fun doing it TOGETHER</h2>
-                {/* <img className="" src={lineHome} alt=""></img> */}
                 <div className="homeCardContainerWrapper">
                     {navElements.map(data => (
                         <HomeCard
@@ -64,9 +63,6 @@ export default function HomePage() {
                         />
                     ))}
                 </div>
-                {/* <div className="homeLineCont">
-                    <img className="homeLine" src={lineHome} alt=""></img>
-                </div> */}
             </div>
         </div>
     )

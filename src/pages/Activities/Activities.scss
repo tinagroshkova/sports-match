@@ -60,10 +60,11 @@
 
     .sphere {
         @include sphere();
-        width: 200px;
-        top: 27%;
+        width: 205px;
+        top: 75%;
         left: 4%;
         z-index: -1;
+        position: fixed;
     }
 }
 

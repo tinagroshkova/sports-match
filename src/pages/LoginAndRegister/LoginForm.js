@@ -48,7 +48,6 @@ function LoginForm() {
     const errorsCopy = { ...errors };
     let formIsValid = true;
 
-    // Check for errors in the form
     if (username.trim() === "") {
       errorsCopy.username = "Username is required";
       formIsValid = false;

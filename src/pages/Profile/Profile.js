@@ -24,7 +24,7 @@ export default function ProfilePage() {
         }
         navigate('/login', { state: { from: '/profile' } });
       }
-      const userImage = loggedInUser.image || profileImage;
+      const userImage = loggedInUser?.image || profileImage;
       setProfileImage(userImage);
       setUser({ ...loggedInUser });
     };

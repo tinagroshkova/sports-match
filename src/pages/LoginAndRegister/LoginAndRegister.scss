@@ -46,7 +46,6 @@ section {
             padding: 30px 0 0 0;
         }
 
-
         .text-danger,
         .form-text {
             font-size: 16px;
@@ -65,10 +64,8 @@ section {
         }
     }
 
-
     .registerLink {
         text-decoration: none;
-        /* Цвят на "Don't have an account?" */
         color: $almost-white-color;
 
         a {
@@ -90,7 +87,6 @@ section {
         top: 8%;
     }
 }
-
 
 .inputBox {
     position: relative;

@@ -17,7 +17,8 @@
         background-color: rgba(255, 255, 255, 0.2);
         height: 400px;
         box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.5);
-        @include gradientBorder();
+        @include profileBorder();
+
 
         .userInfo {
             width: 500px;

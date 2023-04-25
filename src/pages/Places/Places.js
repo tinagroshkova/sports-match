@@ -73,29 +73,5 @@ export default function PlacesPage() {
   );
 }
 
-  // useEffect(() => {
-  //   if (debouncedSearchText === "") {
-  //     setItems([]);
-  //   } else {
-  //     const filteredItems = placesData.filter((item) => {
-  //       // const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // const siteMatch = item.site.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // const workMatch = item.workingHours.toLowerCase().includes(debouncedSearchText.toLowerCase());
-  //       // return nameMatch || addressMatch || siteMatch || workMatch;
-  //       return addressMatch;
-  //     });
-  //     setItems(filteredItems);
-  //   }
-  // }, [debouncedSearchText, placesData]);
-
-  // useEffect(() => {
-  //   if (debouncedSelectedItem === null || debouncedSelectedItem === "") {
-  //     setItems([]);
-  //   } else {
-  //     const filteredItems = placesData.filter((item) => item.type === debouncedSelectedItem);
-  //     setItems(filteredItems);
-  //   }
-  // }, [debouncedSelectedItem]);
 
 
