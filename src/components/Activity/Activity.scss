@@ -4,8 +4,8 @@
 .activityContainerSquare {
     display: flex;
     flex-direction: column;
-    width: 260px;
-    height: 260px;
+    width: 18vh;
+    height: 18vh;
     position: relative;
     transition: transform 0.5s ease-in-out;
 
@@ -14,8 +14,8 @@
     }
 
     @media screen and (max-width: 1366px) {
-        width: 200px;
-        height: 200px;
+        width: 16vh;
+        height: 16vh;
     }
 
     h2 {
@@ -29,17 +29,17 @@
 
     img {
         width: auto;
-        height: 150px;
+        max-height: 10vh;
 
         @media screen and (max-width: 1366px) {
-            height: 120px;
+            height: 8vh;
             width: auto
         }
     }
 
     button {
         width: 100%;
-        height: 50px;
+        height: 20%;
         border: none;
         border-radius: 0;
         font-size: 22px;
@@ -68,7 +68,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            // background: linear-gradient(45deg, $dark-main-color, $medium-main-color, $contrast-color, $light-main-color, $almost-white-color);
             background: linear-gradient(70deg, $purple-color, $dark-main-color, $contrast-color, $light-main-color, $almost-white-color);
             background-size: 400%;
             opacity: 0;
@@ -161,11 +160,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: transform 0.3s, background-color 0.3s; /* Add transition for the scale and background color animation */
+    transition: transform 0.3s, background-color 0.3s; 
 
     &:hover {
-        transform: scale(1.1); /* Scale the component up on hover */
-        background-color: rgba(255, 255, 255, 0.4); /* Change background color on hover */
+        transform: scale(1.1); 
+        background-color: rgba(255, 255, 255, 0.4); 
     }
 
     img {
@@ -182,7 +181,7 @@
         position: absolute;
         background-color: $super-contrast;
         right: -10px;
-        transition: color 0.3s; /* Add transition for the color animation */
+        transition: color 0.3s;
 
         &:hover {
             scale: (1.2);
@@ -190,23 +189,3 @@
         }
     }
 }
-
-
-// button {
-//     width: 100%;
-//     height: 50px;
-//     border: none;
-//     border-radius: 0;
-//     font-size: 22px;
-//     font-weight: 800;
-//     position: absolute;
-//     background-color: $contrast-color;
-//     left: 0;
-//     bottom: 0;
-//     cursor: pointer;
-
-//     &:hover {
-//         background-color: $medium-main-color;
-//         color: rgba(255, 255, 255, 1);
-//     }
-// }

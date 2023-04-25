@@ -4,7 +4,6 @@ import userManager from "../../services/UserManager";
 import activitiesData from "./activitiesData";
 import { Activity } from "./activitiesData";
 import "./Activities.scss";
-import Swal from "sweetalert2"; 
 import "../../sweetalert2-custom.scss";
 import { ActivityComponent } from '../../components/Activity/Activity';
 import useDebounce from "../../components/Utils/Debounce";
@@ -13,23 +12,27 @@ import sphere from "../../images/homePage/sphere.gif";
 
 const activities = activitiesData.map(activity => new Activity(activity.name, activity.image));
 
-
 export default function ActivitiesPage() {
     const [addedActivities, setAddedActivities] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const navigate = useNavigate();
     const debouncedSearchInput = useDebounce(searchInput, 300);
-
-    function handleSearchInputChange(event) {
-        setSearchInput(event.target.value);
-    }
-
     activities.sort((a, b) => a.name.localeCompare(b.name));
 
     useEffect(() => {
         const user = userManager.getLoggedInUser();
         setAddedActivities(user ? user.activities || [] : []);
     }, []);
+
+    useEffect(() => {
+        const user = userManager.getLoggedInUser();
+        setAddedActivities(user ? user.activities || [] : []);
+    }, [userManager.getLoggedInUser()]);
+
+
+    function handleSearchInputChange(event) {
+        setSearchInput(event.target.value);
+    }
 
     async function handleAddActivity(activity) {
         const user = userManager.getLoggedInUser();
@@ -54,11 +57,6 @@ export default function ActivitiesPage() {
             ]);
         }
     }
-
-    useEffect(() => {
-        const user = userManager.getLoggedInUser();
-        setAddedActivities(user ? user.activities || [] : []);
-    }, [userManager.getLoggedInUser()]);
 
     return (
         <div className="activitiesPageContainer">

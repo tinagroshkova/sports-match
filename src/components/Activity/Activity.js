@@ -1,7 +1,7 @@
 import "./Activity.scss";
 
 function ActivityComponent({ activity, onAdd, added, onRemove }) {
-  const addButtonText = added ? "Remove from List" : "Add to List";
+  const addButtonText = added ? "Remove" : "Add";
   const removeButtonText = "X";
 
   return (
