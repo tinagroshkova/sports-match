@@ -7,7 +7,7 @@ import useDebounce from '../../components/Utils/Debounce';
 export default function PlacesPage() {
   const [items, setItems] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState("");
 
   const sportsTypes = [...new Set(placesData.map(place => place.type))].sort((a, b) => a.localeCompare(b));
 
@@ -18,8 +18,8 @@ export default function PlacesPage() {
     const filteredItems = placesData.filter((item) => {
       const nameMatch = item.name.toLowerCase().includes(debouncedSearchText.toLowerCase());
       const addressMatch = item.address.toLowerCase().includes(debouncedSearchText.toLowerCase());
-      const typeMatch = item.type === debouncedSelectedItem;
-      return (nameMatch || addressMatch) && (selectedItem === null || typeMatch);
+      const typeMatch = debouncedSelectedItem === "" || item.type === debouncedSelectedItem;
+      return (nameMatch || addressMatch) && typeMatch;
     });
     setItems(filteredItems);
   }, [debouncedSearchText, debouncedSelectedItem]);
@@ -43,7 +43,7 @@ export default function PlacesPage() {
 
         <div>
           or / and
-          <select className='selectSearch' value={selectedItem ? selectedItem.name : ""} onChange={handleSelect}>
+          <select className='selectSearch' value={selectedItem} onChange={handleSelect}>
             <option value="">Choose sport category</option>
             {sportsTypes.map(sport => <option key={sport} value={sport}>{sport.charAt(0).toUpperCase() + sport.slice(1)}</option>)}
           </select>
@@ -72,6 +72,5 @@ export default function PlacesPage() {
     </div>
   );
 }
-
 
 

@@ -19,11 +19,6 @@ export default function ActivitiesPage() {
     const debouncedSearchInput = useDebounce(searchInput, 300);
     activities.sort((a, b) => a.name.localeCompare(b.name));
 
-    // useEffect(() => {
-    //     const user = userManager.getLoggedInUser();
-    //     setAddedActivities(user ? user.activities || [] : []);
-    // }, []);
-
     useEffect(() => {
         const user = userManager.getLoggedInUser();
         setAddedActivities(user ? user.activities || [] : []);

@@ -1,3 +1,4 @@
+
 class User {
   constructor(username, password) {
     this.username = username;
@@ -22,7 +23,6 @@ class UserManager {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     this.users = users.map((user) => {
       const newUser = new User(user.username, user.password);
-      newUser.id = user.id;
       newUser.image = user.image || "";
       newUser.age = user.age || "";
       newUser.city = user.city || "";
@@ -36,7 +36,6 @@ class UserManager {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     return users.map((user) => {
       const newUser = new User(user.username, user.password);
-      newUser.id = user.id;
       newUser.image = user.image || "";
       newUser.age = user.age || "";
       newUser.city = user.city || "";
