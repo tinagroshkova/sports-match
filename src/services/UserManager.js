@@ -32,6 +32,20 @@ class UserManager {
     });
   }
 
+  fetchAllUsers() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.map((user) => {
+      const newUser = new User(user.username, user.password);
+      newUser.id = user.id;
+      newUser.image = user.image || "";
+      newUser.age = user.age || "";
+      newUser.city = user.city || "";
+      newUser.gender = user.gender || "";
+      newUser.activities = user.activities || [];
+      return newUser;
+    });
+  }
+
   registerUser = (username, password) => {
     const userExists = this.users.some((user) => user.username === username);
 

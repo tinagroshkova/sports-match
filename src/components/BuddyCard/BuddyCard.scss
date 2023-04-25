@@ -35,11 +35,13 @@ $color_1: #fff;
         left: 0;
         width: 355px;
         height: 355px;
-        object-fit: cover;
         padding: 10px;
         box-sizing: border-box;
 
         img {
+            width: 355px;
+            height: 325px;
+            object-fit: cover;
             max-width: 100%;
             opacity: 0.1;
             transition: 0.5s;
