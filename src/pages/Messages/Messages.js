@@ -16,7 +16,7 @@ const Messages = (props) => {
   const [currentReceiver, setCurrentReceiver] = useState(location.state?.receiver || props.location?.state?.receiver || "");
   const messageListRef = useRef(null);
   const loggedInUser = userManager.getLoggedInUser();
-  const [updatedImage, setUpdatedImage] = useState(null);
+  const [updatedImages, setUpdatedImages] = useState({});
   const [shouldUpdateMessages, setShouldUpdateMessages] = useState(false);
 
   useEffect(() => {
@@ -42,11 +42,11 @@ const Messages = (props) => {
         setMessages(loadedMessages);
       }
     };
-  
+
     const intervalId = setInterval(() => {
       fetchMessages();
     }, 2000);
-  
+
     return () => {
       clearInterval(intervalId);
     };
@@ -76,33 +76,27 @@ const Messages = (props) => {
     const updateImages = async () => {
       const updatedUsers = await userManager.fetchAllUsers();
       userManager.users = updatedUsers;
-  
-      const currentSenderObj = updatedUsers.find((user) => user.username === loggedInUser?.username);
       const currentReceiverObj = updatedUsers.find((user) => user.username === currentReceiver);
-  
-      if (currentSenderObj) {
-        setUpdatedImage(currentSenderObj.getImage());
-      }
-      if (currentReceiverObj) {
-        setUpdatedImage(currentReceiverObj.getImage());
+      if (currentReceiverObj && currentReceiverObj.getImage()) {
+        setUpdatedImages((prevImages) => ({ ...prevImages, [currentReceiver]: currentReceiverObj.getImage() }));
       }
     };
   
     const intervalId = setInterval(() => {
       updateImages();
-    }, 10000); 
+    }, 300); // Check for updated images every 10 seconds
   
     return () => {
       clearInterval(intervalId);
     };
-  }, [loggedInUser, currentReceiver]);
+  }, [currentReceiver]);
 
 
   const handleSendMessage = (event) => {
     event.preventDefault();
     const messageText = event.target.message.value;
     const message = new Message(messageText, new Date(), loggedInUser.username, currentReceiver);
-  
+
     messagesManager.addMessage(message);
     event.target.reset();
     setMessages(messagesManager.loadMessagesFromStorage());
@@ -119,7 +113,7 @@ const Messages = (props) => {
 
   const handleConversationClick = (receiver) => {
     setCurrentReceiver(receiver);
-  
+
     const updatedMessages = messages.map((message) => {
       if (
         message.sender === receiver &&
@@ -130,7 +124,7 @@ const Messages = (props) => {
       }
       return message;
     });
-  
+
     messagesManager.updateMessagesInStorage(updatedMessages);
     setMessages(updatedMessages);
   };
@@ -163,12 +157,12 @@ const Messages = (props) => {
 
   const getSenderImage = (sender) => {
     const senderObj = userManager.users.find((user) => user.username === sender);
-    return updatedImage || (senderObj ? senderObj.getImage() : userImage);
+    return updatedImages[sender] || (senderObj ? senderObj.getImage() : userImage);
   };
 
-  const getReceiverImage = (receiver, updatedImage) => {
+  const getReceiverImage = (receiver) => {
     const receiverObj = userManager.users.find((user) => user.username === receiver);
-    return updatedImage || (receiverObj && receiverObj.getImage() ? receiverObj.getImage() : userImage);
+    return updatedImages[receiver] || (receiverObj && receiverObj.getImage() ? receiverObj.getImage() : userImage);
   };
 
   return (
@@ -179,7 +173,7 @@ const Messages = (props) => {
           {messagesManager.getConversations(loggedInUser?.username).map((receiver, index) => (
             <li key={index} onClick={() => handleConversationClick(receiver)}>
               <img
-                src={getReceiverImage(receiver, updatedImage)}
+                src={getReceiverImage(receiver, updatedImages)}
                 alt={receiver}
                 className="receiverImage"
               />
@@ -197,7 +191,7 @@ const Messages = (props) => {
             <h1>{currentReceiver ? currentReceiver : "Go back and find a buddy"}</h1>
             {currentReceiver && (
               <img
-                src={getReceiverImage(currentReceiver, updatedImage)}
+                src={getReceiverImage(currentReceiver, updatedImages)}
                 alt={currentReceiver}
                 className="receiverImage"
               />
@@ -213,7 +207,7 @@ const Messages = (props) => {
                   (message.sender === currentReceiver && message.receiver === loggedInUser?.username)
               )
               .map((message, index) => (
-                <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} getSenderImage={getSenderImage} getReceiverImage={getReceiverImage} setUpdatedImage={setUpdatedImage} />
+                <MessageComponent key={index} message={message} loggedInUser={loggedInUser} formatDate={formatDate} getSenderImage={getSenderImage} getReceiverImage={getReceiverImage} setUpdatedImage={setUpdatedImages} />
               ))}
           </ul>
           <form className="messagesForm" onSubmit={handleSendMessage}>
