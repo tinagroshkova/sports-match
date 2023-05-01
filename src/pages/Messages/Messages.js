@@ -81,11 +81,11 @@ const Messages = (props) => {
         setUpdatedImages((prevImages) => ({ ...prevImages, [currentReceiver]: currentReceiverObj.getImage() }));
       }
     };
-  
+
     const intervalId = setInterval(() => {
       updateImages();
-    }, 300); // Check for updated images every 10 seconds
-  
+    }, 300);
+
     return () => {
       clearInterval(intervalId);
     };
