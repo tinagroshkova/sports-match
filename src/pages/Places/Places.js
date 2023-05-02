@@ -38,7 +38,7 @@ export default function PlacesPage() {
 
       <div className='searchWrapper'>
         <div>
-          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Search by address" />
+          <input className='inputSearch' type="text" value={searchText} onChange={handleSearch} placeholder="Search" />
         </div>
 
         <div>
