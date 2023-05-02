@@ -15,6 +15,19 @@
         gap: 40px;
         margin-top: 50px;
     }
+    @media screen and (max-width: 1024px) {
+        .activitiesContainer {
+            width: 90%;
+            gap: 30px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .activitiesContainer {
+            width: 95%;
+            gap: 20px;
+        }
+    }
 
     .siteNameTitle {
         color: $almost-white-color;
@@ -22,13 +35,14 @@
         width: 9%;
         font-size: 42px;
         text-align: right;
-        left: 2%;
+        left: 3%;
         top: 86px;
 
         @media screen and (max-width: 1366px) {
             font-size: 26px;
             width: 10%;
             top: 4.7%;
+            padding-right: 20px;
         }
     }
 

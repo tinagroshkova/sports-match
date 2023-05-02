@@ -59,7 +59,7 @@ export default function ActivitiesPage() {
                 <h2 className="siteNameTitle">
                     ADD favorite sports to your profile so that other people can find YOU
                 </h2>
-                <img className="sphere" src={sphere} alt="sphere image"></img>
+                {/* <img className="sphere" src={sphere} alt="sphere image"></img> */}
             </div>
             <div className="searchContainer">
                 <label htmlFor="activitySearch"></label>

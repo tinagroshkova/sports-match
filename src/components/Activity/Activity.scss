@@ -4,36 +4,48 @@
 .activityContainerSquare {
     display: flex;
     flex-direction: column;
-    width: 18vh;
-    height: 18vh;
+    width: 260px;
+    height: 260px;
     position: relative;
     transition: transform 0.5s ease-in-out;
+    box-shadow: 10px 10px 10px -6px black;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
 
     &:hover {
         transform: scale(1.1);
     }
 
+    h2,
+    img,
+    button {
+        position: absolute;
+    }
+
     @media screen and (max-width: 1366px) {
-        width: 16vh;
-        height: 16vh;
+        width: 18vh;
+        min-height: 18vh;
     }
 
     h2 {
+        top: 2%;
+        width: 100%;
+        text-align: center;
         color: $almost-white-color;
         text-shadow: $text-shadow;
+        
+        @media screen and (max-width: 1366px) {
+            font-size: 1.3em;
+        }
     }
-
-    box-shadow: 10px 10px 10px -6px black;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.2);
 
     img {
         width: auto;
-        max-height: 10vh;
+        max-height: 50%;
+        top: 30%;
 
         @media screen and (max-width: 1366px) {
-            height: 8vh;
-            width: auto
+            top: 25%;
         }
     }
 
@@ -42,7 +54,7 @@
         height: 20%;
         border: none;
         border-radius: 0;
-        font-size: 22px;
+        font-size: 1.5em;
         font-weight: 800;
         position: absolute;
         background-color: $contrast-color;
@@ -54,6 +66,10 @@
         color: $almost-white-color;
         transition: 0.5s;
         z-index: 1;
+
+        @media screen and (max-width: 1366px) {
+            font-size: 1.3em;
+        }
 
         &:hover {
             background-color: $medium-main-color;
@@ -134,6 +150,7 @@
     0% {
         transform: rotateY(0deg);
     }
+
     100% {
         transform: rotateY(360deg);
     }
@@ -143,6 +160,7 @@
     0% {
         transform: rotateX(0deg);
     }
+
     100% {
         transform: rotateX(360deg);
     }
@@ -160,11 +178,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: transform 0.3s, background-color 0.3s; 
+    transition: transform 0.3s, background-color 0.3s;
 
     &:hover {
-        transform: scale(1.1); 
-        background-color: rgba(255, 255, 255, 0.4); 
+        transform: scale(1.1);
+        background-color: rgba(255, 255, 255, 0.4);
     }
 
     img {
