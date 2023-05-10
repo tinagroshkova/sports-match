@@ -17,7 +17,6 @@ const Messages = (props) => {
   const messageListRef = useRef(null);
   const loggedInUser = userManager.getLoggedInUser();
   const [updatedImages, setUpdatedImages] = useState({});
-  const [shouldUpdateMessages, setShouldUpdateMessages] = useState(false);
 
   useEffect(() => {
     const checkLoggedInUser = async () => {
@@ -35,35 +34,25 @@ const Messages = (props) => {
     checkLoggedInUser();
   }, []);
 
+
   useEffect(() => {
     const fetchMessages = () => {
-      const loadedMessages = JSON.parse(localStorage.getItem('chatState')) || [];
+      const loadedMessages = messagesManager.loadMessagesFromStorage();
       if (JSON.stringify(loadedMessages) !== JSON.stringify(messages)) {
         setMessages(loadedMessages);
       }
     };
-
+  
+    setMessages(messagesManager.loadMessagesFromStorage());
     const intervalId = setInterval(() => {
       fetchMessages();
     }, 2000);
-
+  
     return () => {
       clearInterval(intervalId);
     };
-  }, [messages]);
-
-
-  useEffect(() => {
-    messagesManager.loadMessagesFromStorage();
-    setMessages(messagesManager.loadMessagesFromStorage());
   }, []);
 
-  useEffect(() => {
-    if (shouldUpdateMessages) {
-      setMessages(messagesManager.loadMessagesFromStorage());
-      setShouldUpdateMessages(false);
-    }
-  }, [shouldUpdateMessages]);
 
   useEffect(() => {
     if (messageListRef.current) {
@@ -81,10 +70,9 @@ const Messages = (props) => {
         setUpdatedImages((prevImages) => ({ ...prevImages, [currentReceiver]: currentReceiverObj.getImage() }));
       }
     };
-
     const intervalId = setInterval(() => {
       updateImages();
-    }, 300);
+    }, 2000);
 
     return () => {
       clearInterval(intervalId);
@@ -111,9 +99,9 @@ const Messages = (props) => {
     );
   };
 
+
   const handleConversationClick = (receiver) => {
     setCurrentReceiver(receiver);
-
     const updatedMessages = messages.map((message) => {
       if (
         message.sender === receiver &&
@@ -124,10 +112,10 @@ const Messages = (props) => {
       }
       return message;
     });
-
     messagesManager.updateMessagesInStorage(updatedMessages);
     setMessages(updatedMessages);
   };
+
 
   const formatDate = (date) => {
     const currentDate = new Date();
