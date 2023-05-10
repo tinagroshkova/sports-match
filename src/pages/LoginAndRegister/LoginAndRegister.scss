@@ -44,14 +44,13 @@ section {
         }
 
         .btnHolder {
-            margin: 10px 0 20px 0;
+            margin: 20px 0 20px 0;
 
             .btn-primary {
                 @include button();
                 margin-bottom: 10px;
                 width: 300px;
             }
-
         }
 
         .registerLink {
