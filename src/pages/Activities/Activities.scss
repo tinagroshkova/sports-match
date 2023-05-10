@@ -35,13 +35,14 @@
         width: 9%;
         font-size: 42px;
         text-align: right;
-        left: 3%;
+        left: 1%;
         top: 86px;
+        margin-right: 20px;
 
         @media screen and (max-width: 1366px) {
             font-size: 26px;
             width: 10%;
-            top: 4.7%;
+            top: 6.8%;
             padding-right: 20px;
         }
     }
@@ -68,7 +69,6 @@
         &::placeholder,
         &:focus {
             color: $almost-white-color;
-            // padding: 10px;
         }
     }
 

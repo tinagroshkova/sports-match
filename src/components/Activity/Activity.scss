@@ -35,7 +35,7 @@
         text-shadow: $text-shadow;
         
         @media screen and (max-width: 1366px) {
-            font-size: 1.3em;
+            font-size: 0.9em;
         }
     }
 
@@ -45,7 +45,7 @@
         top: 30%;
 
         @media screen and (max-width: 1366px) {
-            top: 25%;
+            top: 28%;
         }
     }
 
@@ -68,7 +68,7 @@
         z-index: 1;
 
         @media screen and (max-width: 1366px) {
-            font-size: 1.3em;
+            font-size: 1em;
         }
 
         &:hover {
